@@ -3,127 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tushar Dhakal | Mechanical Engineer</title>
+    <title>Tushar Dhakal | Mechanical Engineer & Innovation Leader</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
-            --primary-color: #2c3e50; /* Deep Professional Blue */
+            --primary-color: #2c3e50; 
             --accent-color: #3498db;
+            --award-gold: #f1c40f;
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             scroll-behavior: smooth;
+            color: #333;
+            line-height: 1.6;
         }
 
-        .section-padding {
-            padding: 80px 0;
-        }
-
+        /* --- NAVBAR --- */
         .navbar {
-            background-color: var(--primary-color) !important;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background-color: rgba(44, 62, 80, 0.98) !important;
+            backdrop-filter: blur(10px);
+            padding: 12px 0;
         }
+        .navbar-nav { flex-direction: row !important; }
+        .nav-link { font-size: 0.7rem; text-transform: uppercase; font-weight: 700; padding: 0 8px !important; color: white !important; }
+        .nav-link:hover { color: var(--accent-color) !important; }
 
+        /* --- HERO --- */
         .masthead {
-            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-            padding-top: 140px;
-            padding-bottom: 100px;
+            background: linear-gradient(rgba(44, 62, 80, 0.85), rgba(44, 62, 80, 0.85)), url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 150px 0 100px;
         }
+        .profile-img { border: 6px solid white; box-shadow: 0 15px 30px rgba(0,0,0,0.3); object-fit: cover; }
 
-        .project-card {
-            border: none;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
+        /* --- SECTION BASICS --- */
+        .section-padding { padding: 90px 0; }
+        .section-title { font-weight: 800; text-transform: uppercase; margin-bottom: 50px; position: relative; }
+        .section-title::after { content: ""; display: block; width: 60px; height: 4px; background: var(--accent-color); margin: 15px auto; }
 
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
+        /* --- CARDS --- */
+        .card { border: none; border-radius: 15px; transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        
+        .experience-header { background: #f8f9fa; border-left: 5px solid var(--accent-color); padding: 20px; border-radius: 10px; margin-bottom: 20px; }
+        .date-badge { background: var(--primary-color); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
+        
+        .btn-link-custom { font-size: 0.8rem; color: var(--accent-color); text-decoration: none; font-weight: 600; }
+        .btn-link-custom:hover { text-decoration: underline; }
 
-        .icon-circle {
-            width: 70px;
-            height: 70px;
-            background: var(--accent-color);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 30px;
-            margin: 0 auto 20px;
-        }
+        .achievement-badge { background: #fff3cd; color: #856404; border: 1px solid #ffeeba; padding: 10px 15px; border-radius: 10px; display: inline-block; margin-bottom: 15px; }
 
-        .section-title::after {
-            content: "";
-            display: block;
-            width: 60px;
-            height: 3px;
-            background: var(--accent-color);
-            margin: 15px auto;
-        }
+        footer { background: #1a252f; color: white; }
     </style>
 </head>
 
 <body id="page-top">
 
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+<nav class="navbar navbar-expand navbar-dark fixed-top shadow-sm">
     <div class="container">
-        <a class="navbar-brand fw-bold" href="#page-top">Tushar Dhakal</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+        <a class="navbar-brand fw-bold d-none d-lg-block" href="#page-top">TUSHAR DHAKAL</a>
+        <div class="ms-auto">
+            <ul class="navbar-nav gap-1 gap-md-3">
                 <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="#achievements">Achievements</a></li>
                 <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-                <li class="nav-item"><a class="nav-link" href="#cv">CV</a></li>
+                <li class="nav-item"><a class="nav-link" href="#leadership">Leadership</a></li>
                 <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
             </ul>
         </div>
     </div>
 </nav>
 
-<header class="masthead text-white text-center" id="home">
+<header class="masthead text-white text-center">
     <div class="container">
-        <img src="brp.jpg" class="rounded-circle mb-4 border border-4 border-white shadow" width="180" height="180" style="object-fit: cover;" alt="Profile">
-        <h1 class="display-4 fw-bold text-uppercase">Tushar Dhakal</h1>
-        <p class="lead mb-4 fs-3">
-            Mechanical Engineering Student<br>
-            <span class="badge bg-light text-dark fs-6 mt-2">Robotics</span>
-            <span class="badge bg-light text-dark fs-6 mt-2">Energy Systems</span>
-            <span class="badge bg-light text-dark fs-6 mt-2">Applied Design</span>
+        <img src="brp.jpg" class="rounded-circle mb-4 profile-img" width="200" height="200" alt="Tushar Dhakal">
+        <h1 class="display-4 fw-bold">TUSHAR DHAKAL</h1>
+        <p class="lead mb-4 fs-4 px-lg-5">
+            <em>"Engineering is not just a study; it's a journey to make the impossible, possible!"</em>
         </p>
-
-        <div class="d-flex justify-content-center gap-4">
-            <a href="https://www.linkedin.com/in/tushar-d-1114ab2b8/" target="_blank" class="text-white fs-2"><i class="fab fa-linkedin"></i></a>
-            <a href="https://www.facebook.com/tushar.dhakal.37" target="_blank" class="text-white fs-2"><i class="fab fa-facebook"></i></a>
-            <a href="https://www.instagram.com/tushardhakal11/" target="_blank" class="text-white fs-2"><i class="fab fa-instagram"></i></a>
+        <div class="d-flex justify-content-center gap-3">
+            <a href="mailto:dhakaltushar@gmail.com" class="btn btn-primary btn-lg px-4 shadow"><i class="fas fa-paper-plane me-2"></i>Contact Me</a>
+            <a href="https://www.linkedin.com/in/tushar-d-1114ab2b8/" target="_blank" class="btn btn-outline-light btn-lg px-4"><i class="fab fa-linkedin me-2"></i>LinkedIn</a>
         </div>
     </div>
 </header>
 
-<section class="section-padding bg-light" id="about">
+<section class="section-padding" id="about">
     <div class="container text-center">
-        <h2 class="section-title mb-4">About Me</h2>
+        <h2 class="section-title">Professional Summary</h2>
         <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <p class="lead mb-4">
-                    I am a Mechanical Engineering undergraduate at Kathmandu University with a strong focus on
-                    robotics, energy systems, and hands-on engineering design. My interests lie in converting
-                    theoretical concepts into practical, scalable solutions.
+            <div class="col-lg-10">
+                <p class="fs-5 text-secondary mb-5">
+                    Diligent Mechanical Engineering student specializing in <strong>Automobile Engineering</strong> at <strong>Kathmandu University</strong>. 
+                    Proven track record of managing high-stakes technical events and transforming complex theoretical concepts into 
+                    tangible innovations.
                 </p>
-                <p>
-                    I have worked on robotic arms, gesture-controlled systems, EV battery repurposing,
-                    and STEAM education initiatives. My long-term goal is to contribute to sustainable
-                    and intelligent engineering systems.
-                </p>
+                <div class="row text-start g-4">
+                    <div class="col-md-4">
+                        <div class="p-3 shadow-sm rounded bg-light border-top border-primary border-4">
+                            <h6 class="fw-bold"><i class="fas fa-user me-2"></i>Personal Profile</h6>
+                            <p class="small mb-0 text-muted">Nationality: Nepalese<br>DOB: 16/07/2004</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="p-3 shadow-sm rounded bg-light border-top border-primary border-4">
+                            <h6 class="fw-bold"><i class="fas fa-map-marker-alt me-2"></i>Location</h6>
+                            <p class="small mb-0 text-muted">Vandol, Dhulikhel<br>Kavre, Nepal</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="p-3 shadow-sm rounded bg-light border-top border-primary border-4">
+                            <h6 class="fw-bold"><i class="fas fa-envelope me-2"></i>Contact</h6>
+                            <p class="small mb-0 text-muted">dhakaltushar@gmail.com<br>+977 9847290629</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding bg-light" id="achievements">
+    <div class="container">
+        <h2 class="section-title text-center">Honours & Awards</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card p-4 h-100 border-0">
+                    <div class="text-warning mb-2"><i class="fas fa-award fa-2x"></i></div>
+                    <span class="date-badge mb-2">June 2024</span>
+                    <h5 class="fw-bold">First Prize (National)</h5>
+                    <p class="small text-primary fw-bold">Ministry of Education & Technology</p>
+                    <p class="small">National STEAM Materials Design Competition. Awarded for the design and construction of innovative university-level STEAM materials.</p>
+                    <a href="https://www.facebook.com/share/p/1EDSrMeHaX/" target="_blank" class="btn-link-custom mt-auto">View Verification <i class="fas fa-external-link-alt ms-1"></i></a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-4 h-100 border-0">
+                    <div class="text-primary mb-2"><i class="fas fa-robot fa-2x"></i></div>
+                    <span class="date-badge mb-2">2025</span>
+                    <h5 class="fw-bold">3rd Position: Project Demo</h5>
+                    <p class="small text-primary fw-bold">AAVISHKAR '25 (KU Robotics Club)</p>
+                    <p class="small">Recognized for the demonstration and technical showcasing of the Gesture-Controlled Robotic Arm project among national competitors.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-4 h-100 border-0">
+                    <div class="text-secondary mb-2"><i class="fas fa-lightbulb fa-2x"></i></div>
+                    <span class="date-badge mb-2">Nov 2024</span>
+                    <h5 class="fw-bold">3rd Position: Idea Bank</h5>
+                    <p class="small text-primary fw-bold">Akhil Student Union, Kavre</p>
+                    <p class="small">Secured top ranking for innovative engineering conceptualization in the regional Idea Bank Contest.</p>
+                </div>
             </div>
         </div>
     </div>
@@ -131,72 +166,151 @@
 
 <section class="section-padding" id="projects">
     <div class="container">
-        <h2 class="section-title text-center mb-5">Projects</h2>
+        <h2 class="section-title text-center">Technical Projects</h2>
         <div class="row g-4">
-            <div class="col-md-6 col-lg-3">
-                <div class="card project-card h-100 text-center p-4">
-                    <div class="icon-circle"><i class="fas fa-robot"></i></div>
-                    <h5 class="fw-bold">Gesture Controlled Robotic Arm</h5>
-                    <p class="text-muted small">Real-time hand gesture based robotic arm using computer vision.</p>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="card project-card h-100 text-center p-4">
-                    <div class="icon-circle"><i class="fas fa-cogs"></i></div>
-                    <h5 class="fw-bold">4 D.O.F Robotic Arm</h5>
-                    <p class="text-muted small">Servo-driven robotic arm fabricated using 3D printed PLA components.</p>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="card project-card h-100 text-center p-4">
-                    <div class="icon-circle"><i class="fas fa-battery-half"></i></div>
-                    <h5 class="fw-bold">EV Battery Repurposing</h5>
-                    <p class="text-muted small">Energy economics study on second-life EV batteries in Nepal.</p>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="card project-card h-100 text-center p-4">
-                    <div class="icon-circle"><i class="fas fa-flask"></i></div>
-                    <h5 class="fw-bold">Yantra Kit (STEAM)</h5>
-                    <p class="text-muted small">Low-cost educational engineering kit for school-level STEAM learning.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="section-padding bg-light text-center" id="cv">
-    <div class="container">
-        <h2 class="section-title mb-4">Curriculum Vitae</h2>
-        <p class="lead mb-4">Download my academic CV, certifications, and training records.</p>
-        <a href="#" class="btn btn-primary btn-lg px-5 shadow-sm">
-            <i class="fas fa-download me-2"></i>Download CV
-        </a>
-    </div>
-</section>
-
-<section class="section-padding text-center" id="contact">
-    <div class="container">
-        <h2 class="section-title mb-4">Contact</h2>
-        <div class="row justify-content-center">
             <div class="col-md-6">
-                <p class="lead mb-4">Interested in collaboration, research, or engineering projects.</p>
-                <div class="d-flex flex-column align-items-center gap-2">
-                    <span><i class="fas fa-envelope text-primary me-2"></i> your.email@example.com</span>
-                    <span><i class="fas fa-map-marker-alt text-primary me-2"></i> Kathmandu, Nepal</span>
+                <div class="card p-4 border-start border-primary border-5">
+                    <span class="text-muted small fw-bold">2025 — CURRENT</span>
+                    <h5 class="fw-bold mt-2">Energy Economics: EV Battery Repurposing</h5>
+                    <p class="text-muted small">Part of 3rd-year curriculum. Analyzing the economic viability of second-life EV batteries for sustainable energy storage in Nepal.</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card p-4 border-start border-primary border-5">
+                    <span class="text-muted small fw-bold">2024 — 2025</span>
+                    <h5 class="fw-bold mt-2">4 D.O.F Gesture Controlled Robotic Arm</h5>
+                    <p class="text-muted small">Developed a servo-driven arm utilizing computer vision for real-time hand gesture control. Supported by KU Robotics Club.</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card p-4 border-start border-primary border-5">
+                    <span class="text-muted small fw-bold">2024</span>
+                    <h5 class="fw-bold mt-2">Detachable Carriage for E-Bike</h5>
+                    <p class="text-muted small">Design and fabrication of a modular logistics solution for electric cycles. Part of 2nd-year engineering project.</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card p-4 border-start border-primary border-5">
+                    <span class="text-muted small fw-bold">2023</span>
+                    <h5 class="fw-bold mt-2">Manual Gearbox Prototype</h5>
+                    <p class="text-muted small">Functional scaled prototype of a manual automotive gearbox. Completed during the 1st-year, 2nd-semester curriculum.</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<footer class="bg-dark text-white text-center py-4">
+<section class="section-padding bg-light" id="leadership">
     <div class="container">
-        <small>© 2026 Tushar Dhakal. All Rights Reserved.</small>
+        <h2 class="section-title text-center">Leadership & Management</h2>
+        
+        <h4 class="fw-bold mb-4 text-primary"><i class="fas fa-microchip me-2"></i>Innovation & Robotics Events</h4>
+        <div class="row g-4 mb-5">
+            <div class="col-md-6">
+                <div class="experience-header">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <h5 class="fw-bold mb-0">Resources & Logistic Head</h5>
+                        <span class="date-badge">2025</span>
+                    </div>
+                    <p class="text-primary small mb-2">AAVISHKAR '25 | Kathmandu University Robotics Club</p>
+                    <ul class="small mb-2">
+                        <li>Led resource planning for 12+ national events.</li>
+                        <li>Supervised Operations, HR, and Hospitality teams.</li>
+                        <li>Managed procurement, vendor coordination, and inventory.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="experience-header">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <h5 class="fw-bold mb-0">Hospitality Manager</h5>
+                        <span class="date-badge">2024</span>
+                    </div>
+                    <p class="text-primary small mb-2">AAVISHKAR '24 | Kathmandu University Robotics Club</p>
+                    <p class="small">Spearheaded guest relations and developed collaborative relationships with sponsors.</p>
+                    <a href="https://kurc.ku.edu.np/aavishkar24/resourcenlogistics/" target="_blank" class="btn-link-custom">Official Resource Link <i class="fas fa-link"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <h4 class="fw-bold mb-4 text-primary"><i class="fas fa-users me-2"></i>Engineering & Community Impact</h4>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card p-4 h-100 shadow-sm border-top border-info border-4">
+                    <h6 class="fw-bold">Logistics Manager</h6>
+                    <p class="small text-muted">AVIYANTAA '24 (AMES)</p>
+                    <p class="small">Planned and monitored logistics for the annual Mechanical Engineering festival.</p>
+                    <a href="https://www.instagram.com/p/C_mbnbLS0ck/" target="_blank" class="btn-link-custom">View Gallery <i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-4 h-100 shadow-sm border-top border-info border-4">
+                    <h6 class="fw-bold">Event & Outreach Manager</h6>
+                    <p class="small text-muted">EWBN (Engineers Without Borders)</p>
+                    <p class="small">Managing inter-chapter relations and outreach activities since Nov 2024.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-4 h-100 shadow-sm border-top border-info border-4">
+                    <h6 class="fw-bold">President</h6>
+                    <p class="small text-muted">Ward Child Club (2018-2020)</p>
+                    <p class="small">Led 19 child clubs under the ward; managed awareness campaigns and community help programs.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding" id="work">
+    <div class="container">
+        <h2 class="section-title text-center">Entrepreneurial Initiative</h2>
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <div class="card p-5 bg-dark text-white shadow-lg">
+                    <span class="badge bg-primary mb-3 mx-auto" style="width: fit-content;">KU Running Shield 2025</span>
+                    <h3 class="fw-bold">Handcrafted Engineering Tokens</h3>
+                    <p class="lead">Conceptualized, designed, and produced <strong>50 personalized handcrafted tokens</strong> using basic engineering techniques.</p>
+                    <p class="small opacity-75 italic">Demonstrated initiative through material sourcing, production planning, and distribution to foster community engagement.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding bg-light" id="contact">
+    <div class="container text-center">
+        <h2 class="section-title">Get In Touch</h2>
+        <p class="mb-5">Open for research collaborations, engineering projects, and leadership roles.</p>
+        <div class="row justify-content-center g-4">
+            <div class="col-md-4">
+                <i class="fas fa-envelope text-primary fs-3 mb-2"></i>
+                <p class="fw-bold mb-0">Email</p>
+                <p class="text-muted">dhakaltushar@gmail.com</p>
+            </div>
+            <div class="col-md-4">
+                <i class="fas fa-phone text-primary fs-3 mb-2"></i>
+                <p class="fw-bold mb-0">Phone</p>
+                <p class="text-muted">(+977) 9847290629</p>
+            </div>
+            <div class="col-md-4">
+                <i class="fab fa-linkedin text-primary fs-3 mb-2"></i>
+                <p class="fw-bold mb-0">LinkedIn</p>
+                <a href="https://www.linkedin.com/in/tushar-d-1114ab2b8/" target="_blank" class="text-decoration-none">tushar-d-1114ab2b8</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="py-5">
+    <div class="container text-center">
+        <p class="mb-0 small opacity-75">© 2026 Tushar Dhakal. Kathmandu University, Mechanical Engineering.</p>
+        <div class="mt-3">
+            <a href="https://www.facebook.com/tushar.dhakal.37" class="text-white mx-2"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com/tushardhakal11/" class="text-white mx-2"><i class="fab fa-instagram"></i></a>
+        </div>
     </div>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
 </html>
