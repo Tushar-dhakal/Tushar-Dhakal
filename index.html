@@ -1,130 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tushar Dhakal | Mechanical Engineer</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #2c3e50; /* Deep Professional Blue */
+            --accent-color: #3498db;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .navbar {
+            background-color: var(--primary-color) !important;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .masthead {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            padding-top: 140px;
+            padding-bottom: 100px;
+        }
+
+        .project-card {
+            border: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .icon-circle {
+            width: 70px;
+            height: 70px;
+            background: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            margin: 0 auto 20px;
+        }
+
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--accent-color);
+            margin: 15px auto;
+        }
+    </style>
+</head>
+
 <body id="page-top">
 
-    <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
-        <div class="container">
-            <a class="navbar-brand" href="#page-top">Tushar Dhakal</a>
-            <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" 
-                type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">
-                Menu
-                <i class="fas fa-bars"></i>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#cv">CV / Certificates</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Home Section-->
-    <header class="masthead bg-primary text-white text-center" id="home">
-        <div class="container d-flex align-items-center flex-column">
-            <img class="masthead-avatar mb-5" src="brp.jpg" alt="Profile Image" />
-            <h1 class="masthead-heading text-uppercase mb-0">Tushar Dhakal</h1>
-            <p class="masthead-subheading font-weight-light mb-4">
-                Mechanical Engineering Student | Robotics | Energy Systems
-            </p>
-
-            <div>
-                <a href="https://www.linkedin.com/in/tushar-d-1114ab2b8/" class="text-white me-3">
-                    <i class="fab fa-linkedin fa-2x"></i>
-                </a>
-                <a href="https://www.facebook.com/tushar.dhakal.37" class="text-white me-3">
-                    <i class="fab fa-facebook-f fa-2x"></i>
-                </a>
-                <a href="https://www.instagram.com/tushardhakal11/" class="text-white">
-                    <i class="fab fa-instagram fa-2x"></i>
-                </a>
-            </div>
-        </div>
-    </header>
-
-    <!-- About Section-->
-    <section class="page-section bg-light text-center" id="about">
-        <div class="container">
-            <h2 class="page-section-heading text-uppercase text-secondary mb-4">About Me</h2>
-            <p class="lead">
-                I am a Mechanical Engineering undergraduate at Kathmandu University with strong interests in 
-                robotics, energy systems, and applied engineering design. My work focuses on transforming 
-                theoretical concepts into practical, real-world solutions through hands-on prototyping, 
-                system integration, and experimentation.
-            </p>
-            <p class="lead">
-                I have actively worked on robotic arms, gesture-controlled systems, electric vehicle 
-                battery repurposing, and STEAM education initiatives. I am particularly interested in 
-                sustainable engineering, automation, and interdisciplinary innovation.
-            </p>
-        </div>
-    </section>
-
-    <!-- Projects Section-->
-    <section class="page-section text-center" id="projects">
-        <div class="container">
-            <h2 class="page-section-heading text-uppercase text-secondary mb-4">Projects</h2>
-
-            <ul class="list-group list-group-flush text-start">
-                <li class="list-group-item">
-                    <strong>Gesture Controlled Robotic Arm</strong><br>
-                    A multi-DOF robotic arm controlled using real-time hand gestures through computer vision.
-                </li>
-                <li class="list-group-item">
-                    <strong>Design and Fabrication of 4 D.O.F Robotic Arm</strong><br>
-                    A servo-driven robotic arm fabricated using 3D-printed PLA components.
-                </li>
-                <li class="list-group-item">
-                    <strong>Energy Economics of EV Battery Repurposing</strong><br>
-                    Analysis of second-life applications of EV batteries in the context of Nepal.
-                </li>
-                <li class="list-group-item">
-                    <strong>Yantra Kit – STEAM Learning Toolkit</strong><br>
-                    A low-cost educational kit designed to teach engineering fundamentals to school students.
-                </li>
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="#page-top">Tushar Dhakal</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                <li class="nav-item"><a class="nav-link" href="#cv">CV</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
             </ul>
         </div>
-    </section>
+    </div>
+</nav>
 
-    <!-- CV / Certificates Section-->
-    <section class="page-section bg-light text-center" id="cv">
-        <div class="container">
-            <h2 class="page-section-heading text-uppercase text-secondary mb-4">CV & Certificates</h2>
-            <p class="lead">
-                My academic CV, certifications, training programs, and technical achievements 
-                will be uploaded here.
-            </p>
-            <p>
-                <a href="#" class="btn btn-primary btn-lg">Download CV (Coming Soon)</a>
-            </p>
-        </div>
-    </section>
+<header class="masthead text-white text-center" id="home">
+    <div class="container">
+        <img src="brp.jpg" class="rounded-circle mb-4 border border-4 border-white shadow" width="180" height="180" style="object-fit: cover;" alt="Profile">
+        <h1 class="display-4 fw-bold text-uppercase">Tushar Dhakal</h1>
+        <p class="lead mb-4 fs-3">
+            Mechanical Engineering Student<br>
+            <span class="badge bg-light text-dark fs-6 mt-2">Robotics</span>
+            <span class="badge bg-light text-dark fs-6 mt-2">Energy Systems</span>
+            <span class="badge bg-light text-dark fs-6 mt-2">Applied Design</span>
+        </p>
 
-    <!-- Contact Section-->
-    <section class="page-section text-center" id="contact">
-        <div class="container">
-            <h2 class="page-section-heading text-uppercase text-secondary mb-4">Contact</h2>
-            <p class="lead">
-                Feel free to reach out for collaborations, academic discussions, or engineering projects.
-            </p>
-            <p>
-                <strong>Email:</strong> your.email@example.com<br>
-                <strong>Location:</strong> Nepal
-            </p>
-        </div>
-    </section>
-
-    <!-- Footer-->
-    <div class="copyright py-4 text-center text-white bg-secondary">
-        <div class="container">
-            <small>Copyright &copy; 2025 Tushar Dhakal</small>
+        <div class="d-flex justify-content-center gap-4">
+            <a href="https://www.linkedin.com/in/tushar-d-1114ab2b8/" target="_blank" class="text-white fs-2"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.facebook.com/tushar.dhakal.37" target="_blank" class="text-white fs-2"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com/tushardhakal11/" target="_blank" class="text-white fs-2"><i class="fab fa-instagram"></i></a>
         </div>
     </div>
+</header>
 
-    <!-- Bootstrap core JS-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/scripts.js"></script>
+<section class="section-padding bg-light" id="about">
+    <div class="container text-center">
+        <h2 class="section-title mb-4">About Me</h2>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <p class="lead mb-4">
+                    I am a Mechanical Engineering undergraduate at Kathmandu University with a strong focus on
+                    robotics, energy systems, and hands-on engineering design. My interests lie in converting
+                    theoretical concepts into practical, scalable solutions.
+                </p>
+                <p>
+                    I have worked on robotic arms, gesture-controlled systems, EV battery repurposing,
+                    and STEAM education initiatives. My long-term goal is to contribute to sustainable
+                    and intelligent engineering systems.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding" id="projects">
+    <div class="container">
+        <h2 class="section-title text-center mb-5">Projects</h2>
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3">
+                <div class="card project-card h-100 text-center p-4">
+                    <div class="icon-circle"><i class="fas fa-robot"></i></div>
+                    <h5 class="fw-bold">Gesture Controlled Robotic Arm</h5>
+                    <p class="text-muted small">Real-time hand gesture based robotic arm using computer vision.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card project-card h-100 text-center p-4">
+                    <div class="icon-circle"><i class="fas fa-cogs"></i></div>
+                    <h5 class="fw-bold">4 D.O.F Robotic Arm</h5>
+                    <p class="text-muted small">Servo-driven robotic arm fabricated using 3D printed PLA components.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card project-card h-100 text-center p-4">
+                    <div class="icon-circle"><i class="fas fa-battery-half"></i></div>
+                    <h5 class="fw-bold">EV Battery Repurposing</h5>
+                    <p class="text-muted small">Energy economics study on second-life EV batteries in Nepal.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card project-card h-100 text-center p-4">
+                    <div class="icon-circle"><i class="fas fa-flask"></i></div>
+                    <h5 class="fw-bold">Yantra Kit (STEAM)</h5>
+                    <p class="text-muted small">Low-cost educational engineering kit for school-level STEAM learning.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding bg-light text-center" id="cv">
+    <div class="container">
+        <h2 class="section-title mb-4">Curriculum Vitae</h2>
+        <p class="lead mb-4">Download my academic CV, certifications, and training records.</p>
+        <a href="#" class="btn btn-primary btn-lg px-5 shadow-sm">
+            <i class="fas fa-download me-2"></i>Download CV
+        </a>
+    </div>
+</section>
+
+<section class="section-padding text-center" id="contact">
+    <div class="container">
+        <h2 class="section-title mb-4">Contact</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <p class="lead mb-4">Interested in collaboration, research, or engineering projects.</p>
+                <div class="d-flex flex-column align-items-center gap-2">
+                    <span><i class="fas fa-envelope text-primary me-2"></i> your.email@example.com</span>
+                    <span><i class="fas fa-map-marker-alt text-primary me-2"></i> Kathmandu, Nepal</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="bg-dark text-white text-center py-4">
+    <div class="container">
+        <small>© 2026 Tushar Dhakal. All Rights Reserved.</small>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
+</html>
