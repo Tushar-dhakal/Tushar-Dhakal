@@ -46,7 +46,7 @@
         .section-title::after { content: ""; display: block; width: 60px; height: 4px; background: var(--accent-color); margin: 15px auto; }
 
         /* --- CARDS --- */
-        .card { border: none; border-radius: 15px; transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .card { border: none; border-radius: 15px; transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.05); overflow: hidden; background: #fff; }
         .card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
         
         .experience-header { background: #f8f9fa; border-left: 5px solid var(--accent-color); padding: 20px; border-radius: 10px; margin-bottom: 20px; }
@@ -54,6 +54,14 @@
         
         .btn-link-custom { font-size: 0.8rem; color: var(--accent-color); text-decoration: none; font-weight: 600; }
         .btn-link-custom:hover { text-decoration: underline; }
+
+        /* Media Styles */
+        .achievement-img { width: 100%; height: 280px; object-fit: cover; cursor: zoom-in; }
+        .token-media { width: 100%; height: 350px; object-fit: contain; border-radius: 10px; margin-top: 15px; background: #111; }
+        .token-img-clickable { cursor: zoom-in; }
+        
+        /* Fixed Project Banner */
+        .project-banner { width: 100%; height: auto; max-height: 300px; object-fit: cover; display: block; }
 
         footer { background: #1a252f; color: white; }
     </style>
@@ -70,6 +78,7 @@
                 <li class="nav-item"><a class="nav-link" href="#achievements">Achievements</a></li>
                 <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
                 <li class="nav-item"><a class="nav-link" href="#leadership">Leadership</a></li>
+                <li class="nav-item"><a class="nav-link" href="#volunteering">Volunteering</a></li>
                 <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
             </ul>
         </div>
@@ -122,49 +131,117 @@
         <h2 class="section-title text-center">Honours & Awards</h2>
         <div class="row g-4">
             <div class="col-md-4">
-                <div class="card p-4 h-100 border-0">
-                    <div class="text-warning mb-2"><i class="fas fa-award fa-2x"></i></div>
-                    <span class="date-badge mb-2">June 2024</span>
-                    <h5 class="fw-bold">First Prize (National)</h5>
-                    <p class="small text-primary fw-bold">Ministry of Education, Science and Technology, Government of Nepal</p>
-                    <p class="small text-muted italic">STEAM Materials Design Competition</p>
-                    <p class="small">Awarded for the design and construction of innovative university-level STEAM materials (2080/81).</p>
-                    <a href="https://www.facebook.com/share/p/1EDSrMeHaX/" target="_blank" class="btn-link-custom mt-auto">View Verification <i class="fas fa-external-link-alt ms-1"></i></a>
+                <div class="card h-100 border-0">
+                    <img src="steam_award.jpeg" class="achievement-img" alt="STEAM Award" data-bs-toggle="modal" data-bs-target="#m1">
+                    <div class="p-4">
+                        <div class="text-warning mb-2"><i class="fas fa-award fa-2x"></i></div>
+                        <span class="date-badge mb-2">June 2024</span>
+                        <h5 class="fw-bold">First Prize (National)</h5>
+                        <p class="small text-primary fw-bold">Ministry of Education, Science and Technology, Government of Nepal</p>
+                        <p class="small">Awarded for the design and construction of innovative university-level STEAM materials (2080/81).</p>
+                        <a href="https://www.facebook.com/share/p/1EDSrMeHaX/" target="_blank" class="btn-link-custom mt-auto">View Verification <i class="fas fa-external-link-alt ms-1"></i></a>
+                    </div>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="card p-4 h-100 border-0">
-                    <div class="text-secondary mb-2"><i class="fas fa-lightbulb fa-2x"></i></div>
-                    <span class="date-badge mb-2">Nov 2024</span>
-                    <h5 class="fw-bold">3rd Position: Idea Bank</h5>
-                    <p class="small text-primary fw-bold">Akhil Student Union, Kavre</p>
-                    <p class="small">Recognized for innovative engineering conceptualization and presentation in a regional competition.</p>
+                <div class="card h-100 border-0">
+                    <img src="ideapitch.png" class="achievement-img" alt="Idea Bank" data-bs-toggle="modal" data-bs-target="#m2">
+                    <div class="p-4">
+                        <div class="text-secondary mb-2"><i class="fas fa-lightbulb fa-2x"></i></div>
+                        <span class="date-badge mb-2">Nov 2024</span>
+                        <h5 class="fw-bold">3rd Position: Idea Bank</h5>
+                        <p class="small text-primary fw-bold">Akhil Student Union, Kavre</p>
+                        <p class="small">Recognized for innovative engineering conceptualization and presentation in a regional competition.</p>
+                    </div>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="card p-4 h-100 border-0">
-                    <div class="text-primary mb-2"><i class="fas fa-robot fa-2x"></i></div>
-                    <span class="date-badge mb-2">2025</span>
-                    <h5 class="fw-bold">3rd Position: Project Demo</h5>
-                    <p class="small text-primary fw-bold">AAVISHKAR '25 (KU Robotics Club)</p>
-                    <p class="small">Awarded for the technical demonstration of a Gesture-Controlled Robotic Arm at the national level.</p>
+                <div class="card h-100 border-0">
+                    <img src="projectdemo.jpg" class="achievement-img" alt="Project Demo" data-bs-toggle="modal" data-bs-target="#m3">
+                    <div class="p-4">
+                        <div class="text-primary mb-2"><i class="fas fa-robot fa-2x"></i></div>
+                        <span class="date-badge mb-2">2025</span>
+                        <h5 class="fw-bold">3rd Position: Project Demo</h5>
+                        <p class="small text-primary fw-bold">AAVISHKAR '25 (KU Robotics Club)</p>
+                        <p class="small">Awarded for the technical demonstration of a Gesture-Controlled Robotic Arm at the national level.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
+<div class="modal fade" id="m1" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-lg modal-dialog-centered"><div class="modal-content border-0 bg-transparent text-end"><button type="button" class="btn-close btn-close-white mb-2" data-bs-dismiss="modal"></button><img src="steam_award.jpeg" class="img-fluid rounded shadow"></div></div></div>
+<div class="modal fade" id="m2" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-lg modal-dialog-centered"><div class="modal-content border-0 bg-transparent text-end"><button type="button" class="btn-close btn-close-white mb-2" data-bs-dismiss="modal"></button><img src="ideapitch.png" class="img-fluid rounded shadow"></div></div></div>
+<div class="modal fade" id="m3" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-lg modal-dialog-centered"><div class="modal-content border-0 bg-transparent text-end"><button type="button" class="btn-close btn-close-white mb-2" data-bs-dismiss="modal"></button><img src="projectdemo.jpg" class="img-fluid rounded shadow"></div></div></div>
+<div class="modal fade" id="mToken" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-lg modal-dialog-centered"><div class="modal-content border-0 bg-transparent text-end"><button type="button" class="btn-close btn-close-white mb-2" data-bs-dismiss="modal"></button><img src="tokenoflove.jpg" class="img-fluid rounded shadow"></div></div></div>
+
+<div class="modal fade" id="mSteam1" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-lg modal-dialog-centered"><div class="modal-content border-0 bg-transparent text-end"><button type="button" class="btn-close btn-close-white mb-2" data-bs-dismiss="modal"></button><img src="steam1.jpg" class="img-fluid rounded shadow"></div></div></div>
+<div class="modal fade" id="mSteam2" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-lg modal-dialog-centered"><div class="modal-content border-0 bg-transparent text-end"><button type="button" class="btn-close btn-close-white mb-2" data-bs-dismiss="modal"></button><img src="steam2.jpg" class="img-fluid rounded shadow"></div></div></div>
+<div class="modal fade" id="mSteam3" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-lg modal-dialog-centered"><div class="modal-content border-0 bg-transparent text-end"><button type="button" class="btn-close btn-close-white mb-2" data-bs-dismiss="modal"></button><img src="steam3.jpg" class="img-fluid rounded shadow"></div></div></div>
+
+
 <section class="section-padding" id="projects">
     <div class="container">
         <h2 class="section-title text-center">Projects / Participations</h2>
         <div class="row g-4">
+            
             <div class="col-md-12">
-                <div class="card p-4 border-start border-info border-5 h-100 bg-light">
-                    <span class="date-badge mb-2 d-inline-block">2025</span>
-                    <h5 class="fw-bold">Techniche 2025 | IIT Guwahati, India</h5>
-                    <p class="text-muted small mb-0"><strong>Robotics Competitions:</strong> Participated in <strong>BattleBot</strong> and <strong>Stair Climbing Robot</strong> competitions. Gained hands-on experience in high-level robotic design, mechanical fabrication, system integration, and rigorous competitive testing on an international platform.</p>
+                <div class="card border-0 shadow-sm overflow-hidden">
+                    <img src="iitg.jpeg" class="project-banner" alt="IIT Guwahati">
+                    <div class="p-4 bg-light border-top border-info border-5">
+                        <div class="row align-items-center">
+                            <div class="col-md-6 pe-lg-5">
+                                <span class="date-badge mb-3 d-inline-block">2025</span>
+                                <h5 class="fw-bold">Techniche 2025 | IIT Guwahati, India</h5>
+                                <p class="text-muted small mb-3"><strong>Robotics Competitions:</strong> Participated in <strong>BattleBot</strong> and <strong>Stair Climbing Robot</strong> competitions. Gained hands-on experience in high-level robotic design, mechanical fabrication, system integration, and rigorous competitive testing on an international platform.</p>
+                                <a href="https://www.linkedin.com/posts/tushar-d-1114ab2b8_our-team-bishal-kumar-silwal-pranshu-bikram-activity-7368639578297065472-9su_?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEw_ZN0BUvNb4YVt48DHFnuFBXvjIjTsrdU" 
+                                   target="_blank" class="btn btn-outline-primary btn-sm rounded-pill px-3">
+                                   Read full story <i class="fas fa-external-link-alt ms-1"></i>
+                                </a>
+                            </div>
+                            <div class="col-md-6 mt-4 mt-md-0">
+                                <div class="bg-white p-2 rounded shadow-sm">
+                                    <img src="iitg1.jpg" class="img-fluid rounded" alt="Techniche Participation" 
+                                         style="width: 100%; height: 350px; object-fit: contain; background-color: #f8f9fa;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+            <div class="col-md-12">
+                <div class="card border-0 shadow-sm overflow-hidden">
+                    <div class="p-4 bg-light border-top border-primary border-5">
+                        <div class="row align-items-center">
+                            <div class="col-md-7 pe-lg-5">
+                                <span class="date-badge mb-3 d-inline-block">Nov 2025</span>
+                                <h4 class="fw-bold">CNC VESTA 660 Restoration</h4>
+                                <p class="text-muted small mb-3"><strong>Technical Training Center, Kathmandu University:</strong> Conducted comprehensive inspection and preliminary maintenance of a CNC VESTA 660. Diagnosed HMI hardware failures and planned the recovery of critical electromechanical subsystems to restore full operational capability.</p>
+                                <a href="VESTA-660_Inspection_Report.pdf" target="_blank" class="btn btn-outline-primary btn-sm rounded-pill px-3">
+                                    View Inspection Report <i class="fas fa-file-pdf ms-1"></i>
+                                </a>
+                            </div>
+                            <div class="col-md-5 mt-4 mt-md-0">
+                                <div class="bg-white p-2 rounded shadow-sm">
+                                    <div class="row g-2">
+                                        <div class="col-6">
+                                            <img src="cnc1.jpg" class="img-fluid rounded" alt="CNC VESTA 660 - Image 1" 
+                                                 style="width: 100%; height: 250px; object-fit: cover; background-color: #f8f9fa;">
+                                        </div>
+                                        <div class="col-6">
+                                            <img src="cnc2.jpg" class="img-fluid rounded" alt="CNC VESTA 660 - Image 2" 
+                                                 style="width: 100%; height: 250px; object-fit: cover; background-color: #f8f9fa;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="col-md-6">
                 <div class="card p-4 border-start border-primary border-5 h-100">
                     <span class="text-muted small fw-bold">2025 — CURRENT</span>
@@ -172,13 +249,23 @@
                     <p class="text-muted small">Third-year mechanical curriculum focus on the economic viability and energy benefits of second-life EV batteries for sustainable solutions in Nepal.</p>
                 </div>
             </div>
+            
             <div class="col-md-6">
                 <div class="card p-4 border-start border-primary border-5 h-100">
                     <span class="text-muted small fw-bold">2024 — 2025</span>
                     <h5 class="fw-bold mt-2">4 D.O.F Gesture Controlled Robotic Arm</h5>
                     <p class="text-muted small">Computer vision-integrated arm controlled by real-time gestures. Fabricated with 3D printed components and servo motors.</p>
+                    
+                    <div class="mt-3">
+                        <video class="rounded shadow-sm" autoplay muted loop playsinline controls style="width: 100%; max-height: 200px; background: #000; object-fit: cover;">
+                            <source src="arm.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <p class="small mt-2 text-muted italic" style="font-size: 0.7rem;">Demonstration: Gesture Control in Action</p>
+                    </div>
                 </div>
             </div>
+            
             <div class="col-md-6">
                 <div class="card p-4 border-start border-primary border-5 h-100">
                     <span class="text-muted small fw-bold">2024</span>
@@ -186,11 +273,20 @@
                     <p class="text-muted small">Design and fabrication of a modular cargo solution for electric cycles. Second-year mechanical engineering project.</p>
                 </div>
             </div>
+            
             <div class="col-md-6">
                 <div class="card p-4 border-start border-primary border-5 h-100">
                     <span class="text-muted small fw-bold">2023</span>
                     <h5 class="fw-bold mt-2">Manual Gearbox Prototype</h5>
                     <p class="text-muted small">Scaled functional prototype of an automotive manual transmission. First-year, second-semester design project.</p>
+                    
+                    <div class="mt-3">
+                        <video class="rounded shadow-sm" autoplay muted loop playsinline controls style="width: 100%; max-height: 200px; background: #000; object-fit: cover;">
+                            <source src="gearbox.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <p class="small mt-2 text-muted" style="font-size: 0.7rem;">Mechanism Demo: Prototype in Motion</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -206,16 +302,18 @@
                     <div class="mb-3 text-info"><i class="fas fa-gift fa-3x"></i></div>
                     <span class="badge bg-primary mb-3 mx-auto" style="width: fit-content; font-size: 0.9rem;">KU Running Shield 2025</span>
                     <h3 class="fw-bold mb-3">Custom Handcrafted Tokens of Love</h3>
-                    <p class="lead mb-4">Conceptualized and produced <strong>50 personalized handcrafted tokens</strong> for university events.</p>
-                    <div class="row text-start g-3 mt-2">
-                        <div class="col-md-4">
-                            <div class="small opacity-75"><i class="fas fa-check-circle me-2 text-info"></i>Material Sourcing</div>
+                    <p class="lead mb-4">Conceptualized and produced 50 personalized handcrafted tokens for university events.</p>
+                    
+                    <div class="row g-4 align-items-center">
+                        <div class="col-md-6">
+                            <img src="tokenoflove.jpg" class="token-media token-img-clickable" alt="Product Image" data-bs-toggle="modal" data-bs-target="#mToken">
+                            <p class="small mt-2 opacity-75">Final Product (Click to Zoom)</p>
                         </div>
-                        <div class="col-md-4">
-                            <div class="small opacity-75"><i class="fas fa-check-circle me-2 text-info"></i>Production Planning</div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="small opacity-75"><i class="fas fa-check-circle me-2 text-info"></i>Value-Driven Design</div>
+                        <div class="col-md-6">
+                            <video class="token-media" autoplay muted loop playsinline controls style="height: 350px; background: #000;">
+                                <source src="tokenoflove.mp4" type="video/mp4">
+                            </video>
+                            <p class="small mt-2 opacity-75">Manufacturing Process</p>
                         </div>
                     </div>
                 </div>
@@ -296,7 +394,61 @@
     </div>
 </section>
 
-<section class="section-padding bg-light" id="contact">
+<section class="section-padding bg-light" id="volunteering">
+    <div class="container">
+        <h2 class="section-title text-center">Volunteering & STEAM Outreach</h2>
+        <div class="row g-4">
+            
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100 overflow-hidden d-flex flex-column">
+                    <img src="steam1.jpg" class="card-img-top" alt="STEAM Session 1" style="height: 220px; object-fit: cover; cursor: zoom-in;" data-bs-toggle="modal" data-bs-target="#mSteam1">
+                    <div class="p-4 d-flex flex-column h-100">
+                        <div>
+                            <span class="date-badge mb-2 d-inline-block">2024</span>
+                            <h5 class="fw-bold">STEAM Workshop Facilitator</h5>
+                            <p class="small text-primary fw-bold"> Shree Shreekhandapur School,Dhulikhel,Kavre</p>
+                            <p class="small text-muted mb-3">Conducted hands-on STEAM sessions to inspire young minds through interactive mechanical and robotics demonstrations.</p>
+                        </div>
+                        <a href="https://www.facebook.com/KURC2014/posts/pfbid021nQ4s7yeM2shqXBLNm5aWFgXXVMpJRhpCTHWXTKBTZoGMQom7p6UnYaRSJEvVx1el#" target="_blank" class="btn-link-custom mt-auto">View Post <i class="fas fa-external-link-alt ms-1"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100 overflow-hidden d-flex flex-column">
+                    <img src="steam2.jpg" class="card-img-top" alt="STEAM Session 2" style="height: 220px; object-fit: cover; cursor: zoom-in;" data-bs-toggle="modal" data-bs-target="#mSteam2">
+                    <div class="p-4 d-flex flex-column h-100">
+                        <div>
+                            <span class="date-badge mb-2 d-inline-block">2024</span>
+                            <h5 class="fw-bold">STEAM Workshop Facilitator</h5>
+                            <p class="small text-primary fw-bold"> Shree Daduwa Bhawani Shankar Secondary School,Chautara Sangachokgadhi,Sindhupalchok</p>
+                            <p class="small text-muted mb-3">Engaged students in practical engineering challenges, helping them bridge the gap between theoretical knowledge and real-world application.</p>
+                        </div>
+                        <a href="https://www.linkedin.com/posts/tushar-d-1114ab2b8_conducted-training-sessions-on-steam-education-activity-7204136976550154240-95o0?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEw_ZN0BUvNb4YVt48DHFnuFBXvjIjTsrdU" target="_blank" class="btn-link-custom mt-auto">View Post <i class="fas fa-external-link-alt ms-1"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100 overflow-hidden d-flex flex-column">
+                    <img src="steam3.jpg" class="card-img-top" alt="STEAM Session 3" style="height: 220px; object-fit: cover; cursor: zoom-in;" data-bs-toggle="modal" data-bs-target="#mSteam3">
+                    <div class="p-4 d-flex flex-column h-100">
+                        <div>
+                            <span class="date-badge mb-2 d-inline-block">2023 - 2024</span>
+                            <h5 class="fw-bold">STEAM Workshop Facilitator</h5>
+                            <p class="small text-primary fw-bold"> Sunwal Lotus E.S.School,Sunwal Nawalparasi</p>
+                            <p class="small text-muted mb-3">Organized educational outreach programs aimed at promoting technical literacy and fostering a passion for innovation among school students.</p>
+                        </div>
+                        <a href="https://www.facebook.com/share/v/1TVjL7WMPk/" target="_blank" class="btn-link-custom mt-auto">View Session <i class="fas fa-external-link-alt ms-1"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+<section class="section-padding" id="contact">
     <div class="container text-center">
         <h2 class="section-title">Get In Touch</h2>
         <div class="row justify-content-center g-4">
