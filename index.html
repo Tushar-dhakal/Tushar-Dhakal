@@ -12,7 +12,7 @@
         :root {
             --primary-color: #2c3e50; 
             --accent-color: #3498db;
-            --card-bg-color: #f0f4f8; /* Soft blue-grey for cards */
+            --card-bg-color: #d4e6f1; /* Light blue for cards */
             --card-icon-color: #e74c3c; /* Red for icons */
         }
 
@@ -129,7 +129,7 @@
         <h4 class="fw-bold mb-4 text-start text-primary"><i class="fas fa-graduation-cap me-2"></i>Education & Training</h4>
         <div class="row text-start g-4">
             <div class="col-md-6">
-                <div class="experience-header h-100 shadow-sm bg-white">
+                <div class="experience-header h-100 shadow-sm">
                     <span class="date-badge mb-2 d-inline-block">2022 — CURRENT</span>
                     <h5 class="fw-bold">Bachelor in Mechanical Engineering</h5>
                     <p class="text-primary fw-bold mb-2">Kathmandu University</p>
@@ -137,7 +137,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="experience-header h-100 shadow-sm bg-white">
+                <div class="experience-header h-100 shadow-sm">
                     <span class="date-badge mb-2 d-inline-block">2026 — CURRENT</span>
                     <h5 class="fw-bold">Participant</h5>
                     <p class="text-primary fw-bold mb-2">Nabil School of Social Entrepreneurship (Nabil SSE)</p>
@@ -211,7 +211,7 @@
             <div class="col-md-12">
                 <div class="card border-0 shadow-sm overflow-hidden">
                     <img src="iitg.jpeg" class="project-banner" alt="IIT Guwahati">
-                    <div class="p-4 bg-light border-top border-info border-5">
+                    <div class="p-4 border-top border-info border-5">
                         <div class="row align-items-center">
                             <div class="col-md-6 pe-lg-5">
                                 <span class="date-badge mb-3 d-inline-block">2025</span>
@@ -235,7 +235,7 @@
 
             <div class="col-md-12">
                 <div class="card border-0 shadow-sm overflow-hidden">
-                    <div class="p-4 bg-light border-top border-primary border-5">
+                    <div class="p-4 border-top border-primary border-5">
                         <div class="row align-items-center">
                             <div class="col-md-7 pe-lg-5">
                                 <span class="date-badge mb-3 d-inline-block">Nov 2025</span>
@@ -305,7 +305,7 @@
                     </div>
 
                     <div class="mt-auto pt-3">
-                        <a href="ebike-summary.html" target="_blank" class="btn-link-custom d-block mb-3">Read Full Details <i class="fas fa-external-link-alt ms-1"></i></a>
+                        <a href="ebike-summary.html" class="btn-link-custom d-block mb-3 save-scroll">Read Full Details <i class="fas fa-external-link-alt ms-1"></i></a>
                     </div>
                 </div>
             </div>
@@ -327,7 +327,7 @@
                     </div>
 
                     <div class="mt-auto pt-3">
-                        <a href="gearbox-summary.html" target="_blank" class="btn-link-custom d-block mb-3">Read Full Details <i class="fas fa-external-link-alt ms-1"></i></a>
+                        <a href="gearbox-summary.html" class="btn-link-custom d-block mb-3 save-scroll">Read Full Details <i class="fas fa-external-link-alt ms-1"></i></a>
                     </div>
                 </div>
             </div>
@@ -399,7 +399,7 @@
                         <span class="date-badge mb-2 d-inline-block" style="width: fit-content;">Aug 2024 - Jan 2025</span>
                         <h6 class="fw-bold">Event Manager | AVIYANTAA '24 Workshop</h6>
                         <p class="small text-muted mb-3">Managed and coordinated a two-phase technology outreach event involving ToT for engineering students and hands-on workshops for 200+ school students.</p>
-                        <a href="aviyantaa-workshop.html" target="_blank" class="btn-link-custom mt-auto">Read Full Summary <i class="fas fa-external-link-alt ms-1"></i></a>
+                        <a href="aviyantaa-workshop.html" class="btn-link-custom mt-auto save-scroll">Read Full Summary <i class="fas fa-external-link-alt ms-1"></i></a>
                     </div>
                 </div>
             </div>
@@ -499,7 +499,7 @@
                             <p class="small text-primary fw-bold">Shivapuri Secondary School</p>
                             <p class="small text-muted mb-3">Aviyantaa x USC & Kathmandu Metropolitan City initiative aiming to empower and uplift the educational landscape in our community.</p>
                         </div>
-                        <a href="aid-to-education.html" target="_blank" class="btn-link-custom mt-auto">Read Full Summary <i class="fas fa-external-link-alt ms-1"></i></a>
+                        <a href="aid-to-education.html" class="btn-link-custom mt-auto save-scroll">Read Full Summary <i class="fas fa-external-link-alt ms-1"></i></a>
                     </div>
                 </div>
             </div>
@@ -548,13 +548,26 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
+    // Scroll Restoration Logic
+    if (sessionStorage.getItem("scrollPosition")) {
+        window.scrollTo(0, sessionStorage.getItem("scrollPosition"));
+        sessionStorage.removeItem("scrollPosition"); // Clear after restoring
+    }
+
+    const saveScrollLinks = document.querySelectorAll(".save-scroll");
+    saveScrollLinks.forEach(link => {
+        link.addEventListener("click", () => {
+            sessionStorage.setItem("scrollPosition", window.scrollY);
+        });
+    });
+
+    // Video Playback Logic
     const videos = document.querySelectorAll('video');
     
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             const video = entry.target;
             if (entry.isIntersecting) {
-                // Ensure audio is enabled as requested
                 video.muted = false;
                 
                 let playPromise = video.play();
@@ -568,7 +581,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }, {
-        threshold: 0.5 // Play when 50% of the video is visible
+        threshold: 0.5 
     });
 
     videos.forEach(video => {
