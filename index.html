@@ -12,6 +12,8 @@
         :root {
             --primary-color: #2c3e50; 
             --accent-color: #3498db;
+            --card-bg-color: #f0f4f8; /* Soft blue-grey for cards */
+            --card-icon-color: #e74c3c; /* Red for icons */
         }
 
         body {
@@ -46,10 +48,10 @@
         .section-title::after { content: ""; display: block; width: 60px; height: 4px; background: var(--accent-color); margin: 15px auto; }
 
         /* --- CARDS --- */
-        .card { border: none; border-radius: 15px; transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.05); overflow: hidden; background: #fff; }
+        .card { border: none; border-radius: 15px; transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.05); overflow: hidden; background: var(--card-bg-color); }
         .card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
         
-        .experience-header { background: #f8f9fa; border-left: 5px solid var(--accent-color); padding: 20px; border-radius: 10px; margin-bottom: 20px; }
+        .experience-header { background: var(--card-bg-color); border-left: 5px solid var(--accent-color); padding: 20px; border-radius: 10px; margin-bottom: 20px; }
         .date-badge { background: var(--primary-color); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
         
         .btn-link-custom { font-size: 0.8rem; color: var(--accent-color); text-decoration: none; font-weight: 600; }
@@ -102,7 +104,7 @@
 <section class="section-padding" id="about">
     <div class="container text-center">
         <h2 class="section-title">Professional Summary</h2>
-        <div class="row justify-content-center text-start g-4">
+        <div class="row justify-content-center text-start g-4 mb-5">
             <div class="col-lg-10 mb-4 text-center">
                 <p class="fs-5 text-secondary">
                     Diligent Mechanical Engineering student specializing in <strong>Automobile Engineering</strong> at <strong>Kathmandu University</strong>. 
@@ -123,7 +125,27 @@
                 </div>
             </div>
         </div>
-    </div>
+
+        <h4 class="fw-bold mb-4 text-start text-primary"><i class="fas fa-graduation-cap me-2"></i>Education & Training</h4>
+        <div class="row text-start g-4">
+            <div class="col-md-6">
+                <div class="experience-header h-100 shadow-sm bg-white">
+                    <span class="date-badge mb-2 d-inline-block">2022 — CURRENT</span>
+                    <h5 class="fw-bold">Bachelor in Mechanical Engineering</h5>
+                    <p class="text-primary fw-bold mb-2">Kathmandu University</p>
+                    <p class="small text-muted mb-0">Specializing in Automobile Engineering. Core focus on design, energy economics, and innovative mechanical systems.</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="experience-header h-100 shadow-sm bg-white">
+                    <span class="date-badge mb-2 d-inline-block">2026 — CURRENT</span>
+                    <h5 class="fw-bold">Participant</h5>
+                    <p class="text-primary fw-bold mb-2">Nabil School of Social Entrepreneurship (Nabil SSE)</p>
+                    <p class="small text-muted mb-0">Training in social entrepreneurship, business model development, and venture design. Currently working on developing a socially impactful business idea.</p>
+                </div>
+            </div>
+        </div>
+        </div>
 </section>
 
 <section class="section-padding bg-light" id="achievements">
@@ -134,11 +156,11 @@
                 <div class="card h-100 border-0">
                     <img src="steam_award.jpeg" class="achievement-img" alt="STEAM Award" data-bs-toggle="modal" data-bs-target="#m1">
                     <div class="p-4">
-                        <div class="text-warning mb-2"><i class="fas fa-award fa-2x"></i></div>
+                        <div class="mb-2" style="color: var(--card-icon-color);"><i class="fas fa-award fa-2x"></i></div>
                         <span class="date-badge mb-2">June 2024</span>
                         <h5 class="fw-bold">First Prize (National)</h5>
                         <p class="small text-primary fw-bold">Ministry of Education, Science and Technology, Government of Nepal</p>
-                        <p class="small">Awarded for the design and construction of innovative university-level STEAM materials (2080/81).</p>
+                        <p class="small">Awarded for the design and construction of innovative STEAM materials (2080/81).</p>
                         <a href="https://www.facebook.com/share/p/1EDSrMeHaX/" target="_blank" class="btn-link-custom mt-auto">View Verification <i class="fas fa-external-link-alt ms-1"></i></a>
                     </div>
                 </div>
@@ -147,11 +169,11 @@
                 <div class="card h-100 border-0">
                     <img src="ideapitch.png" class="achievement-img" alt="Idea Bank" data-bs-toggle="modal" data-bs-target="#m2">
                     <div class="p-4">
-                        <div class="text-secondary mb-2"><i class="fas fa-lightbulb fa-2x"></i></div>
+                        <div class="mb-2" style="color: var(--card-icon-color);"><i class="fas fa-lightbulb fa-2x"></i></div>
                         <span class="date-badge mb-2">Nov 2024</span>
                         <h5 class="fw-bold">3rd Position: Idea Bank</h5>
                         <p class="small text-primary fw-bold">Akhil Student Union, Kavre</p>
-                        <p class="small">Recognized for innovative engineering conceptualization and presentation in a regional competition.</p>
+                        <p class="small">Recognized for innovative idea on engineering conceptualization and presentation in a regional competition.</p>
                     </div>
                 </div>
             </div>
@@ -159,11 +181,11 @@
                 <div class="card h-100 border-0">
                     <img src="projectdemo.jpg" class="achievement-img" alt="Project Demo" data-bs-toggle="modal" data-bs-target="#m3">
                     <div class="p-4">
-                        <div class="text-primary mb-2"><i class="fas fa-robot fa-2x"></i></div>
+                        <div class="mb-2" style="color: var(--card-icon-color);"><i class="fas fa-robot fa-2x"></i></div>
                         <span class="date-badge mb-2">2025</span>
                         <h5 class="fw-bold">3rd Position: Project Demo</h5>
                         <p class="small text-primary fw-bold">AAVISHKAR '25 (KU Robotics Club)</p>
-                        <p class="small">Awarded for the technical demonstration of a Gesture-Controlled Robotic Arm at the national level.</p>
+                        <p class="small">Awarded for the technical demonstration of a Gesture-Controlled Robotic Arm at the universiry level.</p>
                     </div>
                 </div>
             </div>
@@ -253,7 +275,7 @@
             <div class="col-md-6">
                 <div class="card p-4 border-start border-primary border-5 h-100">
                     <span class="text-muted small fw-bold">2024 — 2025</span>
-                    <h5 class="fw-bold mt-2">4 D.O.F Gesture Controlled Robotic Arm</h5>
+                    <h5 class="fw-bold mt-2">4 D.O.F Hand Gesture Controlled Robotic Arm</h5>
                     <p class="text-muted small">Computer vision-integrated arm controlled by real-time gestures. Fabricated with 3D printed components and servo motors.</p>
                     
                     <div class="mt-3">
@@ -267,18 +289,34 @@
             </div>
             
             <div class="col-md-6">
-                <div class="card p-4 border-start border-primary border-5 h-100">
-                    <span class="text-muted small fw-bold">2024</span>
-                    <h5 class="fw-bold mt-2">Detachable Carriage for E-Bike</h5>
-                    <p class="text-muted small">Design and fabrication of a modular cargo solution for electric cycles. Second-year mechanical engineering project.</p>
+                <div class="card p-4 border-start border-primary border-5 h-100 d-flex flex-column">
+                    <div>
+                        <span class="text-muted small fw-bold">2024</span>
+                        <h5 class="fw-bold mt-2">Detachable Carriage for E-Bike</h5>
+                        <p class="text-muted small mb-3">Design and fabrication of a modular cargo solution for electric cycles. Second-year mechanical engineering project.</p>
+                    </div>
+
+                    <div class="mt-3">
+                        <video class="rounded shadow-sm" autoplay muted loop playsinline controls style="width: 100%; max-height: 200px; background: #000; object-fit: cover;">
+                            <source src="ebike.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <p class="small mt-2 text-muted" style="font-size: 0.7rem;">Mechanism Demo: E-Bike in Action</p>
+                    </div>
+
+                    <div class="mt-auto pt-3">
+                        <a href="ebike-summary.html" target="_blank" class="btn-link-custom d-block mb-3">Read Full Details <i class="fas fa-external-link-alt ms-1"></i></a>
+                    </div>
                 </div>
             </div>
             
             <div class="col-md-6">
-                <div class="card p-4 border-start border-primary border-5 h-100">
-                    <span class="text-muted small fw-bold">2023</span>
-                    <h5 class="fw-bold mt-2">Manual Gearbox Prototype</h5>
-                    <p class="text-muted small">Scaled functional prototype of an automotive manual transmission. First-year, second-semester design project.</p>
+                <div class="card p-4 border-start border-primary border-5 h-100 d-flex flex-column">
+                    <div>
+                        <span class="text-muted small fw-bold">2023</span>
+                        <h5 class="fw-bold mt-2">Manual Gearbox Prototype</h5>
+                        <p class="text-muted small mb-3">Scaled functional prototype of an automotive manual transmission. First-year, second-semester design project.</p>
+                    </div>
                     
                     <div class="mt-3">
                         <video class="rounded shadow-sm" autoplay muted loop playsinline controls style="width: 100%; max-height: 200px; background: #000; object-fit: cover;">
@@ -286,6 +324,10 @@
                             Your browser does not support the video tag.
                         </video>
                         <p class="small mt-2 text-muted" style="font-size: 0.7rem;">Mechanism Demo: Prototype in Motion</p>
+                    </div>
+
+                    <div class="mt-auto pt-3">
+                        <a href="gearbox-summary.html" target="_blank" class="btn-link-custom d-block mb-3">Read Full Details <i class="fas fa-external-link-alt ms-1"></i></a>
                     </div>
                 </div>
             </div>
@@ -298,8 +340,8 @@
         <h2 class="section-title text-center">Entrepreneurial Initiative</h2>
         <div class="row justify-content-center">
             <div class="col-lg-10">
-                <div class="card p-5 bg-dark text-white shadow-lg text-center border-0" style="border-radius: 20px;">
-                    <div class="mb-3 text-info"><i class="fas fa-gift fa-3x"></i></div>
+                <div class="card p-5 text-white shadow-lg text-center border-0" style="border-radius: 20px; background-color: var(--primary-color);">
+                    <div class="mb-3" style="color: var(--card-icon-color);"><i class="fas fa-gift fa-3x"></i></div>
                     <span class="badge bg-primary mb-3 mx-auto" style="width: fit-content; font-size: 0.9rem;">KU Running Shield 2025</span>
                     <h3 class="fw-bold mb-3">Custom Handcrafted Tokens of Love</h3>
                     <p class="lead mb-4">Conceptualized and produced 50 personalized handcrafted tokens for university events.</p>
@@ -351,11 +393,14 @@
         <h4 class="fw-bold mb-4 text-primary"><i class="fas fa-cogs me-2"></i>AMES | Mechanical Engineering Festivals</h4>
         <div class="row g-4 mb-5">
             <div class="col-md-6">
-                <div class="card p-4 h-100 shadow-sm border-top border-info border-4">
-                    <span class="date-badge mb-2 d-inline-block">Aug 2024 - Jan 2025</span>
-                    <h6 class="fw-bold">Logistics Manager | AVIYANTAA '24</h6>
-                    <p class="small text-muted">Planned and monitored logistics for the annual Mechanical Engineering festival.</p>
-                    <a href="https://www.instagram.com/p/C_mbnbLS0ck/" target="_blank" class="btn-link-custom">Instagram Gallery <i class="fab fa-instagram"></i></a>
+                <div class="card h-100 shadow-sm border-top border-info border-4 overflow-hidden p-0">
+                    <img src="workshop.jpg" class="card-img-top" alt="Workshop Image" style="height: 200px; object-fit: cover;">
+                    <div class="p-4 d-flex flex-column h-100">
+                        <span class="date-badge mb-2 d-inline-block" style="width: fit-content;">Aug 2024 - Jan 2025</span>
+                        <h6 class="fw-bold">Event Manager | AVIYANTAA '24 Workshop</h6>
+                        <p class="small text-muted mb-3">Managed and coordinated a two-phase technology outreach event involving ToT for engineering students and hands-on workshops for 200+ school students.</p>
+                        <a href="aviyantaa-workshop.html" target="_blank" class="btn-link-custom mt-auto">Read Full Summary <i class="fas fa-external-link-alt ms-1"></i></a>
+                    </div>
                 </div>
             </div>
             <div class="col-md-6">
@@ -420,7 +465,7 @@
                     <div class="p-4 d-flex flex-column h-100">
                         <div>
                             <span class="date-badge mb-2 d-inline-block">2024</span>
-                            <h5 class="fw-bold">STEAM Workshop Facilitator</h5>
+                            <h5 class="fw-bold">STEAM Workshop Trainer</h5>
                             <p class="small text-primary fw-bold"> Shree Daduwa Bhawani Shankar Secondary School,Chautara Sangachokgadhi,Sindhupalchok</p>
                             <p class="small text-muted mb-3">Engaged students in practical engineering challenges, helping them bridge the gap between theoretical knowledge and real-world application.</p>
                         </div>
@@ -431,11 +476,11 @@
             
             <div class="col-md-4">
                 <div class="card border-0 shadow-sm h-100 overflow-hidden d-flex flex-column">
-                    <img src="steam3.jpg" class="card-img-top" alt="STEAM Session 3" style="height: 220px; object-fit: cover; cursor: zoom-in;" data-bs-toggle="modal" data-bs-target="#mSteam3">
+                    <img src="steam3.png" class="card-img-top" alt="STEAM Session 3" style="height: 220px; object-fit: cover; cursor: zoom-in;" data-bs-toggle="modal" data-bs-target="#mSteam3">
                     <div class="p-4 d-flex flex-column h-100">
                         <div>
                             <span class="date-badge mb-2 d-inline-block">2023 - 2024</span>
-                            <h5 class="fw-bold">STEAM Workshop Facilitator</h5>
+                            <h5 class="fw-bold">STEAM Workshop Trainer</h5>
                             <p class="small text-primary fw-bold"> Sunwal Lotus E.S.School,Sunwal Nawalparasi</p>
                             <p class="small text-muted mb-3">Organized educational outreach programs aimed at promoting technical literacy and fostering a passion for innovation among school students.</p>
                         </div>
@@ -444,26 +489,44 @@
                 </div>
             </div>
             
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100 overflow-hidden d-flex flex-column">
+                    <img src="aidtoeducation.jpeg" class="card-img-top" alt="Aid To Education" style="height: 220px; object-fit: cover; cursor: zoom-in;" data-bs-toggle="modal" data-bs-target="#mAidToEducation">
+                    <div class="p-4 d-flex flex-column h-100">
+                        <div>
+                            <span class="date-badge mb-2 d-inline-block">2023</span>
+                            <h5 class="fw-bold">Trainer | AID TO EDUCATION</h5>
+                            <p class="small text-primary fw-bold">Shivapuri Secondary School</p>
+                            <p class="small text-muted mb-3">Aviyantaa x USC & Kathmandu Metropolitan City initiative aiming to empower and uplift the educational landscape in our community.</p>
+                        </div>
+                        <a href="aid-to-education.html" target="_blank" class="btn-link-custom mt-auto">Read Full Summary <i class="fas fa-external-link-alt ms-1"></i></a>
+                    </div>
+                </div>
+            </div>
+            
         </div>
     </div>
 </section>
+
+<!-- Volunteering Modals -->
+<div class="modal fade" id="mAidToEducation" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-lg modal-dialog-centered"><div class="modal-content border-0 bg-transparent text-end"><button type="button" class="btn-close btn-close-white mb-2" data-bs-dismiss="modal"></button><img src="aidtoeducation.jpeg" class="img-fluid rounded shadow"></div></div></div>
 
 <section class="section-padding" id="contact">
     <div class="container text-center">
         <h2 class="section-title">Get In Touch</h2>
         <div class="row justify-content-center g-4">
             <div class="col-md-4">
-                <i class="fas fa-envelope text-primary fs-3 mb-2"></i>
+                <i class="fas fa-envelope fs-3 mb-2" style="color: var(--card-icon-color);"></i>
                 <p class="fw-bold mb-0">Email</p>
                 <p class="text-muted">dhakaltushar@gmail.com</p>
             </div>
             <div class="col-md-4">
-                <i class="fas fa-phone text-primary fs-3 mb-2"></i>
+                <i class="fas fa-phone fs-3 mb-2" style="color: var(--card-icon-color);"></i>
                 <p class="fw-bold mb-0">Phone</p>
                 <p class="text-muted">(+977) 9847290629</p>
             </div>
             <div class="col-md-4">
-                <i class="fab fa-linkedin text-primary fs-3 mb-2"></i>
+                <i class="fab fa-linkedin fs-3 mb-2" style="color: var(--card-icon-color);"></i>
                 <p class="fw-bold mb-0">LinkedIn</p>
                 <a href="https://www.linkedin.com/in/tushar-d-1114ab2b8/" target="_blank" class="text-decoration-none">View Profile</a>
             </div>
