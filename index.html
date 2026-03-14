@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tushar Dhakal | Mechanical Engineer & Innovation Leader</title>
-    
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <style>
         :root {
-            --primary-color: #2c3e50; 
+            --primary-color: #2c3e50;
             --accent-color: #3498db;
-            --card-bg-color: #d4e6f1; /* Light blue for cards */
-            --card-icon-color: #e74c3c; /* Red for icons */
+            --card-bg-color: #d4e6f1;
+            /* Light blue for cards */
+            --card-icon-color: #e74c3c;
+            /* Red for icons */
         }
 
         body {
@@ -29,9 +32,22 @@
             backdrop-filter: blur(10px);
             padding: 12px 0;
         }
-        .navbar-nav { flex-direction: row !important; }
-        .nav-link { font-size: 0.7rem; text-transform: uppercase; font-weight: 700; padding: 0 8px !important; color: white !important; }
-        .nav-link:hover { color: var(--accent-color) !important; }
+
+        .navbar-nav {
+            flex-direction: row !important;
+        }
+
+        .nav-link {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            padding: 0 8px !important;
+            color: white !important;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-color) !important;
+        }
 
         /* --- HERO --- */
         .masthead {
@@ -40,221 +56,374 @@
             background-position: center;
             padding: 150px 0 100px;
         }
-        .profile-img { border: 6px solid white; box-shadow: 0 15px 30px rgba(0,0,0,0.3); object-fit: cover; }
+
+        .profile-img {
+            border: 6px solid white;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            object-fit: cover;
+        }
 
         /* --- SECTION BASICS --- */
-        .section-padding { padding: 80px 0; }
-        .section-title { font-weight: 800; text-transform: uppercase; margin-bottom: 50px; position: relative; }
-        .section-title::after { content: ""; display: block; width: 60px; height: 4px; background: var(--accent-color); margin: 15px auto; }
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--accent-color);
+            margin: 15px auto;
+        }
 
         /* --- CARDS --- */
-        .card { border: none; border-radius: 15px; transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.05); overflow: hidden; background: var(--card-bg-color); }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
-        
-        .experience-header { background: var(--card-bg-color); border-left: 5px solid var(--accent-color); padding: 20px; border-radius: 10px; margin-bottom: 20px; }
-        .date-badge { background: var(--primary-color); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
-        
-        .btn-link-custom { font-size: 0.8rem; color: var(--accent-color); text-decoration: none; font-weight: 600; }
-        .btn-link-custom:hover { text-decoration: underline; }
+        .card {
+            border: none;
+            border-radius: 15px;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            background: var(--card-bg-color);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .experience-header {
+            background: var(--card-bg-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .date-badge {
+            background: var(--primary-color);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .btn-link-custom {
+            font-size: 0.8rem;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .btn-link-custom:hover {
+            text-decoration: underline;
+        }
 
         /* Media Styles */
-        .achievement-img { width: 100%; height: 280px; object-fit: cover; cursor: zoom-in; }
-        .token-media { width: 100%; height: 350px; object-fit: contain; border-radius: 10px; margin-top: 15px; background: #111; }
-        .token-img-clickable { cursor: zoom-in; }
-        
-        /* Fixed Project Banner */
-        .project-banner { width: 100%; height: auto; max-height: 300px; object-fit: cover; display: block; }
+        .achievement-img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            cursor: zoom-in;
+        }
 
-        footer { background: #1a252f; color: white; }
+        .token-media {
+            width: 100%;
+            height: 350px;
+            object-fit: contain;
+            border-radius: 10px;
+            margin-top: 15px;
+            background: #111;
+        }
+
+        .token-img-clickable {
+            cursor: zoom-in;
+        }
+
+        /* Fixed Project Banner */
+        .project-banner {
+            width: 100%;
+            height: auto;
+            max-height: 300px;
+            object-fit: cover;
+            display: block;
+        }
+
+        footer {
+            background: #1a252f;
+            color: white;
+        }
     </style>
 </head>
 
 <body id="page-top">
 
-<nav class="navbar navbar-expand navbar-dark fixed-top shadow-sm">
-    <div class="container">
-        <a class="navbar-brand fw-bold d-none d-lg-block" href="#page-top">TUSHAR DHAKAL</a>
-        <div class="ms-auto">
-            <ul class="navbar-nav gap-1 gap-md-3">
-                <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="#achievements">Achievements</a></li>
-                <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-                <li class="nav-item"><a class="nav-link" href="#leadership">Leadership</a></li>
-                <li class="nav-item"><a class="nav-link" href="#volunteering">Volunteering</a></li>
-                <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-            </ul>
+    <nav class="navbar navbar-expand navbar-dark fixed-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold d-none d-lg-block" href="#page-top">TUSHAR DHAKAL</a>
+            <div class="ms-auto">
+                <ul class="navbar-nav gap-1 gap-md-3">
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#achievements">Achievements</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#leadership">Leadership</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#volunteering">Volunteering</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
-<header class="masthead text-white text-center">
-    <div class="container">
-        <img src="brp.jpg" class="rounded-circle mb-4 profile-img" width="200" height="200" alt="Tushar Dhakal">
-        <h1 class="display-4 fw-bold">TUSHAR DHAKAL</h1>
-        <p class="lead mb-4 fs-4 px-lg-5">
-            <em>"Engineering is not just a study; it's a journey to make the impossible, possible!"</em>
-        </p>
-        <div class="d-flex justify-content-center gap-3">
-            <a href="mailto:dhakaltushar@gmail.com" class="btn btn-primary btn-lg px-4 shadow"><i class="fas fa-paper-plane me-2"></i>Contact Me</a>
-            <a href="https://www.linkedin.com/in/tushar-d-1114ab2b8/" target="_blank" class="btn btn-outline-light btn-lg px-4"><i class="fab fa-linkedin me-2"></i>LinkedIn</a>
+    <header class="masthead text-white text-center">
+        <div class="container">
+            <img src="brp.jpg" class="rounded-circle mb-4 profile-img" width="200" height="200" alt="Tushar Dhakal">
+            <h1 class="display-4 fw-bold">TUSHAR DHAKAL</h1>
+            <p class="lead mb-4 fs-4 px-lg-5">
+                <em>"Engineering is not just a study; it's a journey to make the impossible, possible!"</em>
+            </p>
+            <div class="d-flex justify-content-center gap-3">
+                <a href="mailto:dhakaltushar@gmail.com" class="btn btn-primary btn-lg px-4 shadow"><i
+                        class="fas fa-paper-plane me-2"></i>Contact Me</a>
+                <a href="https://www.linkedin.com/in/tushar-d-1114ab2b8/" target="_blank"
+                    class="btn btn-outline-light btn-lg px-4"><i class="fab fa-linkedin me-2"></i>LinkedIn</a>
+            </div>
         </div>
-    </div>
-</header>
+    </header>
 
-<section class="section-padding" id="about">
-    <div class="container text-center">
-        <h2 class="section-title">Professional Summary</h2>
-        <div class="row justify-content-center text-start g-4 mb-5">
-            <div class="col-lg-10 mb-4 text-center">
-                <p class="fs-5 text-secondary">
-                    Diligent Mechanical Engineering student specializing in <strong>Automobile Engineering</strong> at <strong>Kathmandu University</strong>. 
-                    I am skilled in developing plans and managing projects, with a proven track record of transforming complex concepts into 
-                    tangible innovations.
-                </p>
-            </div>
-            <div class="col-md-6">
-                <div class="p-3 shadow-sm rounded bg-light border-top border-primary border-4 h-100">
-                    <h6 class="fw-bold"><i class="fas fa-map-marker-alt me-2"></i>Location</h6>
-                    <p class="small mb-0 text-muted">Vandol, Dhulikhel, Kavre, Nepal</p>
+    <section class="section-padding" id="about">
+        <div class="container text-center">
+            <h2 class="section-title">Professional Summary</h2>
+            <div class="row justify-content-center text-start g-4 mb-5">
+                <div class="col-lg-10 mb-4 text-center">
+                    <p class="fs-5 text-secondary">
+                        Diligent Mechanical Engineering student specializing in <strong>Automobile Engineering</strong>
+                        at <strong>Kathmandu University</strong>.
+                        I am skilled in developing plans and managing projects, with a proven track record of
+                        transforming complex concepts into
+                        tangible innovations.
+                    </p>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <div class="p-3 shadow-sm rounded bg-light border-top border-primary border-4 h-100">
-                    <h6 class="fw-bold"><i class="fas fa-envelope me-2"></i>Contact</h6>
-                    <p class="small mb-0 text-muted">dhakaltushar@gmail.com | +977 9847290629</p>
+                <div class="col-md-6">
+                    <div class="p-3 shadow-sm rounded bg-light border-top border-primary border-4 h-100">
+                        <h6 class="fw-bold"><i class="fas fa-map-marker-alt me-2"></i>Location</h6>
+                        <p class="small mb-0 text-muted">Vandol, Dhulikhel, Kavre, Nepal</p>
+                    </div>
                 </div>
-            </div>
-        </div>
-
-        <h4 class="fw-bold mb-4 text-start text-primary"><i class="fas fa-graduation-cap me-2"></i>Education & Training</h4>
-        <div class="row text-start g-4">
-            <div class="col-md-6">
-                <div class="experience-header h-100 shadow-sm">
-                    <span class="date-badge mb-2 d-inline-block">2022 — CURRENT</span>
-                    <h5 class="fw-bold">Bachelor in Mechanical Engineering</h5>
-                    <p class="text-primary fw-bold mb-2">Kathmandu University</p>
-                    <p class="small text-muted mb-0">Specializing in Automobile Engineering. Core focus on design, energy economics, and innovative mechanical systems.</p>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="experience-header h-100 shadow-sm">
-                    <span class="date-badge mb-2 d-inline-block">2026 — CURRENT</span>
-                    <h5 class="fw-bold">Participant</h5>
-                    <p class="text-primary fw-bold mb-2">Nabil School of Social Entrepreneurship (Nabil SSE)</p>
-                    <p class="small text-muted mb-0">Training in social entrepreneurship, business model development, and venture design. Currently working on developing a socially impactful business idea.</p>
-                </div>
-            </div>
-        </div>
-        </div>
-</section>
-
-<section class="section-padding bg-light" id="achievements">
-    <div class="container">
-        <h2 class="section-title text-center">Honours & Awards</h2>
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="card h-100 border-0">
-                    <img src="steam_award.jpeg" class="achievement-img" alt="STEAM Award" data-bs-toggle="modal" data-bs-target="#m1">
-                    <div class="p-4">
-                        <div class="mb-2" style="color: var(--card-icon-color);"><i class="fas fa-award fa-2x"></i></div>
-                        <span class="date-badge mb-2">June 2024</span>
-                        <h5 class="fw-bold">First Prize (National)</h5>
-                        <p class="small text-primary fw-bold">Ministry of Education, Science and Technology, Government of Nepal</p>
-                        <p class="small">Awarded for the design and construction of innovative STEAM materials (2080/81).</p>
-                        <a href="https://www.facebook.com/share/p/1EDSrMeHaX/" target="_blank" class="btn-link-custom mt-auto">View Verification <i class="fas fa-external-link-alt ms-1"></i></a>
+                <div class="col-md-6">
+                    <div class="p-3 shadow-sm rounded bg-light border-top border-primary border-4 h-100">
+                        <h6 class="fw-bold"><i class="fas fa-envelope me-2"></i>Contact</h6>
+                        <p class="small mb-0 text-muted">dhakaltushar@gmail.com | +977 9847290629</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card h-100 border-0">
-                    <img src="ideapitch.png" class="achievement-img" alt="Idea Bank" data-bs-toggle="modal" data-bs-target="#m2">
-                    <div class="p-4">
-                        <div class="mb-2" style="color: var(--card-icon-color);"><i class="fas fa-lightbulb fa-2x"></i></div>
-                        <span class="date-badge mb-2">Nov 2024</span>
-                        <h5 class="fw-bold">3rd Position: Idea Bank</h5>
-                        <p class="small text-primary fw-bold">Akhil Student Union, Kavre</p>
-                        <p class="small">Recognized for innovative idea on engineering conceptualization and presentation in a regional competition.</p>
+
+            <h4 class="fw-bold mb-4 text-start text-primary"><i class="fas fa-graduation-cap me-2"></i>Education &
+                Training</h4>
+            <div class="row text-start g-4">
+                <div class="col-md-6">
+                    <div class="experience-header h-100 shadow-sm">
+                        <span class="date-badge mb-2 d-inline-block">2022 — CURRENT</span>
+                        <h5 class="fw-bold">Bachelor in Mechanical Engineering</h5>
+                        <p class="text-primary fw-bold mb-2">Kathmandu University</p>
+                        <p class="small text-muted mb-0">Specializing in Automobile Engineering. Core focus on design,
+                            energy economics, and innovative mechanical systems.</p>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card h-100 border-0">
-                    <img src="projectdemo.jpg" class="achievement-img" alt="Project Demo" data-bs-toggle="modal" data-bs-target="#m3">
-                    <div class="p-4">
-                        <div class="mb-2" style="color: var(--card-icon-color);"><i class="fas fa-robot fa-2x"></i></div>
-                        <span class="date-badge mb-2">2025</span>
-                        <h5 class="fw-bold">3rd Position: Project Demo</h5>
-                        <p class="small text-primary fw-bold">AAVISHKAR '25 (KU Robotics Club)</p>
-                        <p class="small">Awarded for the technical demonstration of a Gesture-Controlled Robotic Arm at the universiry level.</p>
+                <div class="col-md-6">
+                    <div class="experience-header h-100 shadow-sm">
+                        <span class="date-badge mb-2 d-inline-block">2026 — CURRENT</span>
+                        <h5 class="fw-bold">Participant</h5>
+                        <p class="text-primary fw-bold mb-2">Nabil School of Social Entrepreneurship (Nabil SSE)</p>
+                        <p class="small text-muted mb-0">Training in social entrepreneurship, business model
+                            development, and venture design. Currently working on developing a socially impactful
+                            business idea.</p>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<div class="modal fade" id="m1" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-lg modal-dialog-centered"><div class="modal-content border-0 bg-transparent text-end"><button type="button" class="btn-close btn-close-white mb-2" data-bs-dismiss="modal"></button><img src="steam_award.jpeg" class="img-fluid rounded shadow"></div></div></div>
-<div class="modal fade" id="m2" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-lg modal-dialog-centered"><div class="modal-content border-0 bg-transparent text-end"><button type="button" class="btn-close btn-close-white mb-2" data-bs-dismiss="modal"></button><img src="ideapitch.png" class="img-fluid rounded shadow"></div></div></div>
-<div class="modal fade" id="m3" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-lg modal-dialog-centered"><div class="modal-content border-0 bg-transparent text-end"><button type="button" class="btn-close btn-close-white mb-2" data-bs-dismiss="modal"></button><img src="projectdemo.jpg" class="img-fluid rounded shadow"></div></div></div>
-<div class="modal fade" id="mToken" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-lg modal-dialog-centered"><div class="modal-content border-0 bg-transparent text-end"><button type="button" class="btn-close btn-close-white mb-2" data-bs-dismiss="modal"></button><img src="tokenoflove.jpg" class="img-fluid rounded shadow"></div></div></div>
-
-<div class="modal fade" id="mSteam1" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-lg modal-dialog-centered"><div class="modal-content border-0 bg-transparent text-end"><button type="button" class="btn-close btn-close-white mb-2" data-bs-dismiss="modal"></button><img src="steam1.jpg" class="img-fluid rounded shadow"></div></div></div>
-<div class="modal fade" id="mSteam2" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-lg modal-dialog-centered"><div class="modal-content border-0 bg-transparent text-end"><button type="button" class="btn-close btn-close-white mb-2" data-bs-dismiss="modal"></button><img src="steam2.jpg" class="img-fluid rounded shadow"></div></div></div>
-<div class="modal fade" id="mSteam3" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-lg modal-dialog-centered"><div class="modal-content border-0 bg-transparent text-end"><button type="button" class="btn-close btn-close-white mb-2" data-bs-dismiss="modal"></button><img src="steam3.jpg" class="img-fluid rounded shadow"></div></div></div>
-
-
-<section class="section-padding" id="projects">
-    <div class="container">
-        <h2 class="section-title text-center">Projects / Participations</h2>
-        <div class="row g-4">
-            
-            <div class="col-md-12">
-                <div class="card border-0 shadow-sm overflow-hidden">
-                    <img src="iitg.jpeg" class="project-banner" alt="IIT Guwahati">
-                    <div class="p-4 border-top border-info border-5">
-                        <div class="row align-items-center">
-                            <div class="col-md-6 pe-lg-5">
-                                <span class="date-badge mb-3 d-inline-block">2025</span>
-                                <h5 class="fw-bold">Techniche 2025 | IIT Guwahati, India</h5>
-                                <p class="text-muted small mb-3"><strong>Robotics Competitions:</strong> Participated in <strong>BattleBot</strong> and <strong>Stair Climbing Robot</strong> competitions. Gained hands-on experience in high-level robotic design, mechanical fabrication, system integration, and rigorous competitive testing on an international platform.</p>
-                                <a href="https://www.linkedin.com/posts/tushar-d-1114ab2b8_our-team-bishal-kumar-silwal-pranshu-bikram-activity-7368639578297065472-9su_?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEw_ZN0BUvNb4YVt48DHFnuFBXvjIjTsrdU" 
-                                   target="_blank" class="btn btn-outline-primary btn-sm rounded-pill px-3">
-                                   Read full story <i class="fas fa-external-link-alt ms-1"></i>
-                                </a>
+    <section class="section-padding bg-light" id="achievements">
+        <div class="container">
+            <h2 class="section-title text-center">Honours & Awards</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 border-0">
+                        <img src="steam_award.jpeg" class="achievement-img" alt="STEAM Award" data-bs-toggle="modal"
+                            data-bs-target="#m1">
+                        <div class="p-4">
+                            <div class="mb-2" style="color: var(--card-icon-color);"><i class="fas fa-award fa-2x"></i>
                             </div>
-                            <div class="col-md-6 mt-4 mt-md-0">
-                                <div class="bg-white p-2 rounded shadow-sm">
-                                    <img src="iitg1.jpg" class="img-fluid rounded" alt="Techniche Participation" 
-                                         style="width: 100%; height: 350px; object-fit: contain; background-color: #f8f9fa;">
+                            <span class="date-badge mb-2">June 2024</span>
+                            <h5 class="fw-bold">First Prize (National)</h5>
+                            <p class="small text-primary fw-bold">Ministry of Education, Science and Technology,
+                                Government of Nepal</p>
+                            <p class="small">Awarded for the design and construction of innovative STEAM materials
+                                (2080/81).</p>
+                            <a href="https://www.facebook.com/share/p/1EDSrMeHaX/" target="_blank"
+                                class="btn-link-custom mt-auto">View Verification <i
+                                    class="fas fa-external-link-alt ms-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0">
+                        <img src="ideapitch.png" class="achievement-img" alt="Idea Bank" data-bs-toggle="modal"
+                            data-bs-target="#m2">
+                        <div class="p-4">
+                            <div class="mb-2" style="color: var(--card-icon-color);"><i
+                                    class="fas fa-lightbulb fa-2x"></i></div>
+                            <span class="date-badge mb-2">Nov 2024</span>
+                            <h5 class="fw-bold">3rd Position: Idea Bank</h5>
+                            <p class="small text-primary fw-bold">Akhil Student Union, Kavre</p>
+                            <p class="small">Recognized for innovative idea on engineering conceptualization and
+                                presentation in a regional competition.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0">
+                        <img src="projectdemo.jpg" class="achievement-img" alt="Project Demo" data-bs-toggle="modal"
+                            data-bs-target="#m3">
+                        <div class="p-4">
+                            <div class="mb-2" style="color: var(--card-icon-color);"><i class="fas fa-robot fa-2x"></i>
+                            </div>
+                            <span class="date-badge mb-2">2025</span>
+                            <h5 class="fw-bold">3rd Position: Project Demo</h5>
+                            <p class="small text-primary fw-bold">AAVISHKAR '25 (KU Robotics Club)</p>
+                            <p class="small">Awarded for the technical demonstration of a Gesture-Controlled Robotic Arm
+                                at the universiry level.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal fade" id="m1" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content border-0 bg-transparent text-end"><button type="button"
+                    class="btn-close btn-close-white mb-2" data-bs-dismiss="modal"></button><img src="steam_award.jpeg"
+                    class="img-fluid rounded shadow"></div>
+        </div>
+    </div>
+    <div class="modal fade" id="m2" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content border-0 bg-transparent text-end"><button type="button"
+                    class="btn-close btn-close-white mb-2" data-bs-dismiss="modal"></button><img src="ideapitch.png"
+                    class="img-fluid rounded shadow"></div>
+        </div>
+    </div>
+    <div class="modal fade" id="m3" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content border-0 bg-transparent text-end"><button type="button"
+                    class="btn-close btn-close-white mb-2" data-bs-dismiss="modal"></button><img src="projectdemo.jpg"
+                    class="img-fluid rounded shadow"></div>
+        </div>
+    </div>
+    <div class="modal fade" id="mToken" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content border-0 bg-transparent text-end"><button type="button"
+                    class="btn-close btn-close-white mb-2" data-bs-dismiss="modal"></button><img src="tokenoflove.jpg"
+                    class="img-fluid rounded shadow"></div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="mSteam1" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content border-0 bg-transparent text-end"><button type="button"
+                    class="btn-close btn-close-white mb-2" data-bs-dismiss="modal"></button><img src="steam1.jpg"
+                    class="img-fluid rounded shadow"></div>
+        </div>
+    </div>
+    <div class="modal fade" id="mSteam2" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content border-0 bg-transparent text-end"><button type="button"
+                    class="btn-close btn-close-white mb-2" data-bs-dismiss="modal"></button><img src="steam2.jpg"
+                    class="img-fluid rounded shadow"></div>
+        </div>
+    </div>
+    <div class="modal fade" id="mSteam3" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content border-0 bg-transparent text-end"><button type="button"
+                    class="btn-close btn-close-white mb-2" data-bs-dismiss="modal"></button><img src="steam3.jpg"
+                    class="img-fluid rounded shadow"></div>
+        </div>
+    </div>
+
+
+    <section class="section-padding" id="projects">
+        <div class="container">
+            <h2 class="section-title text-center">Projects / Participations</h2>
+            <div class="row g-4">
+
+                <div class="col-md-12">
+                    <div class="card border-0 shadow-sm overflow-hidden">
+                        <img src="iitg.jpeg" class="project-banner" alt="IIT Guwahati">
+                        <div class="p-4 border-top border-info border-5">
+                            <div class="row align-items-center">
+                                <div class="col-md-6 pe-lg-5">
+                                    <span class="date-badge mb-3 d-inline-block">2025</span>
+                                    <h5 class="fw-bold">Techniche 2025 | IIT Guwahati, India</h5>
+                                    <p class="text-muted small mb-3"><strong>Robotics Competitions:</strong>
+                                        Participated in <strong>BattleBot</strong> and <strong>Stair Climbing
+                                            Robot</strong> competitions. Gained hands-on experience in high-level
+                                        robotic design, mechanical fabrication, system integration, and rigorous
+                                        competitive testing on an international platform.</p>
+                                    <a href="https://www.linkedin.com/posts/tushar-d-1114ab2b8_our-team-bishal-kumar-silwal-pranshu-bikram-activity-7368639578297065472-9su_?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEw_ZN0BUvNb4YVt48DHFnuFBXvjIjTsrdU"
+                                        target="_blank" class="btn btn-outline-primary btn-sm rounded-pill px-3">
+                                        Read full story <i class="fas fa-external-link-alt ms-1"></i>
+                                    </a>
+                                </div>
+                                <div class="col-md-6 mt-4 mt-md-0">
+                                    <div class="bg-white p-2 rounded shadow-sm">
+                                        <img src="iitg1.jpg" class="img-fluid rounded" alt="Techniche Participation"
+                                            style="width: 100%; height: 350px; object-fit: contain; background-color: #f8f9fa;">
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="col-md-12">
-                <div class="card border-0 shadow-sm overflow-hidden">
-                    <div class="p-4 border-top border-primary border-5">
-                        <div class="row align-items-center">
-                            <div class="col-md-7 pe-lg-5">
-                                <span class="date-badge mb-3 d-inline-block">Nov 2025</span>
-                                <h4 class="fw-bold">CNC VESTA 660 Restoration</h4>
-                                <p class="text-muted small mb-3"><strong>Technical Training Center, Kathmandu University:</strong> Conducted comprehensive inspection and preliminary maintenance of a CNC VESTA 660. Diagnosed HMI hardware failures and planned the recovery of critical electromechanical subsystems to restore full operational capability.</p>
-                                <a href="VESTA-660_Inspection_Report.pdf" target="_blank" class="btn btn-outline-primary btn-sm rounded-pill px-3">
-                                    View Inspection Report <i class="fas fa-file-pdf ms-1"></i>
-                                </a>
-                            </div>
-                            <div class="col-md-5 mt-4 mt-md-0">
-                                <div class="bg-white p-2 rounded shadow-sm">
-                                    <div class="row g-2">
-                                        <div class="col-6">
-                                            <img src="cnc1.jpg" class="img-fluid rounded" alt="CNC VESTA 660 - Image 1" 
-                                                 style="width: 100%; height: 250px; object-fit: cover; background-color: #f8f9fa;">
-                                        </div>
-                                        <div class="col-6">
-                                            <img src="cnc2.jpg" class="img-fluid rounded" alt="CNC VESTA 660 - Image 2" 
-                                                 style="width: 100%; height: 250px; object-fit: cover; background-color: #f8f9fa;">
+                <div class="col-md-12">
+                    <div class="card border-0 shadow-sm overflow-hidden">
+                        <div class="p-4 border-top border-primary border-5">
+                            <div class="row align-items-center">
+                                <div class="col-md-7 pe-lg-5">
+                                    <span class="date-badge mb-3 d-inline-block">Nov 2025</span>
+                                    <h4 class="fw-bold">CNC VESTA 660 Restoration</h4>
+                                    <p class="text-muted small mb-3"><strong>Technical Training Center, Kathmandu
+                                            University:</strong> Conducted comprehensive inspection and preliminary
+                                        maintenance of a CNC VESTA 660. Diagnosed HMI hardware failures and planned the
+                                        recovery of critical electromechanical subsystems to restore full operational
+                                        capability.</p>
+                                    <a href="VESTA-660_Inspection_Report.pdf" target="_blank"
+                                        class="btn btn-outline-primary btn-sm rounded-pill px-3">
+                                        View Inspection Report <i class="fas fa-file-pdf ms-1"></i>
+                                    </a>
+                                </div>
+                                <div class="col-md-5 mt-4 mt-md-0">
+                                    <div class="bg-white p-2 rounded shadow-sm">
+                                        <div class="row g-2">
+                                            <div class="col-6">
+                                                <img src="cnc1.jpg" class="img-fluid rounded"
+                                                    alt="CNC VESTA 660 - Image 1"
+                                                    style="width: 100%; height: 250px; object-fit: cover; background-color: #f8f9fa;">
+                                            </div>
+                                            <div class="col-6">
+                                                <img src="cnc2.jpg" class="img-fluid rounded"
+                                                    alt="CNC VESTA 660 - Image 2"
+                                                    style="width: 100%; height: 250px; object-fit: cover; background-color: #f8f9fa;">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -262,357 +431,465 @@
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="col-md-12">
-                <div class="card border-0 shadow-sm overflow-hidden">
-                    <div class="p-4 border-top border-success border-5">
-                        <div class="row align-items-center">
-                            <div class="col-md-6 pe-lg-5">
-                                <span class="date-badge mb-3 d-inline-block" style="background-color: #27ae60;">Sustainability & Innovation</span>
-                                <h4 class="fw-bold">Algae as a Protein Source for Hen Feed</h4>
-                                <p class="text-muted small mb-3"><strong>Research & Development:</strong> Explored the cultivation and integration of algae as a sustainable, high-protein alternative in poultry diets. This project focused on providing an eco-friendly and viable solution to traditional feed challenges.</p>
-                                <a href="https://www.youtube.com/watch?v=Ycccaw7veT8" target="_blank" class="btn btn-outline-success btn-sm rounded-pill px-3 mt-2">
-                                    Watch Presentation <i class="fab fa-youtube ms-1"></i>
-                                </a>
-                            </div>
-                            <div class="col-md-6 mt-4 mt-md-0">
-                                <div class="bg-white p-2 rounded shadow-sm">
-                                    <div class="ratio ratio-16x9">
-                                        <iframe src="https://www.youtube.com/embed/Ycccaw7veT8" title="Algae as a protein source for hen feed" allowfullscreen class="rounded" style="border: none;"></iframe>
+                <div class="col-md-12">
+                    <div class="card border-0 shadow-sm overflow-hidden">
+                        <div class="p-4 border-top border-success border-5">
+                            <div class="row align-items-center">
+                                <div class="col-md-6 pe-lg-5">
+                                    <span class="date-badge mb-3 d-inline-block"
+                                        style="background-color: #27ae60;">Sustainability & Innovation</span>
+                                    <h4 class="fw-bold">Algae as a Protein Source for Poultry Feed</h4>
+                                    <p class="text-muted small mb-3"><strong>Research & Development:</strong> Explored
+                                        the cultivation and integration of algae as a sustainable, high-protein
+                                        alternative in poultry diets. This project focused on providing an eco-friendly
+                                        and viable solution to traditional feed challenges.</p>
+                                    <a href="https://www.youtube.com/watch?v=Ycccaw7veT8" target="_blank"
+                                        class="btn btn-outline-success btn-sm rounded-pill px-3 mt-2">
+                                        Watch Presentation <i class="fab fa-youtube ms-1"></i>
+                                    </a>
+                                </div>
+                                <div class="col-md-6 mt-4 mt-md-0">
+                                    <div class="bg-white p-2 rounded shadow-sm">
+                                        <div class="ratio ratio-16x9">
+                                            <iframe src="https://www.youtube.com/embed/Ycccaw7veT8"
+                                                title="Algae as a protein source for hen feed" allowfullscreen
+                                                class="rounded" style="border: none;"></iframe>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="col-md-6">
-                <div class="card p-4 border-start border-primary border-5 h-100">
-                    <span class="text-muted small fw-bold">2025 — CURRENT</span>
-                    <h5 class="fw-bold mt-2">Energy Economics: EV Battery Repurposing</h5>
-                    <p class="text-muted small">Third-year mechanical curriculum focus on the economic viability and energy benefits of second-life EV batteries for sustainable solutions in Nepal.</p>
-                </div>
-            </div>
-            
-            <div class="col-md-6">
-                <div class="card p-4 border-start border-primary border-5 h-100">
-                    <span class="text-muted small fw-bold">2024 — 2025</span>
-                    <h5 class="fw-bold mt-2">4 D.O.F Hand Gesture Controlled Robotic Arm</h5>
-                    <p class="text-muted small">Computer vision-integrated arm controlled by real-time gestures. Fabricated with 3D printed components and servo motors.</p>
-                    
-                    <div class="mt-3">
-                        <video class="rounded shadow-sm" loop playsinline controls style="width: 100%; max-height: 200px; background: #000; object-fit: cover;">
-                            <source src="arm.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                        <p class="small mt-2 text-muted italic" style="font-size: 0.7rem;">Demonstration: Gesture Control in Action</p>
+                <div class="col-md-6">
+                    <div class="card p-4 border-start border-primary border-5 h-100">
+                        <span class="text-muted small fw-bold">2025 — CURRENT</span>
+                        <h5 class="fw-bold mt-2">Energy Economics: EV Battery Repurposing</h5>
+                        <p class="text-muted small">Third-year mechanical curriculum focus on the economic viability and
+                            energy benefits of second-life EV batteries for sustainable solutions in Nepal.</p>
                     </div>
                 </div>
-            </div>
-            
-            <div class="col-md-6">
-                <div class="card p-4 border-start border-primary border-5 h-100 d-flex flex-column">
-                    <div>
-                        <span class="text-muted small fw-bold">2024</span>
-                        <h5 class="fw-bold mt-2">Detachable Carriage for E-Bike</h5>
-                        <p class="text-muted small mb-3">Design and fabrication of a modular cargo solution for electric cycles. Second-year mechanical engineering project.</p>
-                    </div>
 
-                    <div class="mt-3">
-                        <video class="rounded shadow-sm" loop playsinline controls style="width: 100%; max-height: 200px; background: #000; object-fit: cover;">
-                            <source src="ebike.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                        <p class="small mt-2 text-muted" style="font-size: 0.7rem;">Mechanism Demo: E-Bike in Action</p>
-                    </div>
+                <div class="col-md-6">
+                    <div class="card p-4 border-start border-primary border-5 h-100">
+                        <span class="text-muted small fw-bold">2024 — 2025</span>
+                        <h5 class="fw-bold mt-2">4 D.O.F Hand Gesture Controlled Robotic Arm</h5>
+                        <p class="text-muted small">Computer vision-integrated arm controlled by real-time gestures.
+                            Fabricated with 3D printed components and servo motors.</p>
 
-                    <div class="mt-auto pt-3">
-                        <a href="ebike-summary.html" class="btn-link-custom d-block mb-3 save-scroll">Read Full Details <i class="fas fa-external-link-alt ms-1"></i></a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-md-6">
-                <div class="card p-4 border-start border-primary border-5 h-100 d-flex flex-column">
-                    <div>
-                        <span class="text-muted small fw-bold">2023</span>
-                        <h5 class="fw-bold mt-2">Manual Gearbox Prototype</h5>
-                        <p class="text-muted small mb-3">Scaled functional prototype of an automotive manual transmission. First-year, second-semester design project.</p>
-                    </div>
-                    
-                    <div class="mt-3">
-                        <video class="rounded shadow-sm" loop playsinline controls style="width: 100%; max-height: 200px; background: #000; object-fit: cover;">
-                            <source src="gearbox.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                        <p class="small mt-2 text-muted" style="font-size: 0.7rem;">Mechanism Demo: Prototype in Motion</p>
-                    </div>
-
-                    <div class="mt-auto pt-3">
-                        <a href="gearbox-summary.html" class="btn-link-custom d-block mb-3 save-scroll">Read Full Details <i class="fas fa-external-link-alt ms-1"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="section-padding bg-light" id="entrepreneurial">
-    <div class="container">
-        <h2 class="section-title text-center">Entrepreneurial Initiative</h2>
-        <div class="row justify-content-center">
-            <div class="col-lg-10">
-                <div class="card p-5 text-white shadow-lg text-center border-0" style="border-radius: 20px; background-color: var(--primary-color);">
-                    <div class="mb-3" style="color: var(--card-icon-color);"><i class="fas fa-gift fa-3x"></i></div>
-                    <span class="badge bg-primary mb-3 mx-auto" style="width: fit-content; font-size: 0.9rem;">KU Running Shield 2025</span>
-                    <h3 class="fw-bold mb-3">Custom Handcrafted Tokens of Love</h3>
-                    <p class="lead mb-4">Conceptualized and produced 50 personalized handcrafted tokens for university events.</p>
-                    
-                    <div class="row g-4 align-items-center">
-                        <div class="col-md-6">
-                            <img src="tokenoflove.jpg" class="token-media token-img-clickable" alt="Product Image" data-bs-toggle="modal" data-bs-target="#mToken">
-                            <p class="small mt-2 opacity-75">Final Product (Click to Zoom)</p>
-                        </div>
-                        <div class="col-md-6">
-                            <video class="token-media" loop playsinline controls style="height: 350px; background: #000;">
-                                <source src="tokenoflove.mp4" type="video/mp4">
+                        <div class="mt-3">
+                            <video class="rounded shadow-sm" loop playsinline controls
+                                style="width: 100%; max-height: 200px; background: #000; object-fit: cover;">
+                                <source src="arm.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
                             </video>
-                            <p class="small mt-2 opacity-75">Manufacturing Process</p>
+                            <p class="small mt-2 text-muted italic" style="font-size: 0.7rem;">Demonstration: Gesture
+                                Control in Action</p>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</section>
 
-<section class="section-padding" id="leadership">
-    <div class="container">
-        <h2 class="section-title text-center">Leadership & Management</h2>
-        
-        <h4 class="fw-bold mb-4 text-primary"><i class="fas fa-microchip me-2"></i>AAVISHKAR | Flagship Robotics & STEAM</h4>
-        <div class="row g-4 mb-5">
-            <div class="col-md-6">
-                <div class="experience-header h-100">
-                    <span class="date-badge mb-2 d-inline-block">Feb 2025 - May 2025</span>
-                    <h5 class="fw-bold">Resources & Logistic Head | AAVISHKAR '25</h5>
-                    <ul class="small mb-0 mt-2">
-                        <li>Led planning for 12+ national events and supervised Operations/HR teams.</li>
-                        <li>Managed procurement, vendor coordination, and resource tracking.</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="experience-header h-100">
-                    <span class="date-badge mb-2 d-inline-block">2024</span>
-                    <h5 class="fw-bold">Hospitality Manager | AAVISHKAR '24</h5>
-                    <p class="small text-muted mt-2">Managed guest relations and sponsor partnerships for the national innovation flagship.</p>
-                    <a href="https://kurc.ku.edu.np/aavishkar24/resourcenlogistics/" target="_blank" class="btn-link-custom">Project Resource Link <i class="fas fa-link"></i></a>
-                </div>
-            </div>
-        </div>
-
-        <h4 class="fw-bold mb-4 text-primary"><i class="fas fa-cogs me-2"></i>AMES | Mechanical Engineering Festivals</h4>
-        <div class="row g-4 mb-5">
-            <div class="col-md-6">
-                <div class="card h-100 shadow-sm border-top border-info border-4 overflow-hidden p-0">
-                    <img src="workshop.jpg" class="card-img-top" alt="Workshop Image" style="height: 200px; object-fit: cover;">
-                    <div class="p-4 d-flex flex-column h-100">
-                        <span class="date-badge mb-2 d-inline-block" style="width: fit-content;">Aug 2024 - Jan 2025</span>
-                        <h6 class="fw-bold">Event Manager | AVIYANTAA '24 Workshop</h6>
-                        <p class="small text-muted mb-3">Managed and coordinated a two-phase technology outreach event involving ToT for engineering students and hands-on workshops for 200+ school students.</p>
-                        <a href="aviyantaa-workshop.html" class="btn-link-custom mt-auto save-scroll">Read Full Summary <i class="fas fa-external-link-alt ms-1"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card p-4 h-100 shadow-sm border-top border-info border-4">
-                    <span class="date-badge mb-2 d-inline-block">2023</span>
-                    <h6 class="fw-bold">Organizing Team | AVIYANTAA X USC</h6>
-                    <p class="small text-muted">Joint mechanical engineering initiative. Focus on team efficiency and management support.</p>
-                </div>
-            </div>
-        </div>
-
-        <h4 class="fw-bold mb-4 text-primary"><i class="fas fa-users me-2"></i>Community Leadership & Outreach</h4>
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="card p-4 h-100 shadow-sm">
-                    <span class="date-badge mb-2 d-inline-block">2018 - 2020</span>
-                    <h5 class="fw-bold">President | Ward Child Club</h5>
-                    <p class="small text-muted">Managed 19 child clubs. Led programs for community awareness and support for children.</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card p-4 h-100 shadow-sm">
-                    <span class="date-badge mb-2 d-inline-block">Nov 2024 - 2025</span>
-                    <h5 class="fw-bold">Event & Outreach Manager | EWBN</h5>
-                    <p class="small text-muted">Engineers Without Borders Nepal (KU Chapter). Focus on university and chapter outreach.</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card p-4 h-100 shadow-sm">
-                    <span class="date-badge mb-2 d-inline-block">2023</span>
-                    <h5 class="fw-bold">Event Manager | Youth Solidarity</h5>
-                    <p class="small text-muted">Managed Art Exhibition and Competition events, coordinating logistics and artist relations.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="section-padding bg-light" id="volunteering">
-    <div class="container">
-        <h2 class="section-title text-center">Volunteering & STEAM Outreach</h2>
-        <div class="row g-4">
-            
-            <div class="col-md-4">
-                <div class="card border-0 shadow-sm h-100 overflow-hidden d-flex flex-column">
-                    <img src="steam1.jpg" class="card-img-top" alt="STEAM Session 1" style="height: 220px; object-fit: cover; cursor: zoom-in;" data-bs-toggle="modal" data-bs-target="#mSteam1">
-                    <div class="p-4 d-flex flex-column h-100">
+                <div class="col-md-6">
+                    <div class="card p-4 border-start border-primary border-5 h-100 d-flex flex-column">
                         <div>
-                            <span class="date-badge mb-2 d-inline-block">2024</span>
-                            <h5 class="fw-bold">STEAM Workshop Facilitator</h5>
-                            <p class="small text-primary fw-bold"> Shree Shreekhandapur School,Dhulikhel,Kavre</p>
-                            <p class="small text-muted mb-3">Conducted hands-on STEAM sessions to inspire young minds through interactive mechanical and robotics demonstrations.</p>
+                            <span class="text-muted small fw-bold">2024</span>
+                            <h5 class="fw-bold mt-2">Detachable Carriage for E-Bike</h5>
+                            <p class="text-muted small mb-3">Design and fabrication of a modular cargo solution for
+                                electric cycles. Second-year mechanical engineering project.</p>
                         </div>
-                        <a href="https://www.facebook.com/KURC2014/posts/pfbid021nQ4s7yeM2shqXBLNm5aWFgXXVMpJRhpCTHWXTKBTZoGMQom7p6UnYaRSJEvVx1el#" target="_blank" class="btn-link-custom mt-auto">View Post <i class="fas fa-external-link-alt ms-1"></i></a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-md-4">
-                <div class="card border-0 shadow-sm h-100 overflow-hidden d-flex flex-column">
-                    <img src="steam2.jpg" class="card-img-top" alt="STEAM Session 2" style="height: 220px; object-fit: cover; cursor: zoom-in;" data-bs-toggle="modal" data-bs-target="#mSteam2">
-                    <div class="p-4 d-flex flex-column h-100">
-                        <div>
-                            <span class="date-badge mb-2 d-inline-block">2024</span>
-                            <h5 class="fw-bold">STEAM Workshop Trainer</h5>
-                            <p class="small text-primary fw-bold"> Shree Daduwa Bhawani Shankar Secondary School,Chautara Sangachokgadhi,Sindhupalchok</p>
-                            <p class="small text-muted mb-3">Engaged students in practical engineering challenges, helping them bridge the gap between theoretical knowledge and real-world application.</p>
-                        </div>
-                        <a href="https://www.linkedin.com/posts/tushar-d-1114ab2b8_conducted-training-sessions-on-steam-education-activity-7204136976550154240-95o0?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEw_ZN0BUvNb4YVt48DHFnuFBXvjIjTsrdU" target="_blank" class="btn-link-custom mt-auto">View Post <i class="fas fa-external-link-alt ms-1"></i></a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-md-4">
-                <div class="card border-0 shadow-sm h-100 overflow-hidden d-flex flex-column">
-                    <img src="steam3.png" class="card-img-top" alt="STEAM Session 3" style="height: 220px; object-fit: cover; cursor: zoom-in;" data-bs-toggle="modal" data-bs-target="#mSteam3">
-                    <div class="p-4 d-flex flex-column h-100">
-                        <div>
-                            <span class="date-badge mb-2 d-inline-block">2023 - 2024</span>
-                            <h5 class="fw-bold">STEAM Workshop Trainer</h5>
-                            <p class="small text-primary fw-bold"> Sunwal Lotus E.S.School,Sunwal Nawalparasi</p>
-                            <p class="small text-muted mb-3">Organized educational outreach programs aimed at promoting technical literacy and fostering a passion for innovation among school students.</p>
-                        </div>
-                        <a href="https://www.facebook.com/share/v/1TVjL7WMPk/" target="_blank" class="btn-link-custom mt-auto">View Session <i class="fas fa-external-link-alt ms-1"></i></a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-md-4">
-                <div class="card border-0 shadow-sm h-100 overflow-hidden d-flex flex-column">
-                    <img src="aidtoeducation.jpeg" class="card-img-top" alt="Aid To Education" style="height: 220px; object-fit: cover; cursor: zoom-in;" data-bs-toggle="modal" data-bs-target="#mAidToEducation">
-                    <div class="p-4 d-flex flex-column h-100">
-                        <div>
-                            <span class="date-badge mb-2 d-inline-block">2023</span>
-                            <h5 class="fw-bold">Trainer | AID TO EDUCATION</h5>
-                            <p class="small text-primary fw-bold">Shivapuri Secondary School</p>
-                            <p class="small text-muted mb-3">Aviyantaa x USC & Kathmandu Metropolitan City initiative aiming to empower and uplift the educational landscape in our community.</p>
-                        </div>
-                        <a href="aid-to-education.html" class="btn-link-custom mt-auto save-scroll">Read Full Summary <i class="fas fa-external-link-alt ms-1"></i></a>
-                    </div>
-                </div>
-            </div>
-            
-        </div>
-    </div>
-</section>
 
-<!-- Volunteering Modals -->
-<div class="modal fade" id="mAidToEducation" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-lg modal-dialog-centered"><div class="modal-content border-0 bg-transparent text-end"><button type="button" class="btn-close btn-close-white mb-2" data-bs-dismiss="modal"></button><img src="aidtoeducation.jpeg" class="img-fluid rounded shadow"></div></div></div>
+                        <div class="mt-3">
+                            <video class="rounded shadow-sm" loop playsinline controls
+                                style="width: 100%; max-height: 200px; background: #000; object-fit: cover;">
+                                <source src="ebike.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <p class="small mt-2 text-muted" style="font-size: 0.7rem;">Mechanism Demo: E-Bike in Action
+                            </p>
+                        </div>
 
-<section class="section-padding" id="contact">
-    <div class="container text-center">
-        <h2 class="section-title">Get In Touch</h2>
-        <div class="row justify-content-center g-4">
-            <div class="col-md-4">
-                <i class="fas fa-envelope fs-3 mb-2" style="color: var(--card-icon-color);"></i>
-                <p class="fw-bold mb-0">Email</p>
-                <p class="text-muted">dhakaltushar@gmail.com</p>
-            </div>
-            <div class="col-md-4">
-                <i class="fas fa-phone fs-3 mb-2" style="color: var(--card-icon-color);"></i>
-                <p class="fw-bold mb-0">Phone</p>
-                <p class="text-muted">(+977) 9847290629</p>
-            </div>
-            <div class="col-md-4">
-                <i class="fab fa-linkedin fs-3 mb-2" style="color: var(--card-icon-color);"></i>
-                <p class="fw-bold mb-0">LinkedIn</p>
-                <a href="https://www.linkedin.com/in/tushar-d-1114ab2b8/" target="_blank" class="text-decoration-none">View Profile</a>
+                        <div class="mt-auto pt-3">
+                            <a href="ebike-summary.html" class="btn-link-custom d-block mb-3 save-scroll">Read Full
+                                Details <i class="fas fa-external-link-alt ms-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="card p-4 border-start border-primary border-5 h-100 d-flex flex-column">
+                        <div>
+                            <span class="text-muted small fw-bold">2023</span>
+                            <h5 class="fw-bold mt-2">Manual Gearbox Prototype</h5>
+                            <p class="text-muted small mb-3">Scaled functional prototype of an automotive manual
+                                transmission. First-year, second-semester design project.</p>
+                        </div>
+
+                        <div class="mt-3">
+                            <video class="rounded shadow-sm" loop playsinline controls
+                                style="width: 100%; max-height: 200px; background: #000; object-fit: cover;">
+                                <source src="gearbox.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <p class="small mt-2 text-muted" style="font-size: 0.7rem;">Mechanism Demo: Prototype in
+                                Motion</p>
+                        </div>
+
+                        <div class="mt-auto pt-3">
+                            <a href="gearbox-summary.html" class="btn-link-custom d-block mb-3 save-scroll">Read Full
+                                Details <i class="fas fa-external-link-alt ms-1"></i></a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<footer class="py-5">
-    <div class="container text-center">
-        <p class="mb-0 small opacity-75">© 2026 Tushar Dhakal. Mechanical Engineering - Kathmandu University.</p>
-        <div class="mt-3">
-            <a href="https://www.facebook.com/tushar.dhakal.37" class="text-white mx-2"><i class="fab fa-facebook"></i></a>
-            <a href="https://www.instagram.com/tushardhakal11/" class="text-white mx-2"><i class="fab fa-instagram"></i></a>
+    <section class="section-padding bg-light" id="entrepreneurial">
+        <div class="container">
+            <h2 class="section-title text-center">Entrepreneurial Initiative</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="card p-5 text-white shadow-lg text-center border-0 d-flex flex-column"
+                        style="border-radius: 20px; background-color: var(--primary-color);">
+                        <div class="mb-3" style="color: var(--card-icon-color);"><i class="fas fa-gift fa-3x"></i></div>
+                        <span class="badge bg-primary mb-3 mx-auto" style="width: fit-content; font-size: 0.9rem;">KU
+                            Running Shield 2025</span>
+                        <h3 class="fw-bold mb-3">Custom Handcrafted Tokens of Love & Case Study</h3>
+                        <p class="lead mb-4">Conceptualized and produced 50 personalized handcrafted tokens for
+                            university events, followed by a comprehensive Lean Manufacturing case study.</p>
+
+                        <div class="row g-4 align-items-center mb-4">
+                            <div class="col-md-6">
+                                <img src="tokenoflove.jpg" class="token-media token-img-clickable" alt="Product Image"
+                                    data-bs-toggle="modal" data-bs-target="#mToken">
+                                <p class="small mt-2 opacity-75">Final Product (Click to Zoom)</p>
+                            </div>
+                            <div class="col-md-6">
+                                <video class="token-media" loop playsinline controls
+                                    style="height: 350px; background: #000;">
+                                    <source src="tokenoflove.mp4" type="video/mp4">
+                                </video>
+                                <p class="small mt-2 opacity-75">Manufacturing Process</p>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 border-top border-secondary pt-4">
+                            <a href="lean-manufacturing-case-study.html"
+                                class="btn btn-outline-light rounded-pill px-4 py-2 fw-bold shadow-sm save-scroll">
+                                Read Full Project Details & Case Study <i class="fas fa-external-link-alt ms-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" id="leadership">
+        <div class="container">
+            <h2 class="section-title text-center">Leadership & Management</h2>
+
+            <h4 class="fw-bold mb-4 text-primary"><i class="fas fa-microchip me-2"></i>AAVISHKAR | Flagship Robotics &
+                STEAM</h4>
+            <div class="row g-4 mb-5">
+                <div class="col-md-6">
+                    <div class="experience-header h-100">
+                        <span class="date-badge mb-2 d-inline-block">Feb 2025 - May 2025</span>
+                        <h5 class="fw-bold">Resources & Logistic Head | AAVISHKAR '25</h5>
+                        <ul class="small mb-0 mt-2">
+                            <li>Led planning for 12+ national events and supervised Operations/HR teams.</li>
+                            <li>Managed procurement, vendor coordination, and resource tracking.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="experience-header h-100">
+                        <span class="date-badge mb-2 d-inline-block">2024</span>
+                        <h5 class="fw-bold">Hospitality Manager | AAVISHKAR '24</h5>
+                        <p class="small text-muted mt-2">Managed guest relations and sponsor partnerships for the
+                            national innovation flagship.</p>
+                        <a href="https://kurc.ku.edu.np/aavishkar24/resourcenlogistics/" target="_blank"
+                            class="btn-link-custom">Project Resource Link <i class="fas fa-link"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <h4 class="fw-bold mb-4 text-primary"><i class="fas fa-cogs me-2"></i>AMES | Mechanical Engineering
+                Festivals</h4>
+            <div class="row g-4 mb-5">
+                <div class="col-md-6">
+                    <div class="card h-100 shadow-sm border-top border-info border-4 overflow-hidden p-0">
+                        <img src="workshop.jpg" class="card-img-top" alt="Workshop Image"
+                            style="height: 200px; object-fit: cover;">
+                        <div class="p-4 d-flex flex-column h-100">
+                            <span class="date-badge mb-2 d-inline-block" style="width: fit-content;">Aug 2024 - Jan
+                                2025</span>
+                            <h6 class="fw-bold">Event Manager | AVIYANTAA '24 Workshop</h6>
+                            <p class="small text-muted mb-3">Managed and coordinated a two-phase technology outreach
+                                event involving ToT for engineering students and hands-on workshops for 200+ school
+                                students.</p>
+                            <a href="aviyantaa-workshop.html" class="btn-link-custom mt-auto save-scroll">Read Full
+                                Summary <i class="fas fa-external-link-alt ms-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card p-4 h-100 shadow-sm border-top border-info border-4">
+                        <span class="date-badge mb-2 d-inline-block">2023</span>
+                        <h6 class="fw-bold">Organizing Team | AVIYANTAA X USC</h6>
+                        <p class="small text-muted">Joint mechanical engineering initiative. Focus on team efficiency
+                            and management support.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h4 class="fw-bold mb-4 text-primary"><i class="fas fa-users me-2"></i>Community Leadership & Outreach</h4>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card p-4 h-100 shadow-sm">
+                        <span class="date-badge mb-2 d-inline-block">2018 - 2020</span>
+                        <h5 class="fw-bold">President | Ward Child Club</h5>
+                        <p class="small text-muted">Managed 19 child clubs. Led programs for community awareness and
+                            support for children.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card p-4 h-100 shadow-sm">
+                        <span class="date-badge mb-2 d-inline-block">Nov 2024 - 2025</span>
+                        <h5 class="fw-bold">Event & Outreach Manager | EWBN</h5>
+                        <p class="small text-muted">Engineers Without Borders Nepal (KU Chapter). Focus on university
+                            and chapter outreach.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card p-4 h-100 shadow-sm">
+                        <span class="date-badge mb-2 d-inline-block">2023</span>
+                        <h5 class="fw-bold">Event Manager | Youth Solidarity</h5>
+                        <p class="small text-muted">Managed Art Exhibition and Competition events, coordinating
+                            logistics and artist relations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding bg-light" id="volunteering">
+        <div class="container">
+            <h2 class="section-title text-center">Volunteering & STEAM Outreach</h2>
+            <div class="row g-4">
+
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm h-100 overflow-hidden d-flex flex-column">
+                        <img src="steam1.jpg" class="card-img-top" alt="STEAM Session 1"
+                            style="height: 220px; object-fit: cover; cursor: zoom-in;" data-bs-toggle="modal"
+                            data-bs-target="#mSteam1">
+                        <div class="p-4 d-flex flex-column h-100">
+                            <div>
+                                <span class="date-badge mb-2 d-inline-block">2024</span>
+                                <h5 class="fw-bold">STEAM Workshop Facilitator</h5>
+                                <p class="small text-primary fw-bold"> Shree Shreekhandapur School,Dhulikhel,Kavre</p>
+                                <p class="small text-muted mb-3">Conducted hands-on STEAM sessions to inspire young
+                                    minds through interactive mechanical and robotics demonstrations.</p>
+                            </div>
+                            <a href="https://www.facebook.com/KURC2014/posts/pfbid021nQ4s7yeM2shqXBLNm5aWFgXXVMpJRhpCTHWXTKBTZoGMQom7p6UnYaRSJEvVx1el#"
+                                target="_blank" class="btn-link-custom mt-auto">View Post <i
+                                    class="fas fa-external-link-alt ms-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm h-100 overflow-hidden d-flex flex-column">
+                        <img src="steam2.jpg" class="card-img-top" alt="STEAM Session 2"
+                            style="height: 220px; object-fit: cover; cursor: zoom-in;" data-bs-toggle="modal"
+                            data-bs-target="#mSteam2">
+                        <div class="p-4 d-flex flex-column h-100">
+                            <div>
+                                <span class="date-badge mb-2 d-inline-block">2024</span>
+                                <h5 class="fw-bold">STEAM Workshop Trainer</h5>
+                                <p class="small text-primary fw-bold"> Shree Daduwa Bhawani Shankar Secondary
+                                    School,Chautara Sangachokgadhi,Sindhupalchok</p>
+                                <p class="small text-muted mb-3">Engaged students in practical engineering challenges,
+                                    helping them bridge the gap between theoretical knowledge and real-world
+                                    application.</p>
+                            </div>
+                            <a href="https://www.linkedin.com/posts/tushar-d-1114ab2b8_conducted-training-sessions-on-steam-education-activity-7204136976550154240-95o0?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEw_ZN0BUvNb4YVt48DHFnuFBXvjIjTsrdU"
+                                target="_blank" class="btn-link-custom mt-auto">View Post <i
+                                    class="fas fa-external-link-alt ms-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm h-100 overflow-hidden d-flex flex-column">
+                        <img src="steam3.png" class="card-img-top" alt="STEAM Session 3"
+                            style="height: 220px; object-fit: cover; cursor: zoom-in;" data-bs-toggle="modal"
+                            data-bs-target="#mSteam3">
+                        <div class="p-4 d-flex flex-column h-100">
+                            <div>
+                                <span class="date-badge mb-2 d-inline-block">2023 - 2024</span>
+                                <h5 class="fw-bold">STEAM Workshop Trainer</h5>
+                                <p class="small text-primary fw-bold"> Sunwal Lotus E.S.School,Sunwal Nawalparasi</p>
+                                <p class="small text-muted mb-3">Organized educational outreach programs aimed at
+                                    promoting technical literacy and fostering a passion for innovation among school
+                                    students.</p>
+                            </div>
+                            <a href="https://www.facebook.com/share/v/1TVjL7WMPk/" target="_blank"
+                                class="btn-link-custom mt-auto">View Session <i
+                                    class="fas fa-external-link-alt ms-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm h-100 overflow-hidden d-flex flex-column">
+                        <img src="voluntary.jpg" class="card-img-top" alt="Basic Electronics Workshop"
+                            style="height: 220px; object-fit: cover; cursor: zoom-in;" data-bs-toggle="modal"
+                            data-bs-target="#mVoluntary">
+                        <div class="p-4 d-flex flex-column h-100">
+                            <div>
+                                <span class="date-badge mb-2 d-inline-block">2024 ,Mar 3</span>
+                                <h5 class="fw-bold">Workshop Facilitator</h5>
+                                <p class="small text-primary fw-bold">Shree Chakra Jyoti Secondary School, Bhaisepati,
+                                    Banepa</p>
+                                <p class="small text-muted mb-3">Participated as Facilitator in a Basic Electronics
+                                    Workshop as part of KURC's 'Tech for Community' campaign. Nurturing innovative minds
+                                    for a brighter future, promoting Innovation Nexus by connecting ideas with people
+                                    and technology!</p>
+                            </div>
+                            <a href="https://www.facebook.com/share/p/1C1SDXkWQn/" target="_blank"
+                                class="btn-link-custom mt-auto save-scroll">
+                                View Post <i class="fas fa-external-link-alt ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm h-100 overflow-hidden d-flex flex-column">
+                        <img src="aidtoeducation.jpeg" class="card-img-top" alt="Aid To Education"
+                            style="height: 220px; object-fit: cover; cursor: zoom-in;" data-bs-toggle="modal"
+                            data-bs-target="#mAidToEducation">
+                        <div class="p-4 d-flex flex-column h-100">
+                            <div>
+                                <span class="date-badge mb-2 d-inline-block">2023</span>
+                                <h5 class="fw-bold">Organizer & Trainer | AID TO EDUCATION</h5>
+                                <p class="small text-primary fw-bold">Shivapuri Secondary School</p>
+                                <p class="small text-muted mb-3">Aviyantaa x USC & Kathmandu Metropolitan City
+                                    initiative aiming to empower and uplift the educational landscape in our community.
+                                </p>
+                            </div>
+                            <a href="aid-to-education.html" class="btn-link-custom mt-auto save-scroll">Read Full
+                                Summary <i class="fas fa-external-link-alt ms-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Volunteering Modals -->
+    <div class="modal fade" id="mAidToEducation" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content border-0 bg-transparent text-end"><button type="button"
+                    class="btn-close btn-close-white mb-2" data-bs-dismiss="modal"></button><img
+                    src="aidtoeducation.jpeg" class="img-fluid rounded shadow"></div>
         </div>
     </div>
-</footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <div class="modal fade" id="mVoluntary" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content border-0 bg-transparent text-end"><button type="button"
+                    class="btn-close btn-close-white mb-2" data-bs-dismiss="modal"></button><img src="voluntary.jpg"
+                    class="img-fluid rounded shadow"></div>
+        </div>
+    </div>
 
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-    // Scroll Restoration Logic
-    if (sessionStorage.getItem("scrollPosition")) {
-        window.scrollTo(0, sessionStorage.getItem("scrollPosition"));
-        sessionStorage.removeItem("scrollPosition"); // Clear after restoring
-    }
+    <section class="section-padding" id="contact">
+        <div class="container text-center">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="row justify-content-center g-4">
+                <div class="col-md-4">
+                    <i class="fas fa-envelope fs-3 mb-2" style="color: var(--card-icon-color);"></i>
+                    <p class="fw-bold mb-0">Email</p>
+                    <p class="text-muted">dhakaltushar@gmail.com</p>
+                </div>
+                <div class="col-md-4">
+                    <i class="fas fa-phone fs-3 mb-2" style="color: var(--card-icon-color);"></i>
+                    <p class="fw-bold mb-0">Phone</p>
+                    <p class="text-muted">(+977) 9847290629</p>
+                </div>
+                <div class="col-md-4">
+                    <i class="fab fa-linkedin fs-3 mb-2" style="color: var(--card-icon-color);"></i>
+                    <p class="fw-bold mb-0">LinkedIn</p>
+                    <a href="https://www.linkedin.com/in/tushar-d-1114ab2b8/" target="_blank"
+                        class="text-decoration-none">View Profile</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    const saveScrollLinks = document.querySelectorAll(".save-scroll");
-    saveScrollLinks.forEach(link => {
-        link.addEventListener("click", () => {
-            sessionStorage.setItem("scrollPosition", window.scrollY);
-        });
-    });
+    <footer class="py-5">
+        <div class="container text-center">
+            <p class="mb-0 small opacity-75">© 2026 Tushar Dhakal. Mechanical Engineering - Kathmandu University.</p>
+            <div class="mt-3">
+                <a href="https://www.facebook.com/tushar.dhakal.37" class="text-white mx-2"><i
+                        class="fab fa-facebook"></i></a>
+                <a href="https://www.instagram.com/tushardhakal11/" class="text-white mx-2"><i
+                        class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
 
-    // Video Playback Logic
-    const videos = document.querySelectorAll('video');
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            const video = entry.target;
-            if (entry.isIntersecting) {
-                video.muted = false;
-                
-                let playPromise = video.play();
-                if (playPromise !== undefined) {
-                    playPromise.catch(error => {
-                        console.log("Autoplay with audio was blocked by the browser. Please interact with the page first.", error);
-                    });
-                }
-            } else {
-                video.pause();
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Scroll Restoration Logic
+            if (sessionStorage.getItem("scrollPosition")) {
+                window.scrollTo(0, sessionStorage.getItem("scrollPosition"));
+                sessionStorage.removeItem("scrollPosition"); // Clear after restoring
             }
-        });
-    }, {
-        threshold: 0.5 
-    });
 
-    videos.forEach(video => {
-        observer.observe(video);
-    });
-});
-</script>
+            const saveScrollLinks = document.querySelectorAll(".save-scroll");
+            saveScrollLinks.forEach(link => {
+                link.addEventListener("click", () => {
+                    sessionStorage.setItem("scrollPosition", window.scrollY);
+                });
+            });
+
+            // Video Playback Logic
+            const videos = document.querySelectorAll('video');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const video = entry.target;
+                    if (entry.isIntersecting) {
+                        video.muted = false;
+
+                        let playPromise = video.play();
+                        if (playPromise !== undefined) {
+                            playPromise.catch(error => {
+                                console.log("Autoplay with audio was blocked by the browser. Please interact with the page first.", error);
+                            });
+                        }
+                    } else {
+                        video.pause();
+                    }
+                });
+            }, {
+                threshold: 0.5
+            });
+
+            videos.forEach(video => {
+                observer.observe(video);
+            });
+        });
+    </script>
 
 </body>
+
 </html>
