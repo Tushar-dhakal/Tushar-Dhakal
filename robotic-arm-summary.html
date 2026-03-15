@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4 D.O.F Hand Gesture Controlled Robotic Arm</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #2c3e50; 
+            --accent-color: #3498db;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            line-height: 1.6;
+            background-color: #f8f9fa;
+        }
+
+        .navbar {
+            background-color: rgba(44, 62, 80, 0.98) !important;
+            padding: 12px 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .content-section {
+            padding: 100px 0 60px;
+        }
+
+        .summary-card {
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 40px;
+            border-top: 5px solid var(--accent-color);
+        }
+
+        .content h5 {
+            color: var(--primary-color);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 8px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand navbar-dark fixed-top shadow-sm">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="index.html">TUSHAR DHAKAL</a>
+        <div class="ms-auto">
+            <a href="index.html" class="btn btn-outline-light btn-sm rounded-pill px-3"><i class="fas fa-arrow-left me-2"></i>Back to Portfolio</a>
+        </div>
+    </div>
+</nav>
+
+<section class="content-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-9">
+                <div class="summary-card mt-4">
+                    
+                    <div class="row mb-5 justify-content-center">
+                        <div class="col-md-10">
+                            <video class="w-100 rounded shadow-sm" loop playsinline controls style="max-height: 400px; background: #000; object-fit: contain;">
+                                <source src="arm.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </div>
+
+                    <h2 class="fw-bold text-dark mb-2">4 D.O.F Hand Gesture Controlled Robotic Arm</h2>
+                    <p class="text-muted fs-5 mb-4">Second-Year Mechanical Engineering Project (2024 - 2025)</p>
+                    
+                    <div class="content fs-6 text-secondary">
+                        <p>This project presents the design and fabrication of a 4 Degrees of Freedom (DOF) robotic arm aimed at providing a low-cost, functional platform for educational and research purposes. Inspired by industrial robotic systems, this prototype replicates basic human arm movements—rotation, lifting, and placing—using servo motors (MG996R and SG90), 3D-printed PLA components, and Arduino-based control. The current prototype offers four core motions: base rotation (yaw), shoulder movement (pitch), elbow movement (pitch), and wrist rotation (roll). It is controlled through hand gesture recognition using computer vision techniques implemented with OpenCV, providing an intuitive and interactive user experience.</p>
+                        <p>This prototype serves as a foundational model, developed to understand feasibility and functionality, with a comprehensive version to follow after further study. Future iterations aim to incorporate additional degrees of freedom, enabling greater flexibility and application potential. Such enhancements could allow the arm to perform tasks like object sorting, assistance for individuals with disabilities, automated pick-and-place operations, and collaborative tasks in educational and small-scale industrial settings. The project emphasizes modularity, simplicity, and innovation, making it a valuable learning tool in robotics and mechatronics.</p>
+
+                        <h5 class="fw-bold mt-5"><i class="fas fa-users me-2 text-primary"></i> Team Members</h5>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-user-circle me-2 text-muted"></i> Tushar Dhakal</li>
+                            <li><i class="fas fa-user-circle me-2 text-muted"></i> Pranshu Bikram Karki</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
