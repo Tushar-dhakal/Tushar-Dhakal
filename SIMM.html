@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIMM: Strategic Innovation & Decision Modeling</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- ExcelJS CDN for Styled spreadsheet output -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.3.0/exceljs.min.js"></script>
+
+    <style>
+        :root {
+            --primary-color: #2c3e50; 
+            --accent-color: #3498db;
+            --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            --card-shadow: 0 10px 35px rgba(0,0,0,0.08);
+            --transition-speed: 0.3s;
+            
+            /* User AHP Colors */
+            --bg: #f7f7f8;
+            --card: #fff;
+            --border: #e5e7eb;
+            --fg: #0f172a;
+            --muted: #6b7280;
+            --primary: #2563eb;
+            --primary-fg: #fff;
+            --ok: #16a34a;
+            --bad: #dc2626;
+            --input: #fffbcc;
+            --result: #b3ead5;
+            --logic: #fff2cc;
+            --syn: #ddf0cc;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* --- NAVBAR --- */
+        .navbar {
+            background-color: rgba(44, 62, 80, 0.98) !important;
+            backdrop-filter: blur(10px);
+            padding: 10px 0;
+        }
+
+        .navbar-nav {
+            flex-direction: row !important;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        .navbar-nav::-webkit-scrollbar {
+            display: none;
+        }
+
+        .nav-link {
+            font-size: 0.70rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            padding: 0 6px !important;
+            color: white !important;
+            white-space: nowrap;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-color) !important;
+        }
+
+        /* --- HERO --- */
+        .masthead {
+            background: linear-gradient(rgba(44, 62, 80, 0.85), rgba(44, 62, 80, 0.85)), url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 150px 0 100px;
+        }
+
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--accent-color);
+            margin: 15px auto;
+        }
+
+        /* --- AHP APP EMBED STYLES --- */
+        .app-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 12px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .steps {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .chip {
+            border: 1px solid var(--border);
+            background: var(--card);
+            padding: 6px 12px;
+            border-radius: 999px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all var(--transition-speed);
+            font-weight: 600;
+            color: var(--muted);
+        }
+
+        .chip.on {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--primary-color);
+        }
+
+        input, select {
+            width: 100%;
+            border: 1px solid var(--border);
+            background: #fff;
+            border-radius: 6px;
+            padding: 8px;
+            font: inherit;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+
+        .grid {
+            display: grid;
+            gap: 12px;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        @media (max-width: 576px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 10px;
+            border-bottom: 1px solid var(--border);
+            vertical-align: middle;
+        }
+
+        th {
+            font-size: 11px;
+            text-transform: uppercase;
+            color: var(--muted);
+            font-weight: 700;
+        }
+
+        .bar {
+            height: 8px;
+            background: #eee;
+            border-radius: 99px;
+            overflow: hidden;
+            flex: 1;
+        }
+
+        .bar > div {
+            height: 100%;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .badge {
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .badge.ok {
+            background: #dcfce7;
+            color: #15803d;
+        }
+
+        .badge.bad {
+            background: #fee2e2;
+            color: #b91c1c;
+        }
+
+        .wlist {
+            padding: 0;
+            margin: 12px 0 0;
+        }
+
+        .wlist li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 8px 0;
+            list-style: none;
+        }
+
+        .winner {
+            background: #eff6ff;
+            border: 2px solid #93c5fd;
+            padding: 14px;
+            border-radius: 10px;
+            margin-top: 14px;
+        }
+
+        .nav-btn-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            border-top: 1px solid var(--border);
+            padding-top: 15px;
+        }
+
+        .btn-custom {
+            border: 1px solid var(--border);
+            background: var(--card);
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all var(--transition-speed);
+        }
+
+        .btn-custom.primary {
+            background: var(--primary);
+            color: var(--primary-fg);
+            border-color: var(--primary);
+        }
+
+        .btn-custom.primary:hover {
+            opacity: 0.9;
+        }
+
+        .btn-custom:disabled {
+            opacity: .4;
+            cursor: not-allowed;
+        }
+
+        .btn-sm {
+            padding: 4px 8px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body id="page-top">
+
+    <nav class="navbar navbar-expand navbar-dark fixed-top shadow-sm">
+        <div class="container-fluid px-2 px-md-4">
+            <a class="navbar-brand fw-bold" href="index.html">TUSHAR DHAKAL</a>
+            <div class="ms-auto overflow-hidden">
+                <ul class="navbar-nav gap-1 gap-md-3 py-1">
+                    <li class="nav-item"><a class="nav-link" href="#about-project">About SIMM</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#methodology">Methodology</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#ahp-app">AHP App</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html"><i class="fas fa-arrow-left me-1"></i>Back</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="masthead text-white text-center">
+        <div class="container">
+            <h1 class="display-4 fw-bold">SIMM: Strategic Innovation & Decision Modeling</h1>
+            <p class="lead mb-4 fs-4 px-lg-5">
+                "An integrated framework for multi-criteria operational analysis, lean manufacturing, and workflow optimization."
+            </p>
+        </div>
+    </header>
+
+    <!-- ABOUT SECTION -->
+    <section class="section-padding" id="about-project">
+        <div class="container">
+            <h2 class="section-title text-center">About the SIMM Project</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <p class="fs-5 text-secondary text-center mb-5">
+                        The <strong>Strategic Innovation & Manufacturing Management (SIMM)</strong> project represents a holistic framework designed to optimize engineering decisions and streamline workflows. From restoring complex CNC systems to designing custom handcrafted products, SIMM leverages quantitative models to evaluate parameters and design optimal solutions.
+                    </p>
+                    <div class="row g-4 mt-2">
+                        <div class="col-md-6">
+                            <div class="p-4 border border-start border-primary border-4 rounded bg-white shadow-sm h-100">
+                                <h5 class="fw-bold text-primary mb-3"><i class="fas fa-industry me-2"></i>Lean Manufacturing</h5>
+                                <p class="small text-muted mb-0">Analyzed production cycles for university events, implementing value-stream mapping, bottleneck identification, and cycle-time reduction techniques to save costs and eliminate waste.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-4 border border-start border-primary border-4 rounded bg-white shadow-sm h-100">
+                                <h5 class="fw-bold text-primary mb-3"><i class="fas fa-sitemap me-2"></i>AHP Decision Modeling</h5>
+                                <p class="small text-muted mb-0">Deploys mathematical prioritization matrices (specifically Saaty's Analytic Hierarchy Process) to evaluate decisions—like choosing between retrofitting existing systems or investing in new hardware.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- METHODOLOGY SECTION -->
+    <section class="section-padding bg-light" id="methodology">
+        <div class="container text-center">
+            <h2 class="section-title">AHP Decision Methodology</h2>
+            <div class="row justify-content-center text-start">
+                <div class="col-lg-10">
+                    <p class="fs-5 text-secondary text-center mb-5">
+                        Saaty's Analytic Hierarchy Process (AHP) is a structured technique for organizing and analyzing complex decisions.
+                    </p>
+                    <div class="row g-4 align-items-stretch">
+                        <div class="col-md-4">
+                            <div class="p-4 bg-white rounded shadow-sm h-100">
+                                <h6 class="fw-bold text-primary mb-2">1. Model the Problem</h6>
+                                <p class="small text-muted mb-0">Identify the overarching goal, define the evaluation criteria, and list the candidate alternatives/options.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="p-4 bg-white rounded shadow-sm h-100">
+                                <h6 class="fw-bold text-primary mb-2">2. Pairwise Judgements</h6>
+                                <p class="small text-muted mb-0">Evaluate factors in pairs on a standard scale of 1-9 to extract weights and priorities.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="p-4 bg-white rounded shadow-sm h-100">
+                                <h6 class="fw-bold text-primary mb-2">3. Synthesize & Check</h6>
+                                <p class="small text-muted mb-0">Synthesize global scores, analyze inconsistencies, and calculate the Consistency Ratio (CR).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AHP APP SECTION -->
+    <section class="section-padding" id="ahp-app">
+        <div class="container">
+            <h2 class="section-title text-center">Interactive AHP Decision Tool</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <p class="text-secondary text-center mb-4">
+                        Configure your goals, criteria, and options below to compute dynamic weights and export your styled, formula-based Excel sheet.
+                    </p>
+                    
+                    <!-- EMBEDDED AHP APP CONTAINER -->
+                    <div class="app-card border border-top border-primary border-4 mt-5">
+                        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-4 pb-2 border-bottom">
+                            <div>
+                                <div class="text-muted" style="font-size: 11px; font-weight: 700; text-transform: uppercase;">Decision Suite</div>
+                                <h4 class="fw-bold text-dark m-0">AHP Decision Engine</h4>
+                            </div>
+                            <button class="btn-custom primary" onclick="saveSheet()"><i class="fas fa-file-excel me-2"></i>Save Sheet (.xlsx)</button>
+                        </div>
+
+                        <!-- Step indicator tabs -->
+                        <div class="steps" id="steps"></div>
+                        
+                        <!-- Dynamic content view -->
+                        <div id="view"></div>
+                        
+                        <!-- Navigation bar -->
+                        <div class="nav-btn-container">
+                            <button class="btn-custom" onclick="go(-1)" id="prev">← Previous</button>
+                            <button class="btn-custom primary" onclick="go(1)" id="next">Next →</button>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-5 bg-dark text-white">
+        <div class="container text-center">
+            <p class="mb-0 small opacity-75">© 2026 Tushar Dhakal. Mechanical Engineering - Kathmandu University.</p>
+        </div>
+    </footer>
+
+    <!-- AHP CORE APPLICATION LOGIC -->
+    <script>
+        const RI = [0, 0, 0.58, 0.9, 1.12, 1.24, 1.32, 1.41, 1.45, 1.49, 1.51, 1.48, 1.56, 1.57, 1.59];
+        const INTENS = {
+            1: "1 — Equal",
+            2: "2",
+            3: "3 — Moderate",
+            4: "4",
+            5: "5 — Strong",
+            6: "6",
+            7: "7 — Very strong",
+            8: "8",
+            9: "9 — Extreme"
+        };
+        const STEPS = ["Setup", "Criteria", "Alternatives", "Results"];
+
+        const state = {
+            step: 0,
+            goal: "Modernize Birgunj ATF",
+            criteria: ["Cost", "Downtime", "Quality", "Risk"],
+            alternatives: ["CNC 1", "CNC 2", "Retrofit"],
+            critPairs: [], 
+            altPairs: [], 
+            altActive: 0
+        };
+        
+        const pc = n => n * (n - 1) / 2;
+        const emptyPairs = n => Array.from({ length: pc(n) }, () => ({ pref: 0, intensity: 1 }));
+        
+        state.critPairs = emptyPairs(state.criteria.length);
+        state.altPairs = state.criteria.map(() => emptyPairs(state.alternatives.length));
+
+        function buildMatrix(items, answers) {
+            const n = items.length, m = Array.from({ length: n }, () => Array(n).fill(1));
+            let p = 0;
+            for (let i = 0; i < n - 1; i++) {
+                for (let j = i + 1; j < n; j++) {
+                    const a = answers[p++];
+                    const v = a.pref === i ? a.intensity : 1 / a.intensity;
+                    m[i][j] = v; 
+                    m[j][i] = 1 / v;
+                }
+            }
+            return m;
+        }
+
+        function compute(items, answers) {
+            const m = buildMatrix(items, answers), n = m.length;
+            const gm = m.map(r => Math.pow(r.reduce((a, b) => a * b, 1), 1 / n));
+            const tot = gm.reduce((a, b) => a + b, 0);
+            const w = gm.map(g => g / tot);
+            const cs = Array(n).fill(0); 
+            for (let j = 0; j < n; j++) {
+                for (let i = 0; i < n; i++) {
+                    cs[j] += m[i][j];
+                }
+            }
+            const lm = cs.reduce((a, s, j) => a + s * w[j], 0);
+            const CI = n > 1 ? (lm - n) / (n - 1) : 0;
+            const ri = n <= 2 ? 1 : (RI[n - 1] || 1.49); 
+            const CR = n <= 2 ? 0 : CI / ri;
+            return { w, CR, ok: CR <= 0.1, lambdaMax: lm, ci: CI, colSums: cs, geomeans: gm };
+        }
+
+        function setCount(key, n) {
+            const list = state[key], def = key === "criteria" ? "Criterion" : "Alternative";
+            state[key] = Array.from({ length: n }, (_, i) => list[i] ?? `${def} ${i + 1}`);
+            if (key === "criteria") {
+                state.critPairs = emptyPairs(n); 
+                state.altPairs = Array.from({ length: n }, () => emptyPairs(state.alternatives.length));
+            } else {
+                state.altPairs = state.criteria.map(() => emptyPairs(n));
+            }
+            render();
+        }
+
+        function render() {
+            document.getElementById("steps").innerHTML = STEPS.map((s, i) => 
+                `<button class="chip ${i === state.step ? 'on' : ''}" onclick="state.step=${i};render()">${i + 1}. ${s}</button>`
+            ).join("");
+            document.getElementById("prev").disabled = state.step === 0;
+            document.getElementById("next").disabled = state.step === STEPS.length - 1;
+            const v = document.getElementById("view"); 
+            v.innerHTML = "";
+            if (state.step === 0) v.append(setupView());
+            if (state.step === 1) v.append(pairView("Phase 1 — Compare Criteria", state.criteria, state.critPairs, a => { state.critPairs = a }));
+            if (state.step === 2) v.append(altView());
+            if (state.step === 3) v.append(resultsView());
+        }
+
+        function go(d) {
+            state.step = Math.max(0, Math.min(STEPS.length - 1, state.step + d));
+            render();
+        }
+
+        function el(html) {
+            const t = document.createElement("template");
+            t.innerHTML = html.trim();
+            return t.content.firstChild;
+        }
+
+        function setupView() {
+            const c = el(`<div class="card p-4 border-0"></div>`);
+            c.innerHTML = `
+                <div class="mb-3">
+                    <label>Project goal</label>
+                    <input id="g" value="${state.goal}"/>
+                </div>
+                ${nameList("criteria", "Criteria")}
+                ${nameList("alternatives", "Alternatives")}
+            `;
+            c.querySelector("#g").oninput = e => state.goal = e.target.value;
+            c.querySelectorAll("[data-name]").forEach(inp => {
+                inp.oninput = e => {
+                    const { key, idx } = inp.dataset;
+                    state[key][+idx] = e.target.value;
+                };
+            });
+            return c;
+        }
+
+        function nameList(key, title) {
+            const items = state[key];
+            return `<div style="margin-top:20px">
+                <div class="row align-items-center"><label class="m-0">${title}</label>
+                    <div class="d-flex align-items-center">
+                        <button class="btn-custom btn-sm px-3 py-1" onclick="setCount('${key}',Math.max(2,${items.length}-1))">−</button>
+                        <span style="margin:0 12px; font-weight:700;">${items.length}</span>
+                        <button class="btn-custom btn-sm px-3 py-1" onclick="setCount('${key}',${items.length}+1)">+</button>
+                    </div>
+                </div>
+                <div class="grid" style="margin-top:12px">
+                    ${items.map((v, i) => `<input data-name data-key="${key}" data-idx="${i}" value="${v}"/>`).join("")}
+                </div>
+            </div>`;
+        }
+
+        function pairView(title, items, answers, setA) {
+            const r = compute(items, answers);
+            const c = el(`<div class="card p-3 border-0"></div>`);
+            let rows = "", p = 0;
+            for (let i = 0; i < items.length - 1; i++) {
+                for (let j = i + 1; j < items.length; j++) {
+                    const a = answers[p], idx = p;
+                    rows += `<tr>
+                      <td class="fw-bold">${items[i]}</td>
+                      <td class="muted">vs</td>
+                      <td class="fw-bold">${items[j]}</td>
+                      <td><select data-p="${idx}" data-f="pref" style="max-width: 150px;">
+                        <option value="${i}" ${a.pref === i ? 'selected' : ''}>${items[i]}</option>
+                        <option value="${j}" ${a.pref === j ? 'selected' : ''}>${items[j]}</option>
+                      </select></td>
+                      <td><select data-p="${idx}" data-f="intensity" style="max-width: 180px;">
+                        ${Object.entries(INTENS).map(([v, l]) => `<option value="${v}" ${+v === a.intensity ? 'selected' : ''}>${l}</option>`).join("")}
+                      </select></td></tr>`;
+                    p++;
+                }
+            }
+            c.innerHTML = `<h5 class="fw-bold text-primary mb-3">${title}</h5>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead><tr><th>Item 1</th><th>vs</th><th>Item 2</th><th>Preferred</th><th>Intensity</th></tr></thead>
+                        <tbody>${rows}</tbody>
+                    </table>
+                </div>
+                <div class="p-3 mt-4 rounded shadow-sm" style="background:#f9fafb;">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <strong class="text-primary">Weights</strong>
+                        <span class="badge ${r.ok ? 'ok' : 'bad'}">CR ${(r.CR * 100).toFixed(1)}% · ${r.ok ? 'LOGIC OK' : 'INCONSISTENT'}</span>
+                    </div>
+                    <ul class="wlist m-0 p-0">${items.map((it, i) => `<li><span class="fw-semibold text-dark" style="width:130px">${it}</span>
+                        <div class="bar"><div style="width:${(r.w[i] * 100).toFixed(1)}%"></div></div>
+                        <span class="fw-bold text-primary text-end" style="width:60px">${(r.w[i] * 100).toFixed(1)}%</span></li>`).join("")}</ul>
+                </div>`;
+            c.querySelectorAll("select").forEach(s => {
+                s.onchange = e => {
+                    const i = +s.dataset.p, f = s.dataset.f, next = answers.slice();
+                    next[i] = { ...next[i], [f]: Number(e.target.value) }; 
+                    setA(next); 
+                    render();
+                };
+            });
+            return c;
+        }
+
+        function altView() {
+            const wrap = el(`<div></div>`);
+            wrap.innerHTML = `<div class="card p-3 border-0 mb-3"><div style="display:flex;gap:8px;flex-wrap:wrap">
+                ${state.criteria.map((c, i) => `<button class="chip ${i === state.altActive ? 'on' : ''}" data-a="${i}">${c}</button>`).join("")}
+            </div></div>`;
+            wrap.querySelectorAll("[data-a]").forEach(b => b.onclick = () => { 
+                state.altActive = +b.dataset.a; 
+                render(); 
+            });
+            wrap.append(pairView(`Compare alternatives w.r.t. ${state.criteria[state.altActive]}`,
+                state.alternatives, state.altPairs[state.altActive], a => { state.altPairs[state.altActive] = a }));
+            return wrap;
+        }
+
+        function resultsView() {
+            const cR = compute(state.criteria, state.critPairs);
+            const aR = state.criteria.map((_, c) => compute(state.alternatives, state.altPairs[c]));
+            const scores = state.alternatives.map((_, i) => state.criteria.reduce((s, _, c) => s + aR[c].w[i] * cR.w[c], 0));
+            const win = scores.reduce((b, v, i, a) => v > a[b] ? i : b, 0);
+            const c = el(`<div class="card p-3 border-0"></div>`);
+            c.innerHTML = `
+                <h5 class="fw-bold text-primary mb-3">Final Synthesis</h5>
+                <div class="table-responsive">
+                    <table class="table table-bordered align-middle text-center">
+                        <thead class="table-dark">
+                            <tr>
+                                <th class="text-start">Alternative</th>
+                                ${state.criteria.map((cr, i) => `<th>${cr}<div style="font-weight:400;color:#ccc;text-transform:none">w=${(cR.w[i] * 100).toFixed(1)}%</div></th>`).join("")}
+                                <th>Final Score</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${state.alternatives.map((alt, i) => `
+                                <tr style="${i === win ? 'background:#e3f2fd; font-weight:700;' : ''}">
+                                    <td class="text-start"><b>${alt}</b></td>
+                                    ${state.criteria.map((_, c) => `<td>${(aR[c].w[i] * 100).toFixed(1)}%</td>`).join("")}
+                                    <td class="text-primary"><b>${(scores[i] * 100).toFixed(1)}%</b></td>
+                                </tr>
+                            `).join("")}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="winner p-3 border border-primary rounded mt-4">
+                    <div class="text-primary text-uppercase fw-bold mb-1" style="font-size:11px;">Conclusion</div>
+                    <div class="fs-5 text-dark fw-semibold">The optimal alternative is <span class="text-primary fw-bold">${state.alternatives[win]}</span> with a global priority score of ${(scores[win] * 100).toFixed(1)}%.</div>
+                </div>`;
+            return c;
+        }
+
+        // =========================================================
+        // EXCEL EXPORTER - DYNAMIC WITH FORMULAS & CELL STYLING (EXCELJS)
+        // =========================================================
+        async function saveSheet() {
+            const cR = compute(state.criteria, state.critPairs);
+            const aR = state.criteria.map((_, c) => compute(state.alternatives, state.altPairs[c]));
+            
+            const altN = state.alternatives.length;
+            const critN = state.criteria.length;
+            
+            const finalScores = state.alternatives.map((_, i) => 
+                state.criteria.reduce((s, _, c) => s + aR[c].w[i] * cR.w[c], 0)
+            );
+            const win = finalScores.reduce((b, v, i, a) => v > a[b] ? i : b, 0);
+
+            const workbook = new ExcelJS.Workbook();
+            const worksheet = workbook.addWorksheet('AHP Decision Model');
+            worksheet.views = [{ showGridLines: true }];
+
+            // 1. Initial grey background
+            for (let r = 1; r <= 350; r++) {
+                const row = worksheet.getRow(r);
+                for (let c = 1; c <= 28; c++) {
+                    row.getCell(c).fill = {
+                        type: 'pattern',
+                        pattern: 'solid',
+                        fgColor: { argb: 'FFF2F2F2' }
+                    };
+                }
+            }
+
+            // Set Column widths
+            worksheet.getColumn(1).width = 24; 
+            worksheet.getColumn(2).width = 6;  
+            worksheet.getColumn(3).width = 24; 
+            worksheet.getColumn(4).width = 24; 
+            worksheet.getColumn(5).width = 16; 
+            worksheet.getColumn(12).width = 28; 
+            for (let c = 0; c < critN + 2; c++) {
+                worksheet.getColumn(13 + c).width = 16; 
+            }
+
+            // Title
+            worksheet.getCell('A1').value = `SIMM AHP DECISION MODEL: ${state.goal.toUpperCase()}`;
+            worksheet.getCell('A1').font = { name: 'Segoe UI', size: 16, bold: true };
+
+            // RI Table AA7:AB22
+            worksheet.getRow(6).getCell(27).value = "N";
+            worksheet.getRow(6).getCell(28).value = "RI";
+            for (let n = 1; n <= RI.length; n++) {
+                const rIdx = 7 + n;
+                worksheet.getRow(rIdx).getCell(27).value = n;
+                worksheet.getRow(rIdx).getCell(28).value = RI[n - 1];
+            }
+
+            let qRow = 4;
+            let mRow = 4;
+
+            // ==========================================
+            // PHASE 1: CRITERIA IMPORTANCE
+            // ==========================================
+            worksheet.getRow(qRow).getCell(1).value = "PHASE 1: CRITERIA IMPORTANCE";
+            worksheet.getRow(qRow).getCell(1).font = { name: 'Segoe UI', bold: true, size: 12 };
+            qRow++;
+
+            // Questionnaire headers
+            worksheet.getRow(qRow).getCell(1).value = "Item 1";
+            worksheet.getRow(qRow).getCell(2).value = "vs";
+            worksheet.getRow(qRow).getCell(3).value = "Item 2";
+            worksheet.getRow(qRow).getCell(4).value = "Preferred Item";
+            worksheet.getRow(qRow).getCell(5).value = "Intensity (1-9)";
+            for (let c = 1; c <= 5; c++) {
+                worksheet.getRow(qRow).getCell(c).font = { name: 'Segoe UI', bold: true };
+            }
+            qRow++;
+
+            const critQStartRow = qRow;
+            let p = 0;
+            for (let i = 0; i < critN - 1; i++) {
+                for (let j = i + 1; j < critN; j++) {
+                    const a = state.critPairs[p++];
+                    worksheet.getRow(qRow).getCell(1).value = state.criteria[i];
+                    worksheet.getRow(qRow).getCell(2).value = "vs";
+                    worksheet.getRow(qRow).getCell(3).value = state.criteria[j];
+                    worksheet.getRow(qRow).getCell(4).value = a.pref === i ? state.criteria[i] : state.criteria[j];
+                    worksheet.getRow(qRow).getCell(5).value = a.intensity;
+                    qRow++;
+                }
+            }
+
+            styleBlock(worksheet, critQStartRow - 1, 1, qRow - 1, 5, 'FFFFFFFF');
+            for (let r = critQStartRow; r < qRow; r++) {
+                worksheet.getRow(r).getCell(5).fill = {
+                    type: 'pattern',
+                    pattern: 'solid',
+                    fgColor: { argb: 'FFD4E6F1' } // Light Blue for Inputs
+                };
+            }
+
+            const critMatrix = buildMatrix(state.criteria, state.critPairs);
+            const critWeightAddrs = writeMatrixAndMath(worksheet, "CRITERIA MATRIX", state.criteria, state.critPairs, critQStartRow, mRow, cR, `AB11`, critMatrix);
+            
+            mRow = mRow + critN + 15;
+
+            // ==========================================
+            // PHASE 2: ALTERNATIVES EVALUATION
+            // ==========================================
+            qRow += 2;
+            worksheet.getRow(qRow).getCell(1).value = "PHASE 2: ALTERNATIVES EVALUATION";
+            worksheet.getRow(qRow).getCell(1).font = { name: 'Segoe UI', bold: true, size: 12 };
+            qRow++;
+
+            const altWeightMatrix = Array(critN).fill(null).map(() => Array(altN));
+
+            state.criteria.forEach((crit, cIdx) => {
+                worksheet.getRow(qRow).getCell(1).value = `Evaluate Alternatives w.r.t: ${crit}`;
+                worksheet.getRow(qRow).getCell(1).font = { name: 'Segoe UI', italic: true };
+                qRow++;
+
+                worksheet.getRow(qRow).getCell(1).value = "Item 1";
+                worksheet.getRow(qRow).getCell(2).value = "vs";
+                worksheet.getRow(qRow).getCell(3).value = "Item 2";
+                worksheet.getRow(qRow).getCell(4).value = "Preferred Item";
+                worksheet.getRow(qRow).getCell(5).value = "Intensity (1-9)";
+                for (let c = 1; c <= 5; c++) {
+                    worksheet.getRow(qRow).getCell(c).font = { name: 'Segoe UI', bold: true };
+                }
+                qRow++;
+
+                const altQStartRow = qRow;
+                let ap = 0;
+                for (let i = 0; i < altN - 1; i++) {
+                    for (let j = i + 1; j < altN; j++) {
+                        const a = state.altPairs[cIdx][ap++];
+                        worksheet.getRow(qRow).getCell(1).value = state.alternatives[i];
+                        worksheet.getRow(qRow).getCell(2).value = "vs";
+                        worksheet.getRow(qRow).getCell(3).value = state.alternatives[j];
+                        worksheet.getRow(qRow).getCell(4).value = a.pref === i ? state.alternatives[i] : state.alternatives[j];
+                        worksheet.getRow(qRow).getCell(5).value = a.intensity;
+                        qRow++;
+                    }
+                }
+
+                styleBlock(worksheet, altQStartRow - 1, 1, qRow - 1, 5, 'FFFFFFFF');
+                for (let r = altQStartRow; r < qRow; r++) {
+                    worksheet.getRow(r).getCell(5).fill = {
+                        type: 'pattern',
+                        pattern: 'solid',
+                        fgColor: { argb: 'FFD4E6F1' } // Light Blue for Inputs
+                    };
+                }
+
+                const altResults = aR[cIdx];
+                const altMatrix = buildMatrix(state.alternatives, state.altPairs[cIdx]);
+                const tempAddrs = writeMatrixAndMath(worksheet, `ALT MATRIX: ${crit.toUpperCase()}`, state.alternatives, state.altPairs[cIdx], altQStartRow, mRow, altResults, `AB${7 + altN}`, altMatrix);
+                
+                for (let i = 0; i < altN; i++) {
+                    altWeightMatrix[cIdx][i] = tempAddrs[i];
+                }
+
+                mRow = mRow + altN + 15;
+                qRow += 2;
+            });
+
+            // ==========================================
+            // PHASE 3: FINAL SYNTHESIS & DECISION
+            // ==========================================
+            let synRow = mRow + 2;
+            worksheet.getRow(synRow).getCell(12).value = "PHASE 3: FINAL SYNTHESIS & DECISION";
+            worksheet.getRow(synRow).getCell(12).font = { name: 'Segoe UI', bold: true, size: 14 };
+            synRow += 2;
+
+            // Synthesis headers
+            worksheet.getRow(synRow).getCell(12).value = "Alternatives";
+            worksheet.getRow(synRow).getCell(12).font = { name: 'Segoe UI', bold: true };
+            for (let c = 0; c < critN; c++) {
+                const colLetter = getColName(13 + c);
+                worksheet.getRow(synRow).getCell(13 + c).value = state.criteria[c];
+                worksheet.getRow(synRow).getCell(13 + c).font = { name: 'Segoe UI', bold: true };
+                
+                worksheet.getRow(synRow + 1).getCell(13 + c).value = {
+                    formula: `=${critWeightAddrs[c]}`,
+                    result: cR.w[c]
+                };
+                worksheet.getRow(synRow + 1).getCell(13 + c).numFmt = '0.0%';
+                worksheet.getRow(synRow + 1).getCell(13 + c).font = { name: 'Segoe UI', italic: true };
+            }
+            
+            const finalScoreCol = getColName(13 + critN + 1);
+            worksheet.getRow(synRow).getCell(13 + critN + 1).value = "FINAL SCORE";
+            worksheet.getRow(synRow).getCell(13 + critN + 1).font = { name: 'Segoe UI', bold: true };
+
+            // Body values
+            for (let i = 0; i < altN; i++) {
+                const bodyRow = synRow + 2 + i;
+                worksheet.getRow(bodyRow).getCell(12).value = state.alternatives[i];
+                worksheet.getRow(bodyRow).getCell(12).font = { name: 'Segoe UI', bold: true };
+
+                let scoreFormulaParts = [];
+                for (let c = 0; c < critN; c++) {
+                    const colLetter = getColName(13 + c);
+                    worksheet.getRow(bodyRow).getCell(13 + c).value = {
+                        formula: `=${altWeightMatrix[c][i]}`,
+                        result: aR[c].w[i]
+                    };
+                    worksheet.getRow(bodyRow).getCell(13 + c).numFmt = '0.0%';
+
+                    const altCell = `${colLetter}${bodyRow}`;
+                    const weightCell = `$${colLetter}$${synRow + 1}`;
+                    scoreFormulaParts.push(`(${altCell}*${weightCell})`);
+                }
+
+                worksheet.getRow(bodyRow).getCell(13 + critN + 1).value = {
+                    formula: `=${scoreFormulaParts.join('+')}`,
+                    result: finalScores[i]
+                };
+                worksheet.getRow(bodyRow).getCell(13 + critN + 1).numFmt = '0.0%';
+                worksheet.getRow(bodyRow).getCell(13 + critN + 1).font = { name: 'Segoe UI', bold: true };
+            }
+
+            // Style synthesis block
+            styleBlock(worksheet, synRow, 12, synRow + 1 + altN, 13 + critN + 1, 'FFDDF0CC'); // Synthesis Color (Soft Green)
+
+            // Conclusion statement
+            const conclRow = synRow + altN + 4;
+            worksheet.getRow(conclRow).getCell(12).value = "CONCLUSION:";
+            worksheet.getRow(conclRow).getCell(12).font = { name: 'Segoe UI', bold: true };
+
+            const scoreRange = `${finalScoreCol}${synRow + 2}:${finalScoreCol}${synRow + 1 + altN}`;
+            const altRange = `L${synRow + 2}:L${synRow + 1 + altN}`;
+            const winnerName = state.alternatives[win];
+            const winnerPercentage = (finalScores[win] * 100).toFixed(1);
+
+            worksheet.getRow(conclRow + 1).getCell(12).value = {
+                formula: `="Based on the AHP model, the optimal alternative is '" & INDEX(${altRange}, MATCH(MAX(${scoreRange}), ${scoreRange}, 0)) & "' with a global priority score of " & TEXT(MAX(${scoreRange}), "0.0%") & "."`,
+                result: `Based on the AHP model, the optimal alternative is '${winnerName}' with a global priority score of ${winnerPercentage}%.`
+            };
+            worksheet.getRow(conclRow + 1).getCell(12).font = { name: 'Segoe UI', bold: true, color: { argb: 'FF0000FF' } };
+
+            // Download
+            const buffer = await workbook.xlsx.writeBuffer();
+            const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `AHP_Model_${state.goal.replace(/[^a-z0-9]+/gi, "_")}.xlsx`;
+            document.body.appendChild(a); a.click(); a.remove(); window.URL.revokeObjectURL(url);
+        }
+
+        function writeMatrixAndMath(worksheet, title, items, answers, qStartRow, mRow, results, riCellRef, matrix) {
+            const nCount = items.length;
+            
+            worksheet.getRow(mRow).getCell(12).value = title;
+            worksheet.getRow(mRow).getCell(12).font = { name: 'Segoe UI', bold: true };
+            
+            worksheet.getRow(mRow + 1).getCell(12).value = "Items";
+            worksheet.getRow(mRow + 1).getCell(12).font = { name: 'Segoe UI', bold: true };
+            for (let i = 0; i < nCount; i++) {
+                const headerCell = worksheet.getRow(mRow + 1).getCell(13 + i);
+                headerCell.value = items[i];
+                headerCell.font = { name: 'Segoe UI', bold: true };
+                
+                const vHeaderCell = worksheet.getRow(mRow + 2 + i).getCell(12);
+                vHeaderCell.value = items[i];
+                vHeaderCell.font = { name: 'Segoe UI', bold: true };
+            }
+            
+            let qPtr = qStartRow;
+            for (let i = 0; i < nCount; i++) {
+                for (let j = 0; j < nCount; j++) {
+                    const cell = worksheet.getRow(mRow + 2 + i).getCell(13 + j);
+                    const val = matrix[i][j];
+                    
+                    if (i === j) {
+                        cell.value = 1;
+                    } else if (i < j) {
+                        cell.value = {
+                            formula: `IF(D${qPtr}=A${qPtr}, E${qPtr}, 1/E${qPtr})`,
+                            result: val
+                        };
+                        qPtr++;
+                    } else {
+                        const transCellRef = getCellRef(mRow + 2 + j, 13 + i);
+                        cell.value = {
+                            formula: `1/${transCellRef}`,
+                            result: val
+                        };
+                    }
+                    cell.numFmt = '0.00';
+                }
+            }
+            
+            const sumRow = mRow + nCount + 2;
+            worksheet.getRow(sumRow).getCell(12).value = "Col Sums";
+            worksheet.getRow(sumRow).getCell(12).font = { name: 'Segoe UI', bold: true };
+            for (let j = 0; j < nCount; j++) {
+                const colLetter = getColName(13 + j);
+                const cell = worksheet.getRow(sumRow).getCell(13 + j);
+                cell.value = {
+                    formula: `SUM(${colLetter}${mRow + 2}:${colLetter}${mRow + 1 + nCount})`,
+                    result: results.colSums[j]
+                };
+                cell.numFmt = '0.00';
+                cell.font = { name: 'Segoe UI', bold: true };
+            }
+            
+            styleBlock(worksheet, mRow + 1, 12, sumRow, 12 + nCount, 'FFFFFFFF');
+            
+            // WEIGHTS TABLE
+            const resRow = sumRow + 2;
+            worksheet.getRow(resRow).getCell(12).value = "WEIGHTS";
+            worksheet.getRow(resRow).getCell(12).font = { name: 'Segoe UI', bold: true };
+            
+            const weightAddrs = [];
+            for (let i = 0; i < nCount; i++) {
+                const itemRow = resRow + 1 + i;
+                worksheet.getRow(itemRow).getCell(12).value = items[i];
+                worksheet.getRow(itemRow).getCell(12).font = { name: 'Segoe UI', bold: true };
+                
+                // Geomean
+                const matrixRange = `M${mRow + 2 + i}:${getColName(12 + nCount)}${mRow + 2 + i}`;
+                worksheet.getRow(itemRow).getCell(13).value = {
+                    formula: `GEOMEAN(${matrixRange})`,
+                    result: results.geomeans[i]
+                };
+                worksheet.getRow(itemRow).getCell(13).numFmt = '0.00';
+                
+                // Weight
+                const geomeanRange = `M${resRow + 1}:M${resRow + nCount}`;
+                const weightCell = worksheet.getRow(itemRow).getCell(14);
+                weightCell.value = {
+                    formula: `M${itemRow}/SUM(${geomeanRange})`,
+                    result: results.w[i]
+                };
+                weightCell.numFmt = '0.0%';
+                weightCell.font = { name: 'Segoe UI', bold: true };
+                
+                weightAddrs.push(`N${itemRow}`);
+            }
+            styleBlock(worksheet, resRow, 12, resRow + nCount, 14, 'FFB3EAD5'); // Result Weights Color (BGR: Mint Green)
+            
+            // CONSISTENCY TABLE
+            const crRow = resRow + nCount + 2;
+            worksheet.getRow(crRow).getCell(12).value = "CONSISTENCY";
+            worksheet.getRow(crRow).getCell(12).font = { name: 'Segoe UI', bold: true };
+            
+            let lambdaFormula = "";
+            for (let j = 0; j < nCount; j++) {
+                const colSumCell = `${getColName(13 + j)}${sumRow}`;
+                const weightCell = `N${resRow + 1 + j}`;
+                lambdaFormula += `(${colSumCell}*${weightCell})`;
+                if (j < nCount - 1) lambdaFormula += "+";
+            }
+            
+            worksheet.getRow(crRow + 1).getCell(12).value = "Lambda Max:";
+            worksheet.getRow(crRow + 1).getCell(13).value = {
+                formula: lambdaFormula,
+                result: results.lambdaMax
+            };
+            worksheet.getRow(crRow + 1).getCell(13).numFmt = '0.000';
+            
+            worksheet.getRow(crRow + 2).getCell(12).value = "CI:";
+            worksheet.getRow(crRow + 2).getCell(13).value = {
+                formula: `(M${crRow + 1}-${nCount})/${nCount > 1 ? nCount - 1 : 1}`,
+                result: results.ci
+            };
+            worksheet.getRow(crRow + 2).getCell(13).numFmt = '0.000';
+            
+            worksheet.getRow(crRow + 3).getCell(12).value = "CR:";
+            worksheet.getRow(crRow + 3).getCell(13).value = {
+                formula: `M${crRow + 2}/${nCount <= 2 ? 1 : riCellRef}`,
+                result: results.CR
+            };
+            worksheet.getRow(crRow + 3).getCell(13).numFmt = '0.0%';
+            worksheet.getRow(crRow + 3).getCell(13).font = { name: 'Segoe UI', bold: true };
+            
+            worksheet.getRow(crRow + 4).getCell(12).value = "VERDICT:";
+            worksheet.getRow(crRow + 4).getCell(12).font = { name: 'Segoe UI', bold: true };
+            const verdictCell = worksheet.getRow(crRow + 4).getCell(13);
+            verdictCell.value = {
+                formula: `IF(M${crRow + 3}<=0.1, "LOGIC OK", "INCONSISTENT")`,
+                result: results.ok ? "LOGIC OK" : "INCONSISTENT"
+            };
+            verdictCell.font = { name: 'Segoe UI', bold: true, color: { argb: results.ok ? 'FF000000' : 'FFFFFFFF' } };
+            if (!results.ok) {
+                verdictCell.fill = {
+                    type: 'pattern',
+                    pattern: 'solid',
+                    fgColor: { argb: 'FFFF0000' }
+                };
+            }
+            
+            styleBlock(worksheet, crRow, 12, crRow + 4, 13, 'FFFFF2CC'); // Consistency Color (Gold)
+            
+            return weightAddrs;
+        }
+
+        function styleBlock(worksheet, startRow, startCol, endRow, endCol, fillColor) {
+            for (let r = startRow; r <= endRow; r++) {
+                const row = worksheet.getRow(r);
+                for (let c = startCol; c <= endCol; c++) {
+                    const cell = row.getCell(c);
+                    cell.fill = {
+                        type: 'pattern',
+                        pattern: 'solid',
+                        fgColor: { argb: fillColor }
+                    };
+                    cell.border = {
+                        top: { style: 'thin', color: { argb: 'FFD3D3D3' } },
+                        left: { style: 'thin', color: { argb: 'FFD3D3D3' } },
+                        bottom: { style: 'thin', color: { argb: 'FFD3D3D3' } },
+                        right: { style: 'thin', color: { argb: 'FFD3D3D3' } }
+                    };
+                }
+            }
+            for (let c = startCol; c <= endCol; c++) {
+                const topCell = worksheet.getRow(startRow).getCell(c);
+                topCell.border = { ...topCell.border, top: { style: 'medium', color: { argb: 'FF000000' } } };
+                const bottomCell = worksheet.getRow(endRow).getCell(c);
+                bottomCell.border = { ...bottomCell.border, bottom: { style: 'medium', color: { argb: 'FF000000' } } };
+            }
+            for (let r = startRow; r <= endRow; r++) {
+                const leftCell = worksheet.getRow(r).getCell(startCol);
+                leftCell.border = { ...leftCell.border, left: { style: 'medium', color: { argb: 'FF000000' } } };
+                const rightCell = worksheet.getRow(r).getCell(endCol);
+                rightCell.border = { ...rightCell.border, right: { style: 'medium', color: { argb: 'FF000000' } } };
+            }
+        }
+
+        function getColName(col) {
+            let name = '';
+            let temp = col;
+            while (temp > 0) {
+                let modulo = (temp - 1) % 26;
+                name = String.fromCharCode(65 + modulo) + name;
+                temp = Math.floor((temp - modulo) / 26);
+            }
+            return name;
+        }
+
+        function getCellRef(row, col) {
+            return getColName(col) + row;
+        }
+
+        // Initialize and draw app
+        render();
+    </script>
+</body>
+</html>
