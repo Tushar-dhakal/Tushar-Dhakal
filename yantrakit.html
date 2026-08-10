@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yantrakit | Tushar Dhakal</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #2c3e50; 
+            --accent-color: #3498db;
+            --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            --transition-speed: 0.3s;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            line-height: 1.6;
+            background-color: #f8f9fa;
+        }
+
+        /* --- NAVBAR --- */
+        .navbar {
+            background-color: rgba(44, 62, 80, 0.98) !important;
+            backdrop-filter: blur(10px);
+            padding: 10px 0;
+        }
+
+        .navbar-nav {
+            flex-direction: row !important;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        .navbar-nav::-webkit-scrollbar {
+            display: none;
+        }
+
+        .nav-link {
+            font-size: 0.70rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            padding: 0 12px !important;
+            color: white !important;
+            white-space: nowrap;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-color) !important;
+        }
+
+        /* --- HERO --- */
+        .masthead {
+            background: linear-gradient(rgba(44, 62, 80, 0.85), rgba(44, 62, 80, 0.85)), url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&0');
+            background-size: cover;
+            background-position: center;
+            padding: 120px 0 80px;
+        }
+
+        .section-padding {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            position: relative;
+            text-align: center;
+        }
+
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--accent-color);
+            margin: 15px auto 0;
+        }
+
+        /* --- PRODUCT STYLES --- */
+        .filter-btn {
+            border: 1px solid var(--accent-color);
+            background: transparent;
+            color: var(--accent-color);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all var(--transition-speed);
+            margin: 4px;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--accent-color);
+            color: #fff;
+        }
+
+        .search-bar {
+            max-width: 400px;
+            margin: 0 auto 30px;
+            border-radius: 25px;
+            padding-left: 20px;
+            border-color: #ddd;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        }
+
+        .product-card {
+            background: #fff;
+            border-radius: 12px;
+            border: 1px solid #eee;
+            box-shadow: var(--card-shadow);
+            padding: 20px;
+            height: 100%;
+            transition: all var(--transition-speed);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--accent-color);
+            opacity: 0;
+            transition: opacity var(--transition-speed);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border-color: var(--accent-color);
+        }
+
+        .product-card:hover::before {
+            opacity: 1;
+        }
+
+        .product-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            opacity: 0.8;
+        }
+
+        .product-card:hover .product-icon {
+            color: var(--accent-color);
+            opacity: 1;
+        }
+
+        .product-category {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--accent-color);
+            margin-bottom: 8px;
+        }
+
+        .product-title {
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--primary-color);
+            margin-bottom: 12px;
+        }
+
+        .product-btn {
+            margin-top: auto;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--accent-color);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .product-btn:hover {
+            text-decoration: underline;
+        }
+
+        /* --- MODAL STYLES --- */
+        .modal-header-custom {
+            background-color: var(--primary-color);
+            color: #fff;
+        }
+
+        .modal-img-placeholder {
+            width: 100%;
+            height: 140px;
+            background-color: #f1f3f5;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-color);
+            font-size: 3.5rem;
+            border: 2px dashed #dee2e6;
+            margin-bottom: 15px;
+        }
+
+        .modal-content-scroll {
+            max-height: 550px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .modal-section-title {
+            font-weight: 700;
+            color: var(--primary-color);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            margin-top: 20px;
+            margin-bottom: 12px;
+        }
+
+        /* Code block syntax highlighting */
+        pre {
+            background-color: #272c34;
+            color: #abb2bf;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.85rem;
+        }
+
+        code {
+            color: #c7254e;
+            background-color: #f9f2f4;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-size: 90%;
+        }
+
+        pre code {
+            color: inherit;
+            background-color: transparent;
+            padding: 0;
+        }
+
+        footer {
+            background: #1a252f;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand navbar-dark fixed-top shadow-sm">
+        <div class="container-fluid px-2 px-md-4">
+            <a class="navbar-brand fw-bold" href="index.html">TUSHAR DHAKAL</a>
+            <div class="ms-auto overflow-hidden">
+                <ul class="navbar-nav gap-1 gap-md-3 py-1">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#products-section">Products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="masthead text-white text-center">
+        <div class="container">
+            <h1 class="display-4 fw-bold">Yantrakit</h1>
+            <p class="lead mb-4 fs-4 px-lg-5">
+                "Custom engineering tools, design packages, and mechatronic components built for innovators."
+            </p>
+        </div>
+    </header>
+
+    <!-- PRODUCTS CATALOG -->
+    <section class="section-padding" id="products-section">
+        <div class="container">
+            <h2 class="section-title">Yantrakit STEAM Catalog</h2>
+            
+            <!-- Search bar -->
+            <div class="text-center">
+                <input type="text" class="form-control search-bar" id="search-input" placeholder="Search products..." onkeyup="filterProducts()">
+            </div>
+
+            <!-- Category filter buttons -->
+            <div class="d-flex flex-wrap justify-content-center mb-5" id="filter-container">
+                <button class="filter-btn active" onclick="filterCategory('all', this)">All</button>
+                <button class="filter-btn" onclick="filterCategory('mechanics', this)">Mechanics</button>
+                <button class="filter-btn" onclick="filterCategory('optics', this)">Optics & Sound</button>
+                <button class="filter-btn" onclick="filterCategory('electricity', this)">Electricity & Magnetism</button>
+                <button class="filter-btn" onclick="filterCategory('biology', this)">Biology & Life Sciences</button>
+                <button class="filter-btn" onclick="filterCategory('earth', this)">Earth & Space</button>
+                <button class="filter-btn" onclick="filterCategory('computing', this)">Computing & Electronics</button>
+                <button class="filter-btn" onclick="filterCategory('math', this)">Math & Origami</button>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="row g-4" id="products-grid">
+                <!-- Dynamic cards loaded via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- DYNAMIC PRODUCT DETAILS MODAL -->
+    <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content border-0">
+                <div class="modal-header modal-header-custom border-0">
+                    <h5 class="modal-title fw-bold" id="modal-product-title">STEAM Material Guide</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="row">
+                        <div class="col-md-3 text-center">
+                            <div class="modal-img-placeholder" id="modal-img-icon">
+                                <i class="fas fa-microchip"></i>
+                            </div>
+                            <span class="badge bg-primary mb-3 text-uppercase w-100 py-2" id="modal-product-category">Category</span>
+                            <div class="p-2 bg-light rounded text-center small text-muted border">
+                                <strong>Syllabus Priority</strong><br>
+                                <span id="modal-product-syllabus">All Grades</span>
+                            </div>
+                        </div>
+                        <div class="col-md-9 border-start">
+                            <div class="modal-content-scroll">
+                                <h3 class="fw-bold text-dark mb-3" id="modal-product-name">Product Name</h3>
+                                
+                                <!-- DYNAMIC IN-MODAL VIDEO PLAYER -->
+                                <div class="ratio ratio-16x9 mb-4 shadow-sm rounded border d-none" id="modal-video-container">
+                                    <iframe src="" id="modal-video-iframe" style="border: 0;" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                </div>
+
+                                <div id="modal-product-desc">
+                                    <!-- Loaded Dynamically -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-0 bg-light d-flex justify-content-between">
+                    <a href="https://drive.google.com/drive/u/2/folders/1cEFBk1KL4cPoOOPkcfRqZ6AJhuXTtNlJ" target="_blank" class="btn btn-outline-primary rounded-pill px-4 fw-bold" id="modal-video-btn">
+                        <i class="fab fa-google-drive me-2"></i>Open Video Folder
+                    </a>
+                    <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="py-5">
+        <div class="container text-center">
+            <p class="mb-0 small opacity-75">© 2026 Tushar Dhakal. Mechanical Engineering - Kathmandu University.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- PRODUCTS DATA & DATABASE -->
+    <script>
+        const products = [
+            { name: "Simple Machines (Wedge, Pulley, Inclined Plane, Wheel & Axle, Screw)", cat: "mechanics", icon: "fa-cogs", class: "Class 9, 10", videoId: "1EIYovp7Hn-UKoXtCP-hTAnm5atmrEg5y" },
+            { name: "Gears (Types of Gears, Gear Box)", cat: "mechanics", icon: "fa-dharmachakra", class: "Class 9, 10", videoId: "1Bh6O53HUOnV7bkpuVvYctCSWLzjib4pL" },
+            { name: "Newton Laws", cat: "mechanics", icon: "fa-apple-whole", class: "Class 6, 7, 8, 9, 10", videoId: "10rlOUrH8eo-9LqpC2JGkzfSSzulBj30m" },
+            { name: "Hydraulic Press", cat: "mechanics", icon: "fa-compress", class: "Class 6, 8, 9, 10", videoId: "1ymh73u3NJkmceKIZM1IwzkF3M73C0NR_" },
+            { name: "Tuning Fork", cat: "optics", icon: "fa-wave-square", class: "Class 9", videoId: "1MMdc4u6Q98YY-eIRrNsrLRgAAAHfpUVP" },
+            { name: "The Sound-Making Trapezium", cat: "optics", icon: "fa-guitar", class: "Class 5, 6", videoId: "1Y9b94i8f8AItP93sQF3wwrbszvvQmcCO" },
+            { name: "Principle of Tensegrity", cat: "mechanics", icon: "fa-cubes", class: "All Grades", videoId: "1QRkCanNeaQfp06i4QcII9oDbqq9YvAvf" },
+            { name: "The Never-Sleeping Egg", cat: "mechanics", icon: "fa-egg", class: "All Grades", videoId: "11k_RXcDwYmVy5KiaQAFkxiYclWwPIcZo" },
+            { name: "The Paper Cup Telephone", cat: "optics", icon: "fa-phone-volume", class: "Class 5, 7", videoId: "1Zsy0-v7_ov94vPDYwRe4DjcuiK_Vlv5e" },
+            { name: "Prism", cat: "optics", icon: "fa-shapes", class: "Class 8, 9, 10", videoId: "1LuWSJBzhHrOWQdF4v3xRtZq3BlQZA_OU" },
+            { name: "Newton White Light", cat: "optics", icon: "fa-lightbulb", class: "Class 5, 6", videoId: "1Y9xd96nG9MRXdfjSJ1Vq2shuveHTGhP-" },
+            { name: "Engine", cat: "mechanics", icon: "fa-car-battery", class: "All Grades", videoId: "1vdrINuhPa-caQB5IakaRM7KodZdYv8qD" },
+            { name: "Basic Magnetism", cat: "electricity", icon: "fa-magnet", class: "Class 6, 7, 8, 9, 10", videoId: "1BWFRO_VVTUWhqCMiZwkMRwQQV36TD_D2" },
+            { name: "Electromagnet", cat: "electricity", icon: "fa-bolt-lightning", class: "Class 8, 9, 10", videoId: "10ZAvV-n5IOh6IJc6KeXMVfEzJwpxiKYi" },
+            { name: "Motor", cat: "electricity", icon: "fa-fan", class: "Class 9, 10", videoId: "1ESlqxAw_sA-lmoHCZVnTB5HBqNR368Ny" },
+            { name: "Generator (Mini-Generator)", cat: "electricity", icon: "fa-plug", class: "All Grades", videoId: "14ETsYPtaf2vbjeuSxlU9Q0oYuf4u0-8B" },
+            { name: "Electric Fan", cat: "electricity", icon: "fa-wind", class: "Class 9, 10", videoId: "12w-97gVwy-wT77BcGigT8E527C_CBMTe" },
+            { name: "Solar Power", cat: "electricity", icon: "fa-solar-panel", class: "All Grades", videoId: "1FoA4qzJFtmgZYwx1jcxbQ6xn1L7bNAj8" },
+            { name: "Water Turbine", cat: "mechanics", icon: "fa-water", class: "Class 9, 10", videoId: "1makdB0U3npkawlfqQhYQKdcK-Y-hWzCb" },
+            { name: "Pelton Turbine", cat: "mechanics", icon: "fa-dharmachakra", class: "Class 9, 10", videoId: "1A1CNZ_lmo1ExirefM7jJX3qROjJyO0B6" },
+            { name: "DNA", cat: "biology", icon: "fa-dna", class: "Class 10", videoId: "1v2Hu61-YPw0Udl9YIOM5e5TcpZjKLldg" },
+            { name: "Neuron Cell", cat: "biology", icon: "fa-network-wired", class: "Class 9", videoId: "1AXomWXmD-XMfpFRUNVJAkEkMdzWBgl2V" },
+            { name: "Animal Cell", cat: "biology", icon: "fa-circle-dot", class: "Class 7, 8, 9, 10", videoId: "1ivzgGyHo-OvUaXqHfVol3SdU5I78DrlR" },
+            { name: "Plant Cell", cat: "biology", icon: "fa-leaf", class: "Class 7, 8, 9, 10", videoId: "1A3VVu9v0LOQbc-maBcLk_YnDOSxS_pxR" },
+            { name: "Female Reproductive System", cat: "biology", icon: "fa-venus", class: "Class 9, 10", videoId: "13gnggIRTDXuojlSrBtUkCuEHKXcFtO47" },
+            { name: "Human Lungs", cat: "biology", icon: "fa-lungs", class: "Class 7, 8, 9, 10", videoId: "14dO-8-vr9q4CIICk5pWlSUCwlYIZK203" },
+            { name: "Human Heart", cat: "biology", icon: "fa-heart-pulse", class: "Class 10", videoId: "1Xd6OgRHUJZ5Q00abjQoKq0K2VLuXuUYW" },
+            { name: "Human Skeleton System", cat: "biology", icon: "fa-bone", class: "Class 9, 10", videoId: "1zTx36j2x9BTLb6ftNdvxph1yJ2hKdlZ1" },
+            { name: "Life Cycle of Butterfly", cat: "biology", icon: "fa-bug", class: "All Grades", videoId: "1Rb6GO5Y0RE1oEtgGeb_D9IHul3r6amun" },
+            { name: "Volcano", cat: "earth", icon: "fa-volcano", class: "Class 10", videoId: "1kndRAbpcKKcFJIw2J8IBUIbtdnzyXd8-" },
+            { name: "Earth", cat: "earth", icon: "fa-earth-americas", class: "Class 5, 6, 7, 9", videoId: "1PZVvvU_R5fXFDWjRbrAAp8kOs51bwMse" },
+            { name: "Planetary System", cat: "earth", icon: "fa-globe", class: "Class 5, 6, 7, 9", videoId: "1Tm-9lgzx98WOzMVa8u0rvm5tNpQAW38d" },
+            { name: "Atomic/Molecular Structure", cat: "earth", icon: "fa-atom", class: "Class 9, 10", videoId: "15FDmslFtQXpyqJSFAT9fzUkamTMKJe1i" },
+            { name: "Logic Gates", cat: "computing", icon: "fa-microchip", class: "Class 8, 9, 10", videoId: "1ygbmE99G8q9QKHzBiQ5B0IL01QhfdmOT" },
+            { name: "Multimeter", cat: "computing", icon: "fa-gauge", class: "Class 9, 10", videoId: "1phV65zj34Pc9Aei-eg6FNU0AfH-_0HzO" },
+            { name: "Morse Code", cat: "computing", icon: "fa-signal", class: "Class 10", videoId: "1jfFEBKHXO182OCS0myYZmib56LbBwh7Y" },
+            { name: "Colors & Origami", cat: "math", icon: "fa-palette", class: "All Grades", videoId: "10l7cXGLdvds8-M1rtQP_cPqdGBpT_60x" },
+            { name: "Fraction Table", cat: "math", icon: "fa-calculator", class: "All Grades", videoId: "1Emizx8pkaFz_GMEGdz4JHUPu4Xq-deWR" },
+            { name: "Decimal into Binary", cat: "math", icon: "fa-binary", class: "Class 9, 10", videoId: "1j2IEneN3cgsp9wUqBaffNKaYLfAoeoY3" },
+            { name: "Programming (DIY)", cat: "computing", icon: "fa-code", class: "Class 9, 10", videoId: "1krUAo6XsTNXL67bRluI7cwKjQm-G1k0U" }
+        ];
+
+        // Detailed product database
+        const productDetails = {
+            "Simple Machines (Wedge, Pulley, Inclined Plane, Wheel & Axle, Screw)": {
+                desc: `<div class="modal-section-title">Core Concept</div>
+                <p>Simple Machines are basic mechanical tools that help us multiply force or change direction to perform work with less effort. They form the core building blocks of mechanical engineering.</p>
+                <ul>
+                    <li><strong>Wedge:</strong> A double inclined plane used to split objects (like a knife edge or doorstop).</li>
+                    <li><strong>Pulley:</strong> A grooved wheel with a rope to lift loads. Multiple pulleys increase mechanical advantage.</li>
+                    <li><strong>Inclined Plane:</strong> A sloping ramp that makes moving loads upward much easier than lifting vertically.</li>
+                    <li><strong>Wheel & Axle:</strong> A wheel locked onto a central axle. Rotating the wheel turns the axle, amplifying force.</li>
+                    <li><strong>Screw:</strong> An inclined plane wrapped around a cylinder (spiral threads), converting rotational force into linear force.</li>
+                </ul>
+                <div class="modal-section-title">Activities to Try</div>
+                <ul>
+                    <li><strong>Build a Wedge:</strong> Form clay or playdough into wedges and test how they split soft structures.</li>
+                    <li><strong>Pulley Power:</strong> Set up a small pulley rig and observe how lifting a mass feels lighter with more pulleys.</li>
+                    <li><strong>Ramp It Up:</strong> Roll toy cars down cardboard ramps at different angles to measure speed variations.</li>
+                </ul>`
+            },
+            "Gears (Types of Gears, Gear Box)": {
+                desc: `<div class="modal-section-title">Core Concept</div>
+                <p>Gears are toothed wheels that mesh together to transmit rotational motion and power. They are essential for changing rotational direction, adjusting speed, and amplifying torque.</p>
+                <ul>
+                    <li><strong>Spur Gear:</strong> Straight teeth on a flat cylinder, used for parallel shafts.</li>
+                    <li><strong>Helical Gear:</strong> Curved/slanting teeth, providing smoother and quieter high-speed operations.</li>
+                    <li><strong>Bevel Gear:</strong> Conical shape, allowing power transmission between non-parallel shafts (usually at 90 degrees).</li>
+                </ul>
+                <div class="modal-section-title">Gear Ratios & Torque</div>
+                <p>A smaller gear (pinion) meshing with a larger gear turns faster but with less torque. A larger gear turning a smaller one creates speed multiplication. For example:</p>
+                <ul>
+                    <li><strong>48-Tooth & 24-Tooth Gears:</strong> Creates a 2:1 gear ratio. The 24-tooth gear spins twice for every single spin of the 48-tooth gear.</li>
+                    <li><strong>54-Tooth & 18-Tooth Gears:</strong> Creates a 3:1 gear ratio.</li>
+                </ul>`
+            },
+            "Newton Laws": {
+                desc: `<div class="modal-section-title">Newton's Laws of Motion</div>
+                <ul>
+                    <li><strong>First Law (Inertia):</strong> An object stays at rest, or continues to move at a constant speed in a straight line, unless acted on by an external net force.</li>
+                    <li><strong>Second Law (F=ma):</strong> Acceleration happens when a force acts on a mass. The force applied is directly proportional to acceleration and inversely to mass.</li>
+                    <li><strong>Third Law (Action-Reaction):</strong> For every action force, there is an equal and opposite reaction force.</li>
+                </ul>
+                <div class="modal-section-title">Hands-on Experiments</div>
+                <ol>
+                    <li><strong>Rolling Ball Test (First Law):</strong> Roll an empty table tennis ball on a flat surface. It continues until friction brings it to a stop.</li>
+                    <li><strong>Heavy Ball Race (Second Law):</strong> Roll an empty table tennis ball and one filled with water with the same push. The empty one accelerates faster because it has less mass.</li>
+                    <li><strong>Syringe Push-Back (Third Law):</strong> Push the plunger of an empty syringe quickly with the nozzle blocked. The compressed air will push the plunger back against your finger.</li>
+                </ol>`
+            },
+            "Hydraulic Press": {
+                desc: `<div class="modal-section-title">Core Concept</div>
+                <p>Hydraulics is the transmission of force and movement through incompressible fluids (like water). It operates on <strong>Pascal's Law</strong>, which states that pressure applied anywhere to a confined fluid is transmitted equally in all directions throughout the fluid.</p>
+                <div class="modal-section-title">How the Press Works</div>
+                <ul>
+                    <li>Two syringes (Syringe A - smaller diameter, Syringe B - larger diameter) are connected via a flexible tube filled with water.</li>
+                    <li>Pushing Syringe A pushes the fluid through the tube, translating that pressure to lift Syringe B's plunger.</li>
+                    <li>Because Syringe B has a larger cross-sectional area, the force output is multiplied, acting as a powerful mechanical press.</li>
+                </ul>`
+            },
+            "Tuning Fork": {
+                desc: `<div class="modal-section-title">Acoustic Resonance</div>
+                <p>A tuning fork is an acoustic resonator in the form of a two-pronged fork. Made of elastic steel or aluminum, it vibrates at a specific constant pitch when struck, emitting a pure tone once high overtones fade.</p>
+                <ul>
+                    <li><strong>Vibration and Pitch:</strong> Tapping the metal prongs makes them flex back and forth rapidly, creating sound waves.</li>
+                    <li><strong>Length & Mass:</strong> Longer or heavier prongs vibrate slower, producing low-pitched notes. Short, light prongs vibrate faster, producing high-pitched notes.</li>
+                    <li><strong>Applications:</strong> Used by musicians to tune instruments and in medical clinics to evaluate hearing ability.</li>
+                </ul>`
+            },
+            "The Sound-Making Trapezium": {
+                desc: `<div class="modal-section-title">Tension and Sound Pitch</div>
+                <p>The Sound-Making Trapezium demonstrates how the tension of a string (or rubber band) affects the pitch of the sound it produces.</p>
+                <ul>
+                    <li><strong>Tension:</strong> Because of the trapezium frame's sloping sides, rubber bands stretched across it have varying lengths and tension levels.</li>
+                    <li><strong>Frequency:</strong> Bands on the shorter side are under higher tension and vibrate faster when plucked, producing a higher pitch.</li>
+                    <li><strong>Longer Sides:</strong> Bands on the longer side are less tense, vibrating slower and producing a lower, deeper tone.</li>
+                </ul>`
+            },
+            "Principle of Tensegrity": {
+                desc: `<div class="modal-section-title">Continuous Tension & Discontinuous Compression</div>
+                <p>Tensegrity (Tensional Integrity) is a structural principle where shapes are held together by a continuous web of tension (like cables or strings) with isolated rigid struts under compression (like wooden bars).</p>
+                <ul>
+                    <li><strong>How it balances:</strong> The rigid sticks do not touch each other directly; they are suspended in mid-air, held together entirely by tight, balanced tension strings.</li>
+                    <li><strong>Applications:</strong> Tensegrity structures are incredibly light, flexible, and strong, used in modern architecture, sculptures, and biological structural models.</li>
+                </ul>`
+            },
+            "The Never-Sleeping Egg": {
+                desc: `<div class="modal-section-title">Center of Gravity</div>
+                <p>The "Never-Sleeping" Egg is a self-balancing toy that always returns to its upright position no matter how much it is tipped over. It demonstrates the principles of static stability and center of gravity.</p>
+                <ul>
+                    <li><strong>Stability:</strong> An object is stable when its center of gravity is kept low. The base of the egg contains a heavy mass (like a metal bead), placing the center of gravity at the very bottom center.</li>
+                    <li><strong>Self-Correction:</strong> Tipping the egg raises its center of gravity. Gravitational force pulls the heavy bottom mass back down, immediately rolling the egg upright.</li>
+                </ul>`
+            },
+            "The Paper Cup Telephone": {
+                desc: `<div class="modal-section-title">Acoustic Wave Propagation in Solids</div>
+                <p>The Paper Cup Telephone is a classic experiment demonstrating that sound waves travel much faster and more efficiently through solid mediums (like string) than through the air.</p>
+                <ul>
+                    <li><strong>How it Works:</strong> Speaking into the cup causes the air inside to vibrate. These vibrations hit the bottom of the cup, transferring to the attached string.</li>
+                    <li><strong>Tight String:</strong> The string must be stretched tight so that mechanical wave vibrations can travel along it to the second cup, which amplifies the sound back into the listener's ear.</li>
+                </ul>`
+            },
+            "Prism": {
+                desc: `<div class="modal-section-title">Refraction & Dispersion</div>
+                <p>A prism is a triangular glass block with five faces. It is a fundamental optical device used to manipulate light rays.</p>
+                <ul>
+                    <li><strong>Refraction:</strong> As light passes from the air into the denser glass medium, it slows down and bends (refracts).</li>
+                    <li><strong>Dispersion:</strong> Different colors (wavelengths) of light refract at slightly different angles. White light entering a prism splits into a full spectrum of colors (red, orange, yellow, green, blue, indigo, violet).</li>
+                    <li><strong>Total Internal Reflection:</strong> Occurs when light hits the glass-to-air boundary at an angle greater than the critical angle, causing it to bounce back inside like a mirror.</li>
+                </ul>`
+            },
+            "Newton White Light": {
+                desc: `<div class="modal-section-title">Color Addition Experiment</div>
+                <p>Sir Isaac Newton demonstrated that white light is not a single color, but rather a combination of all visible wavelengths mixed together.</p>
+                <ul>
+                    <li><strong>Splitting Light:</strong> Newton first used a glass prism to split sunlight into a rainbow spectrum.</li>
+                    <li><strong>Recombining Light (Color Wheel):</strong> He then painted these spectral colors onto a disk. When spun rapidly, the human eye cannot resolve the individual colors separately, and they blend together, appearing white. This process is known as additive color addition.</li>
+                </ul>`
+            },
+            "Engine": {
+                desc: `<div class="modal-section-title">Thermal-to-Mechanical Energy Conversion</div>
+                <p>An engine is a machine designed to convert chemical energy (fuel) into thermal energy (explosion) and then into mechanical energy (motion).</p>
+                <ol>
+                    <li><strong>Intake:</strong> Air and fuel are mixed and drawn into the cylinder chamber.</li>
+                    <li><strong>Compression:</strong> The piston compresses the air-fuel mixture to make it highly combustible.</li>
+                    <li><strong>Combustion/Ignition:</strong> A spark plug ignites the mixture, creating a small explosion.</li>
+                    <li><strong>Power:</strong> The explosion expansion force pushes the piston down rapidly.</li>
+                    <li><strong>Exhaust & Rotation:</strong> The linear movement of the piston turns the crankshaft, converting it into circular wheel-turning rotation.</li>
+                </ol>`
+            },
+            "Basic Magnetism": {
+                desc: `<div class="modal-section-title">Magnetic Fields & Dipoles</div>
+                <p>A magnet is a material that produces an invisible magnetic field. This field exerts a force that attracts ferromagnetic materials (like iron, nickel, cobalt) and repels or attracts other magnets.</p>
+                <ul>
+                    <li><strong>Permanent Magnets:</strong> Retain their magnetism over time (e.g. Horseshoe magnets, Bar magnets, Ring magnets, Neodymium magnets).</li>
+                    <li><strong>Temporary Magnets:</strong> Only behave as magnets when placed inside a strong magnetic field (e.g. iron nails or paper clips).</li>
+                    <li><strong>Poles:</strong> Every magnet has a North and a South pole. Like poles repel each other, while opposite poles attract.</li>
+                </ul>`
+            },
+            "Electromagnet": {
+                desc: `<div class="modal-section-title">Temporary Magnetic Induction</div>
+                <p>An electromagnet is a magnet that functions only when electric current flows through its coil. It is a core concept linking electricity and magnetism.</p>
+                <ul>
+                    <li><strong>Core and Coil:</strong> Copper wire is coiled tightly around a ferromagnetic core (like an iron nail).</li>
+                    <li><strong>Magnetic Flux:</strong> Running current through the wire coil creates a magnetic field. The iron core concentrates and strengthens this field.</li>
+                    <li><strong>Control:</strong> Electromagnets can be turned on/off, and their strength can be adjusted by changing the current.</li>
+                </ul>
+                <div class="modal-section-title">How to Assemble</div>
+                <ol>
+                    <li>Wrap insulated copper wire tightly around an iron nail, leaving 8 inches loose at each end.</li>
+                    <li>Strip the insulation off the loose ends.</li>
+                    <li>Connect the stripped ends to the terminals of a battery. The nail will now attract paperclips!</li>
+                </ol>`
+            },
+            "Motor": {
+                desc: `<div class="modal-section-title">Electrical-to-Mechanical Conversion</div>
+                <p>An electric motor is a machine that converts electrical energy into mechanical rotation using magnetic forces.</p>
+                <ul>
+                    <li><strong>Armature Coil:</strong> A coil of wire that becomes an electromagnet when current runs through it.</li>
+                    <li><strong>Commutator:</strong> The ends of the coil wire are stripped and partially colored with a marker. This acts as a commutator, interrupting the current at half-rotations to prevent the coil from stalling.</li>
+                    <li><strong>Working Principle:</strong> The magnetic field of the permanent magnet interacts with the magnetic field of the coil electromagnet, pushing the coil to rotate continuously.</li>
+                </ul>`
+            },
+            "Generator (Mini-Generator)": {
+                desc: `<div class="modal-section-title">Electromagnetic Induction</div>
+                <p>A generator (or dynamo) is a machine that converts mechanical force (rotation) into electricity using electromagnetic induction.</p>
+                <ul>
+                    <li><strong>Induction Principle:</strong> Moving a electrical conductor (wire coil) through a magnetic field, or spinning a permanent magnet inside a coil of wire, pushes electrons to move, generating electric current.</li>
+                    <li><strong>Alternating Current (AC):</strong> As the magnet spins, the direction of current changes back and forth, generating AC electricity.</li>
+                </ul>`
+            },
+            "Electric Fan": {
+                desc: `<div class="modal-section-title">Practical Application of DC Motor</div>
+                <p>An electric fan represents a simple application of converting electrical energy into mechanical movement to move air.</p>
+                <ul>
+                    <li><strong>DC Motor & Propeller:</strong> A small battery powers a DC motor, spinning a propeller.</li>
+                    <li><strong>Aerodynamics:</strong> The angled blades of the propeller scoop and push the air forward as they rotate, creating a cool breeze.</li>
+                </ul>`
+            },
+            "Solar Power": {
+                desc: `<div class="modal-section-title">Photovoltaic Effect</div>
+                <p>Solar power is clean, quiet, and renewable energy captured from sunlight using photovoltaic panels.</p>
+                <ul>
+                    <li><strong>Solar Cells:</strong> Made of semiconductor materials (like silicon) that release electrons when struck by light, generating direct current (DC) electricity.</li>
+                    <li><strong>Simple Setup:</strong> Connect the red (+) and black (-) wires from a solar panel to the corresponding leads of a small LED light. Expose the panel to direct sunlight, and the LED will illuminate!</li>
+                </ul>`
+            },
+            "Water Turbine": {
+                desc: `<div class="modal-section-title">Hydroelectric Energy Conversion</div>
+                <p>A water turbine is a device that extracts kinetic and potential energy from flowing water and converts it into rotational mechanical energy.</p>
+                <ul>
+                    <li><strong>Rotational Work:</strong> Flowing water hits the blades of the turbine, causing the shaft to spin.</li>
+                    <li><strong>Generator Link:</strong> The spinning turbine shaft is connected to an AC motor (acting as a generator) to produce clean electricity.</li>
+                </ul>`
+            },
+            "Pelton Turbine": {
+                desc: `<div class="modal-section-title">Impulse Hydro-Turbine</div>
+                <p>A Pelton turbine is a specific type of impulse water turbine designed for high-head (height) and low-flow water sources.</p>
+                <ul>
+                    <li><strong>Spoon-Shaped Buckets:</strong> The turbine wheel features curved, double-cup buckets around its rim.</li>
+                    <li><strong>Impulse Principle:</strong> High-pressure water shoots out of a nozzle, hitting the buckets at high velocity. The curved cups deflect the water, extracting almost all of its kinetic energy to spin the turbine.</li>
+                </ul>`
+            },
+            "DNA": {
+                desc: `<div class="modal-section-title">Double Helix Structure</div>
+                <p>DNA (Deoxyribonucleic Acid) is the blueprint of life. It contains the genetic instructions for the development and function of all living organisms.</p>
+                <ul>
+                    <li><strong>Twisted Ladder:</strong> The sides of the ladder are made of sugar and phosphate. The rungs are base pairs.</li>
+                    <li><strong>Bases:</strong> The genetic alphabet contains 4 chemical bases: Adenine (A), Thymine (T), Cytosine (C), and Guanine (G).</li>
+                    <li><strong>Pairing Rule:</strong> Adenine always pairs with Thymine (A-T), and Cytosine always pairs with Guanine (C-G).</li>
+                </ul>`
+            },
+            "Neuron Cell": {
+                desc: `<div class="modal-section-title">Nerve Communication</div>
+                <p>Neurons are specialized nerve cells that transmit electrical and chemical signals throughout the body, acting as the brain's messaging system.</p>
+                <ul>
+                    <li><strong>Action Potentials:</strong> Electrical impulses that travel along the axon of the neuron.</li>
+                    <li><strong>Synapse:</strong> The microscopic junction space between two neurons.</li>
+                    <li><strong>Neurotransmitters:</strong> Chemical messengers released across the synapse to pass the signal from one neuron's dendrites to the next.</li>
+                </ul>`
+            },
+            "Animal Cell": {
+                desc: `<div class="modal-section-title">City of Life</div>
+                <p>An animal cell is the basic structural unit of animal tissues. It behaves like a tiny, self-contained city.</p>
+                <ul>
+                    <li><strong>Nucleus:</strong> The city hall containing the DNA blueprints.</li>
+                    <li><strong>Mitochondria:</strong> The power plants producing energy (ATP) for cellular functions.</li>
+                    <li><strong>Ribosomes:</strong> Small protein-manufacturing factories.</li>
+                    <li><strong>Endoplasmic Reticulum (ER):</strong> The highway system transporting proteins.</li>
+                    <li><strong>Golgi Apparatus:</strong> The post office sorting and shipping cell materials.</li>
+                    <li><strong>Lysosomes:</strong> The recycling center breaking down waste.</li>
+                </ul>`
+            },
+            "Plant Cell": {
+                desc: `<div class="modal-section-title">Factory of Life</div>
+                <p>Plant cells differ from animal cells in their structural support and ability to manufacture their own food.</p>
+                <ul>
+                    <li><strong>Cell Wall:</strong> A rigid outer wall made of cellulose, providing structural support to keep plants upright.</li>
+                    <li><strong>Chloroplasts:</strong> Specialized plastids (solar panels) containing chlorophyll to perform photosynthesis (converting carbon dioxide, water, and sunlight into glucose and oxygen).</li>
+                    <li><strong>Large Central Vacuole:</strong> A large reservoir storing water to maintain turgor pressure.</li>
+                </ul>`
+            },
+            "Female Reproductive System": {
+                desc: `<div class="modal-section-title">Anatomy & Reproduction</div>
+                <p>A biological overview of the organs involved in female reproduction and hormone regulation.</p>
+                <ul>
+                    <li><strong>Ovaries:</strong> Store and mature ova (egg cells), producing estrogen and progesterone.</li>
+                    <li><strong>Fallopian Tubes:</strong> Pathways connecting the ovaries to the uterus, and the primary site for fertilization.</li>
+                    <li><strong>Uterus:</strong> A muscular organ lined with vascular tissue where a fertilized egg implants and develops.</li>
+                    <li><strong>Vagina:</strong> The canal leading from the cervix to the body's exterior.</li>
+                </ul>`
+            },
+            "Human Lungs": {
+                desc: `<div class="modal-section-title">Respiratory Gas Exchange</div>
+                <p>Lungs are the primary organs of the respiratory system, facilitating the gas exchange between oxygen and carbon dioxide.</p>
+                <ul>
+                    <li><strong>Alveoli:</strong> Millions of microscopic air sacs surrounded by capillaries where gas exchange occurs.</li>
+                    <li><strong>Diaphragm:</strong> A muscular sheet at the base of the chest cavity. Contracting it pulls air in; relaxing it pushes carbon dioxide out.</li>
+                    <li><strong>Pleurae:</strong> Smooth double-layered membranes that cushion the lungs to allow friction-free movement.</li>
+                </ul>`
+            },
+            "Human Heart": {
+                desc: `<div class="modal-section-title">Physiological Pump</div>
+                <p>The human heart is a muscular organ about the size of a fist that pumps oxygenated and deoxygenated blood through the circulatory system.</p>
+                <ul>
+                    <li><strong>Four Chambers:</strong> Two upper chambers (Atria) receive incoming blood; two lower chambers (Ventricles) pump blood out to the body and lungs.</li>
+                    <li><strong>Sinoatrial (SA) Node:</strong> The heart's natural electrical pacemaker, initiating the rhythmic contraction cycle.</li>
+                </ul>`
+            },
+            "Human Skeleton System": {
+                desc: `<div class="modal-section-title">Structural Framework</div>
+                <p>The human skeleton comprises 206 bones that provide support, protect vital organs, and enable motion.</p>
+                <ul>
+                    <li><strong>Joints & Ligaments:</strong> Joints act as hinges enabling movement, while ligaments are strong bands of connective tissue holding bones together.</li>
+                    <li><strong>Axial Skeleton:</strong> The central support axis (skull, vertebral column, and rib cage).</li>
+                    <li><strong>Appendicular Skeleton:</strong> The bones of the limbs, shoulders, and pelvis.</li>
+                </ul>`
+            },
+            "Life Cycle of Butterfly": {
+                desc: `<div class="modal-section-title">Metamorphosis Stages</div>
+                <p>A butterfly undergoes complete metamorphosis, passing through four distinct life stages:</p>
+                <ol>
+                    <li><strong>The Egg:</strong> Tiny eggs are laid on the underside of host leaves.</li>
+                    <li><strong>The Larva (Caterpillar):</strong> The feeding stage, consuming leaves rapidly and shedding skin as it grows.</li>
+                    <li><strong>The Pupa (Chrysalis):</strong> The transformation stage, inside a protective shell where cellular structures are reorganized.</li>
+                    <li><strong>The Adult Butterfly:</strong> Emeges with wings, ready to feed on nectar and reproduce.</li>
+                </ol>`
+            },
+            "Volcano": {
+                desc: `<div class="modal-section-title">Tectonic Eruptions</div>
+                <p>A volcano is an opening in the Earth's crust that allows molten magma, volcanic ash, and gases to escape from below the surface.</p>
+                <ul>
+                    <li><strong>Diverging Plates:</strong> Magma rises to fill gaps as tectonic plates pull apart.</li>
+                    <li><strong>Converging Plates:</strong> One plate slides beneath another, melting into magma.</li>
+                </ul>
+                <div class="modal-section-title">Eruption Experiment</div>
+                <p>Demonstrate gas expansion using a Coca-Cola bottle and Mentos. Sliding Mentos into carbonated soda triggers rapid gas nucleation, ejecting a powerful foam fountain simulating a volcanic eruption.</p>`
+            },
+            "Earth": {
+                desc: `<div class="modal-section-title">Tectonics & Continents</div>
+                <p>Earth is a dynamic planet with active geological processes shaping its surface.</p>
+                <ul>
+                    <li><strong>Continental Drift:</strong> The theory that Earth's continents were once joined as a single supercontinent (Pangaea) and have slowly drifted apart.</li>
+                    <li><strong>Plate Tectonics:</strong> The movement of massive crustal plates floating on the semi-fluid mantle beneath.</li>
+                </ul>`
+            },
+            "Planetary System": {
+                desc: `<div class="modal-section-title">Scaled Solar System</div>
+                <p>The planetary system consists of the Sun and the objects bound to it by gravity, including the eight major planets.</p>
+                <ul>
+                    <li><strong>Scale Modeling:</strong> Understanding the vast distances. For instance, if Earth is scaled to 1 cm, Jupiter is 11 cm in diameter, and the scaled distances must expand proportionally in Astronomical Units (AU).</li>
+                </ul>`
+            },
+            "Atomic/Molecular Structure": {
+                desc: `<div class="modal-section-title">Chemical Bonding Models</div>
+                <p>Molecules are formed when atoms share or transfer valence electrons to create stable bonds.</p>
+                <ul>
+                    <li><strong>Molecules:</strong> Spheres represent atomic nuclei (different colors for carbon, hydrogen, oxygen, etc.) and sticks represent chemical bonds.</li>
+                    <li><strong>Water (H₂O):</strong> Bent geometry, oxygen bonded to two hydrogen atoms.</li>
+                    <li><strong>Carbon Dioxide (CO₂):</strong> Linear geometry, carbon double-bonded to two oxygen atoms.</li>
+                    <li><strong>Methane (CH₄):</strong> Tetrahedral geometry, carbon bonded to four hydrogen atoms.</li>
+                </ul>`
+            },
+            "Logic Gates": {
+                desc: `<div class="modal-section-title">Digital Logic truth tables</div>
+                <p>Logic gates are the basic building blocks of digital circuits. They take binary inputs (0 or 1) and output a binary result.</p>
+                <ul>
+                    <li><strong>AND Gate:</strong> Outputs 1 only if both inputs are 1.
+                        <table class="table table-sm text-center table-bordered mt-2" style="max-width:300px; font-size:11px;">
+                            <thead><tr><th>A</th><th>B</th><th>Output</th></tr></thead>
+                            <tbody><tr><td>0</td><td>0</td><td>0</td></tr><tr><td>0</td><td>1</td><td>0</td></tr><tr><td>1</td><td>0</td><td>0</td></tr><tr><td>1</td><td>1</td><td>1</td></tr></tbody>
+                        </table>
+                    </li>
+                    <li><strong>OR Gate:</strong> Outputs 1 if at least one input is 1.
+                        <table class="table table-sm text-center table-bordered mt-2" style="max-width:300px; font-size:11px;">
+                            <thead><tr><th>A</th><th>B</th><th>Output</th></tr></thead>
+                            <tbody><tr><td>0</td><td>0</td><td>0</td></tr><tr><td>0</td><td>1</td><td>1</td></tr><tr><td>1</td><td>0</td><td>1</td></tr><tr><td>1</td><td>1</td><td>1</td></tr></tbody>
+                        </table>
+                    </li>
+                    <li><strong>NOT Gate:</strong> Outputs the inverse of the input.
+                        <table class="table table-sm text-center table-bordered mt-2" style="max-width:200px; font-size:11px;">
+                            <thead><tr><th>A</th><th>Output</th></tr></thead>
+                            <tbody><tr><td>0</td><td>1</td></tr><tr><td>1</td><td>0</td></tr></tbody>
+                        </table>
+                    </li>
+                </ul>`
+            },
+            "Multimeter": {
+                desc: `<div class="modal-section-title">Electrical Measurement</div>
+                <p>A digital multimeter is used to measure electrical properties: Voltage (AC/DC), Current (Amperes), and Resistance (Ohms).</p>
+                <ul>
+                    <li><strong>Series Resistance:</strong> Resistors connected end-to-end. Total resistance adds up:
+                        <code>R_total = R1 + R2 + R3...</code> (e.g. 100Ω + 200Ω = 300Ω).
+                    </li>
+                    <li><strong>Parallel Resistance:</strong> Resistors connected across the same points. Total resistance decreases:
+                        <code>1/R_total = 1/R1 + 1/R2...</code> (e.g. two 100Ω resistors in parallel give a total of 50Ω).
+                    </li>
+                </ul>`
+            },
+            "Morse Code": {
+                desc: `<div class="modal-section-title">Telecommunication Basics</div>
+                <p>Morse code is a method of transmitting text information as a series of on-off audio beeps or light flashes (dots and dashes).</p>
+                <ul>
+                    <li><strong>Components:</strong> A simple circuit containing a pushbutton (input) and a buzzer (sound output).</li>
+                    <li><strong>International Morse Code:</strong>
+                        <ul>
+                            <li>1 dash = duration of 3 dots.</li>
+                            <li>A: . −</li>
+                            <li>B: − . . .</li>
+                            <li>S: . . .</li>
+                            <li>O: − − −</li>
+                        </ul>
+                    </li>
+                </ul>`
+            },
+            "Colors & Origami": {
+                desc: `<div class="modal-section-title">Color Theory & Mixing</div>
+                <p>Understanding the difference between light-based mixing and paint-based mixing.</p>
+                <ul>
+                    <li><strong>Primary Colors:</strong> Red, Yellow, Blue.</li>
+                    <li><strong>Additive Mixing:</strong> Mixing colored light wavelengths (Red + Green + Blue = White light).</li>
+                    <li><strong>Subtractive Mixing:</strong> Mixing paint pigments (absorbs light; mixing primary colors creates a dark brown/black color).</li>
+                </ul>
+                <div class="modal-section-title">Walking Water Experiment</div>
+                <p>Arrange clear cups (some filled with colored water, some empty) in a line. Fold paper towels to link them. Capillary action draws water up and over the paper towel bridges, mixing primary colors into secondary colors in the empty cups.</p>`
+            },
+            "Fraction Table": {
+                desc: `<div class="modal-section-title">Fraction Box Math</div>
+                <p>A tactile math tool containing colored rectangular wooden blocks representing numerical fractions.</p>
+                <ul>
+                    <li><strong>Red block:</strong> Counts as 1 whole.</li>
+                    <li><strong>Grey blocks:</strong> Two pieces, each representing 1/2.</li>
+                    <li><strong>Blue blocks:</strong> Three pieces, each representing 1/3.</li>
+                    <li><strong>Black blocks:</strong> Four pieces, each representing 1/4.</li>
+                    <li><strong>Green blocks:</strong> Five pieces, each representing 1/5.</li>
+                </ul>
+                <p>Students use these blocks to compare fractions, understand denominators and numerators, and visually solve fraction additions (e.g. 1/2 + 1/2 = 1).</p>`
+            },
+            "Decimal into Binary": {
+                desc: `<div class="modal-section-title">Binary Number System</div>
+                <p>Computers run on binary logic (base-2), using only 0 and 1 (corresponding to off/on switches). This device uses a 5-digit mechanical setup to count up to 31.</p>
+                <ul>
+                    <li><strong>5-digit Binary:</strong> Each digit represents a power of 2 (16, 8, 4, 2, 1).</li>
+                    <li><strong>Binary Conversions:</strong>
+                        <ul>
+                            <li>1 = 00001</li>
+                            <li>5 = 00101</li>
+                            <li>10 = 01010</li>
+                            <li>31 = 11111</li>
+                        </ul>
+                    </li>
+                </ul>`
+            },
+            "Programming (DIY)": {
+                desc: `<div class="modal-section-title">Arduino Microcontroller Projects</div>
+                <p>Yantrakit includes several DIY programming modules based on the Arduino Uno microcontroller platform.</p>
+                
+                <!-- Nested bootstrap tabs for project codes -->
+                <ul class="nav nav-tabs mb-3" id="arduinoTabs" role="tablist">
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link active py-2 text-dark" id="ultra-tab" data-bs-toggle="tab" data-bs-target="#ultra-proj" type="button" role="tab">Ultrasonic Sensor</button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link py-2 text-dark" id="mq3-tab" data-bs-toggle="tab" data-bs-target="#mq3-proj" type="button" role="tab">Alcohol Detector</button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link py-2 text-dark" id="solar-tab" data-bs-toggle="tab" data-bs-target="#solar-proj" type="button" role="tab">Solar Tracker</button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link py-2 text-dark" id="moist-tab" data-bs-toggle="tab" data-bs-target="#moist-proj" type="button" role="tab">Soil Moisture</button>
+                  </li>
+                </ul>
+                
+                <div class="tab-content" id="arduinoTabsContent">
+                  <!-- Proj 1 -->
+                  <div class="tab-pane fade show active" id="ultra-proj" role="tabpanel">
+                    <h6 class="fw-bold">Distance Measurement with HC-SR04 & LCD</h6>
+                    <p class="small text-muted">Measures distance without contact by sending high-frequency sound waves and timing their reflection.</p>
+                    <pre><code>#include &lt;LiquidCrystal_I2C.h&gt;
+LiquidCrystal_I2C lcd(0x20, 16, 2);
+#define echoPin 2
+#define trigPin 3
+long duration; int distance;
+
+void setup() {
+  lcd.init(); lcd.backlight();
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+}
+void loop() {
+  digitalWrite(trigPin, LOW); delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH); delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+  duration = pulseIn(echoPin, HIGH);
+  distance = duration * 0.0344 / 2;
+  lcd.clear(); lcd.setCursor(0,0);
+  lcd.print("Distance: "); lcd.print(distance); lcd.print("cm");
+  delay(100);
+}</code></pre>
+                  </div>
+                  <!-- Proj 2 -->
+                  <div class="tab-pane fade" id="mq3-proj" role="tabpanel">
+                    <h6 class="fw-bold">Alcohol Detector with MQ-3 Sensor & Buzzer</h6>
+                    <p class="small text-muted">Uses a heating sensor element to detect alcohol fumes, triggering a warning LED and a buzzer.</p>
+                    <pre><code>int LED = 9; int BUZZER = 10;
+int ALCOHOL_sensor = 3; int ALCOHOL_detected;
+
+void setup() {
+  pinMode(LED, OUTPUT); pinMode(BUZZER, OUTPUT);
+  pinMode(ALCOHOL_sensor, INPUT);
+}
+void loop() {
+  ALCOHOL_detected = digitalRead(ALCOHOL_sensor);
+  if (ALCOHOL_detected == 1) {
+    digitalWrite(LED, HIGH); digitalWrite(BUZZER, HIGH);
+  } else {
+    digitalWrite(LED, LOW); digitalWrite(BUZZER, LOW);
+  }
+}</code></pre>
+                  </div>
+                  <!-- Proj 3 -->
+                  <div class="tab-pane fade" id="solar-proj" role="tabpanel">
+                    <h6 class="fw-bold">Single-Axis Sun Tracking Solar Panel</h6>
+                    <p class="small text-muted">Compares light intensity from two LDRs and rotates a servo motor to face the sun directly.</p>
+                    <pre><code>#include &lt;Servo.h&gt;
+Servo sg90; int initial_position = 90;
+int LDR1 = A0; int LDR2 = A1; int error = 5;
+
+void setup() {
+  sg90.attach(9);
+  pinMode(LDR1, INPUT); pinMode(LDR2, INPUT);
+  sg90.write(initial_position);
+}
+void loop() {
+  int R1 = analogRead(LDR1); int R2 = analogRead(LDR2);
+  int diff1 = abs(R1 - R2); int diff2 = abs(R2 - R1);
+  if (diff1 &gt; error && diff2 &gt; error) {
+    if (R1 &gt; R2) initial_position = --initial_position;
+    if (R1 &lt; R2) initial_position = ++initial_position;
+    sg90.write(initial_position);
+  }
+  delay(100);
+}</code></pre>
+                  </div>
+                  <!-- Proj 4 -->
+                  <div class="tab-pane fade" id="moist-proj" role="tabpanel">
+                    <h6 class="fw-bold">Soil Moisture Monitor</h6>
+                    <p class="small text-muted">Measures soil resistance to check moisture levels, reporting dry, perfect, or wet states.</p>
+                    <pre><code>#define sensorPower 7
+#define sensorPin A0
+
+void setup() {
+  pinMode(sensorPower, OUTPUT);
+  digitalWrite(sensorPower, LOW);
+  Serial.begin(9600);
+}
+void loop() {
+  int moisture = readSensor();
+  Serial.print("Moisture Level: "); Serial.println(moisture);
+  delay(1000);
+}
+int readSensor() {
+  digitalWrite(sensorPower, HIGH); delay(10);
+  int val = analogRead(sensorPin);
+  digitalWrite(sensorPower, LOW);
+  return val;
+}</code></pre>
+                  </div>
+                </div>`
+            }
+        };
+
+        let selectedCategory = "all";
+
+        // Load grid items
+        function loadProducts() {
+            const grid = document.getElementById("products-grid");
+            grid.innerHTML = "";
+
+            const query = document.getElementById("search-input").value.toLowerCase().trim();
+
+            products.forEach(p => {
+                const matchesCategory = (selectedCategory === "all" || p.cat === selectedCategory);
+                const matchesSearch = p.name.toLowerCase().includes(query);
+
+                if (matchesCategory && matchesSearch) {
+                    const col = document.createElement("div");
+                    col.className = "col-lg-3 col-md-4 col-sm-6 product-item-container";
+                    col.innerHTML = `
+                        <div class="product-card" onclick="openDetails('${p.name.replace(/'/g, "\\'")}', '${p.cat}', '${p.icon}', '${p.class}')">
+                            <span class="product-category">${getCategoryLabel(p.cat)}</span>
+                            <div class="product-icon">
+                                <i class="fas ${p.icon}"></i>
+                            </div>
+                            <div class="product-title">${p.name}</div>
+                            <a href="#" class="product-btn" onclick="event.preventDefault();">Read Material <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    `;
+                    grid.appendChild(col);
+                }
+            });
+        }
+
+        function getCategoryLabel(cat) {
+            switch(cat) {
+                case 'mechanics': return 'Mechanics';
+                case 'optics': return 'Optics & Sound';
+                case 'electricity': return 'Electricity & Magnetism';
+                case 'biology': return 'Biology';
+                case 'earth': return 'Earth & Space';
+                case 'computing': return 'Computing & Electronics';
+                case 'math': return 'Math & Origami';
+                default: return 'General';
+            }
+        }
+
+        // Filter by category
+        function filterCategory(cat, button) {
+            selectedCategory = cat;
+            document.querySelectorAll(".filter-btn").forEach(btn => btn.classList.remove("active"));
+            button.classList.add("active");
+            loadProducts();
+        }
+
+        // Filter by search
+        function filterProducts() {
+            loadProducts();
+        }
+
+        // Open details modal
+        function openDetails(name, category, icon, syllabus) {
+            const details = productDetails[name];
+            document.getElementById("modal-product-name").innerText = name;
+            document.getElementById("modal-product-category").innerText = getCategoryLabel(category);
+            document.getElementById("modal-product-syllabus").innerText = syllabus;
+            document.getElementById("modal-img-icon").innerHTML = `<i class="fas ${icon}"></i>`;
+            
+            const descContainer = document.getElementById("modal-product-desc");
+            if (details) {
+                descContainer.innerHTML = details.desc;
+            } else {
+                descContainer.innerHTML = `
+                    <div class="modal-section-title">Core Concept</div>
+                    <p class="text-secondary">Detailed information, diagrams, and experiments for the "${name}" module will be added here shortly.</p>
+                `;
+            }
+
+            // Handle Video Embed
+            const videoContainer = document.getElementById("modal-video-container");
+            const videoIframe = document.getElementById("modal-video-iframe");
+            const videoBtn = document.getElementById("modal-video-btn");
+
+            // Look up if this product has a videoId
+            const productObj = products.find(p => p.name === name);
+            if (productObj && productObj.videoId) {
+                videoIframe.src = `https://drive.google.com/file/d/${productObj.videoId}/preview`;
+                videoContainer.classList.remove("d-none");
+                videoBtn.href = `https://drive.google.com/file/d/${productObj.videoId}/view`;
+                videoBtn.classList.remove("d-none");
+            } else {
+                videoIframe.src = "";
+                videoContainer.classList.add("d-none");
+                videoBtn.classList.add("d-none");
+            }
+
+            const modal = new bootstrap.Modal(document.getElementById('productModal'));
+            modal.show();
+
+            // Stop playing the video when the modal is closed
+            document.getElementById('productModal').addEventListener('hidden.bs.modal', function () {
+                videoIframe.src = "";
+            }, { once: true });
+        }
+
+        // Initial catalog load
+        loadProducts();
+    </script>
+</body>
+</html>
